@@ -5,6 +5,10 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Line Chart.
 * Plots multiple line chart on the same axis.
 
+<p>
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1580448959.png" width="350">  
+</p>
+
 ## Getting Started
 
 * Fork.
