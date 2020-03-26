@@ -20,6 +20,6 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/NdubuisiJr/skia-chart/blob/master/LICENSE) file for details
 
 
