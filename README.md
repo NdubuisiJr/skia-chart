@@ -8,11 +8,12 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 <p>
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1580448959.png" width="350" title="Single line"> 
 </p
+
 ## Code Example
+
   XAML-page
   
   ```
-  <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -33,6 +34,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
                            GridLines="10"
                            />
 </ContentPage>
+
   ```
   
   View Model
