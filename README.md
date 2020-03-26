@@ -6,7 +6,8 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Plots multiple line chart on the same axis.
 
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1580448959.png" width="350">  
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1580448959.png" width="350" title="Single line"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258834.png" width="350" title="Multiple lines">
 </p>
 
 ## Getting Started
