@@ -8,8 +8,6 @@ namespace SkiaChart.Axes {
     /// The abstract class that cordinates the Axis of the chart
     /// </summary>
     public abstract class Axis<T> where T: IChart {
-        internal Axis() { }
-
         internal Axis(IEnumerable<T> lineSeries) {
             LineSeries = lineSeries;
         }
@@ -66,11 +64,14 @@ namespace SkiaChart.Axes {
             return yMin;
         }
 
-        internal abstract void OrientAxis(SKCanvas canvas, float width, float height);
+        internal abstract void OrientAxis(SKCanvas canvas, float width, 
+            float height);
 
-        internal abstract void PositionXLabel(string label, float widthSpacing, float bottomOrTop, SKPaint paint);
+        internal abstract void PositionXLabel(string label, float widthSpacing, 
+            float bottomOrTop, SKPaint paint);
 
-        internal abstract void PositionYLabel(string label, float heightSpacing, float rightOrLeft, SKPaint paint);
+        internal abstract void PositionYLabel(string label, float heightSpacing, 
+            float rightOrLeft, SKPaint paint);
 
         internal IEnumerable<T> LineSeries;
 

@@ -3,11 +3,16 @@ using SkiaChart.Charts;
 using SkiaSharp;
 
 namespace SkiaChart.Axes {
+    /// <summary>
+    /// A class that orients the X-Y axis of a chart to the bottom left hand corner
+    /// </summary>
+    /// <typeparam name="T">type of chart</typeparam>
     public class NormalXYAxis<T> : Axis<T> where T: IChart {
         public NormalXYAxis(IEnumerable<T> lineSeries) : base(lineSeries) {
         }
 
-        internal override void OrientAxis(SKCanvas canvas, float width, float height) {
+        internal override void OrientAxis(SKCanvas canvas, float width, 
+            float height) {
             _height = height;
             _width = width;
             _canvas = canvas;
@@ -17,14 +22,16 @@ namespace SkiaChart.Axes {
         }
 
 
-        internal override void PositionXLabel(string label, float widthSpacing, float bottomOrTop, SKPaint paint) {
+        internal override void PositionXLabel(string label, float widthSpacing, 
+            float bottomOrTop, SKPaint paint) {
             _canvas.Save();
             AntiOrientAxis(float.MaxValue);
             _canvas.DrawText(label, widthSpacing, bottomOrTop+20, paint);
             _canvas.Restore();
         }
 
-        internal override void PositionYLabel(string label, float heightSpacing, float rightOrLeft, SKPaint paint) {
+        internal override void PositionYLabel(string label, float heightSpacing, 
+            float rightOrLeft, SKPaint paint) {
             _canvas.Save();
             AntiOrientAxis(heightSpacing);
             _canvas.DrawText(label, rightOrLeft - 20, 0, paint);

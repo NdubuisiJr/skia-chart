@@ -7,26 +7,31 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace SkiaChart {
+    /// <summary>
+    /// The chart class that cordinates all types of chart display on the canvas.
+    /// </summary>
+    /// <typeparam name="T">Type of chart to display</typeparam>
     public class Chart<T> where T : IChart {
-        public Chart (IEnumerable<T> charts) {
+
+        /// <summary>
+        /// Creates an instance of the chart class with a collection of charts to display
+        /// </summary>
+        /// <param name="charts">The collection of a given type to plot</param>
+        public Chart(IEnumerable<T> charts, Axis<T> axis = null) {
             ValidateCharts(charts);
             _charts = new List<T>(charts);
             _labelChart = charts.ElementAt(0);
-            Axis = new NormalXYAxis<T>(charts);
+            SetAxis(charts, axis);
             ScaleAxes();
         }
 
-        public void Plot(SKCanvas canvas) {
+        //Initiates the rendering of all the charts in the collection
+        internal void Plot(SKCanvas canvas) {
             NormalizeAllDataPoints();
             _charts.ForEach(chart => chart.RenderChart(canvas));
         }
 
-        private void NormalizeAllDataPoints() {
-            _charts.ForEach(serie => {
-                serie.ConstructionData = NormalizePoints(serie.OriginalData);
-            });
-        }
-
+        //Sets the grid and Initiates the drawing of the grid lines
         internal void SetGrid(SKCanvas canvas, int gridLines) {
             _converter = new Converter(ChartArea, XOffset, YOffset);
             var widthSpacing = (ChartArea.Right - ChartArea.Left) / gridLines;
@@ -35,6 +40,14 @@ namespace SkiaChart {
             ConstructHorizontalLines(canvas, gridLines, heightSpacing);
         }
 
+        //Initiates the conversion chart points
+        private void NormalizeAllDataPoints() {
+            _charts.ForEach(serie => {
+                serie.ConstructionData = NormalizePoints(serie.OriginalData);
+            });
+        }
+
+        //draws horizontal grid lines on the given canvas
         private void ConstructHorizontalLines(SKCanvas canvas, int gridLines, float heightSpacing) {
             var left = ChartArea.Left;
             var right = ChartArea.Right;
@@ -49,6 +62,7 @@ namespace SkiaChart {
             }
         }
 
+        //draws vertical grid lines on the given canvas
         private void ConstructVerticalLines(SKCanvas canvas, int gridLines, float widthSpacing) {
             var top = ChartArea.Top;
             var bottom = ChartArea.Bottom;
@@ -62,9 +76,10 @@ namespace SkiaChart {
                 widthSpacing += widthHolder;
             }
             widthSpacing = (ChartArea.Right - ChartArea.Left) / 2;
-            Axis.PositionXLabel("Time", widthSpacing, bottom+40, _gridPaint);//This is a quick fix (Remove)
+            Axis.PositionXLabel("Time", widthSpacing, bottom + 40, _gridPaint);//This is a quick fix (Remove)
         }
 
+        //Initiates the conversion from real world data to pixel scale data
         private List<SKPoint> NormalizePoints(IEnumerable<SKPoint> chartValues) {
             var listOfPoints = new List<SKPoint>();
             foreach (var point in chartValues) {
@@ -73,6 +88,7 @@ namespace SkiaChart {
             return listOfPoints;
         }
 
+        //Automatical scales the axes with the max and min values from the data
         private void ScaleAxes() {
             var maxValue = float.MaxValue;
             if (Xmax == maxValue) {
@@ -89,9 +105,10 @@ namespace SkiaChart {
             }
         }
 
+        //Validates chart inputs
         private void ValidateCharts(IEnumerable<T> charts) {
             var numberOfCharts = charts.Count();
-            if (numberOfCharts > 1 ) {
+            if (numberOfCharts > 1) {
                 for (int index = 0; index < numberOfCharts - 1; index++) {
                     var check1 = charts.ElementAt(index).XValueType != charts.ElementAt(index + 1).XValueType;
                     var check2 = charts.ElementAt(index).YValueType != charts.ElementAt(index + 1).YValueType;
@@ -102,14 +119,52 @@ namespace SkiaChart {
                 }
             }
         }
+
+        //Setup chart Orientation
+        private void SetAxis(IEnumerable<T> charts, Axis<T> axis) {
+            if (axis == null) {
+                Axis = new NormalXYAxis<T>(charts);
+            }
+            else {
+                Axis = axis;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the Offset from the left of the screen
+        /// </summary>
         public float XOffset { get; set; }
+
+        /// <summary>
+        /// Gets and sets the Offset from the left of the screen
+        /// </summary>
         public float YOffset { get; set; }
+
+        /// <summary>
+        /// Gets and sets the minimum value in the X-Axis
+        /// </summary>
         public float Xmin { get; set; } = float.MaxValue;
+
+        /// <summary>
+        ///Gets and sets the minimum value in the Y-Axis 
+        /// </summary>
         public float Ymin { get; set; } = float.MaxValue;
+
+        /// <summary>
+        /// Gets and sets the maximum value in the X-Axis
+        /// </summary>
         public float Xmax { get; set; } = float.MaxValue;
+
+        /// <summary>
+        /// Gets and sets the maximum value in the Y-Axis
+        /// </summary>
         public float Ymax { get; set; } = float.MaxValue;
+
+        /// <summary>
+        /// Gets and sets the axis orientation for the chart
+        /// </summary>
         public Axis<T> Axis { get; set; }
-        public SKRect ChartArea { get; set; }
+        internal SKRect ChartArea { get; set; }
         private SKColor _gridColor;
         internal SKColor GridColor {
             get => _gridColor;
@@ -127,7 +182,7 @@ namespace SkiaChart {
         private readonly SKPaint _gridPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,
-            StrokeWidth=3,
+            StrokeWidth = 3,
             Color = SKColors.Gray
         };
     }

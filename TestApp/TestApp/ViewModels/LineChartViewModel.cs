@@ -12,14 +12,17 @@ namespace TestApp.ViewModels {
         }
 
         private IEnumerable<LineChart> GenerateLineCharts() {
-            var linear = new LineChart(GetXValues(), GetYValuesLinearly());
-            linear.ChartColor = SKColors.Red;
+            var linear = new LineChart(GetXValues(), GetYValuesLinearly()) {
+                ChartColor = SKColors.Red
+            };
 
-            var random1 = new LineChart(GetXValues(), Random(300).OrderBy(x=>x));
-            random1.ChartColor = SKColors.Green;
+            var random1 = new LineChart(GetXValues(), Random(300).OrderBy(x => x)) {
+                ChartColor = SKColors.Green
+            };
 
-            var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x=>x));
-            random2.ChartColor = SKColors.Yellow;
+            var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
+                ChartColor = SKColors.Yellow
+            };
             return new List<LineChart> { linear, random1, random2 };
         }
 
