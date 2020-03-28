@@ -2,7 +2,9 @@
 using SkiaChart.Charts;
 using SkiaChart.Exceptions;
 using SkiaChart.Helpers;
+using SkiaChart.Models;
 using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +13,7 @@ namespace SkiaChart {
     /// The chart class that cordinates all types of chart display on the canvas.
     /// </summary>
     /// <typeparam name="T">Type of chart to display</typeparam>
-    public class Chart<T> where T : IChart {
+    public class Chart<T> where T : ChartBase {
 
         /// <summary>
         /// Creates an instance of the chart class with a collection of charts to display
@@ -26,9 +28,10 @@ namespace SkiaChart {
         }
 
         //Initiates the rendering of all the charts in the collection
-        internal void Plot(SKCanvas canvas) {
+        internal void Plot(CanvasWrapper canvasWrapper) {
             NormalizeAllDataPoints();
-            _charts.ForEach(chart => chart.RenderChart(canvas));
+            canvasWrapper.NumberOfCharts = _charts.Count;
+            _charts.ForEach(chart => chart.RenderChart(canvasWrapper));
         }
 
         //Sets the grid and Initiates the drawing of the grid lines
@@ -107,13 +110,17 @@ namespace SkiaChart {
 
         //Validates chart inputs
         private void ValidateCharts(IEnumerable<T> charts) {
-            var numberOfCharts = charts.Count();
-            if (numberOfCharts > 1) {
+            if (charts == null || charts.Count() < 1) {
+                throw new ArgumentException($"{nameof(charts)}");
+            }
+            else {
+                var numberOfCharts = charts.Count();
                 for (int index = 0; index < numberOfCharts - 1; index++) {
                     var check1 = charts.ElementAt(index).XValueType != charts.ElementAt(index + 1).XValueType;
                     var check2 = charts.ElementAt(index).YValueType != charts.ElementAt(index + 1).YValueType;
                     if (check1 || check2) {
-                        var message = "The data type of the values provided for the x-coordinates or the y-coordinates is not consistent";
+                        var message = "The data type of the values provided for the " +
+                            "x-coordinates or the y-coordinates is not consistent";
                         throw new InconsistentChartValueTypeException(message);
                     }
                 }

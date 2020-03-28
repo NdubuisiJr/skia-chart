@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Charts;
+using SkiaChart.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -8,7 +9,7 @@ namespace SkiaChart.Views {
     /// The main control for displaying all kinds of charts
     /// </summary>
     /// <typeparam name="T">The type of the chart to render</typeparam>
-    public class ChartCanvas<T> : SKCanvasView where T : IChart {
+    public class ChartCanvas<T> : SKCanvasView where T : ChartBase {
         public static readonly BindableProperty ChartProperty = BindableProperty.Create(
             nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null);
        
@@ -64,7 +65,7 @@ namespace SkiaChart.Views {
             Chart.GridColor = GridColor;
             Chart.Axis.OrientAxis(canvas, e.Info.Width, e.Info.Height);
             Chart.SetGrid(canvas, GridLines);
-            Chart.Plot(canvas);
+            Chart.Plot(new CanvasWrapper(canvas,chartArea));
         }
 
         private readonly SKPaint _blackPaint = new SKPaint() {

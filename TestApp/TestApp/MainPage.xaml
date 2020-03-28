@@ -8,9 +8,14 @@
 
     <StackLayout VerticalOptions="FillAndExpand"
                  HorizontalOptions="Center"
-                 Padding="10">
+                 Padding="10"
+                 Spacing="5">
+        
         <Button x:Name="lineButton" Text="Line Chart"
                Clicked="lineButton_Clicked"/>
+
+        <Button x:Name="barChart" Text="Bar Chart"
+                Clicked="barChart_Clicked"/>
     </StackLayout>
 
 </ContentPage>
