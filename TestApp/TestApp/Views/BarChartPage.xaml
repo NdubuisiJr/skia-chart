@@ -16,6 +16,7 @@
     <chartview:ChartCanvas x:TypeArguments="chart:BarChart"
                            x:Name="chartView" 
                            Chart="{Binding Chart}"
-                           GridLines="5"
+                           GridLines="10"
+                           GridColor="{Binding GridColor}"
                            />
 </ContentPage>

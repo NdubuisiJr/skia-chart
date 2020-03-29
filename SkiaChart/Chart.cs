@@ -2,6 +2,7 @@
 using SkiaChart.Charts;
 using SkiaChart.Exceptions;
 using SkiaChart.Helpers;
+using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
 using System;
@@ -13,30 +14,36 @@ namespace SkiaChart {
     /// The chart class that cordinates all types of chart display on the canvas.
     /// </summary>
     /// <typeparam name="T">Type of chart to display</typeparam>
-    public class Chart<T> where T : ChartBase {
+    public class Chart<T> : IMinMax where T : ChartBase {
 
         /// <summary>
         /// Creates an instance of the chart class with a collection of charts to display
         /// </summary>
         /// <param name="charts">The collection of a given type to plot</param>
-        public Chart(IEnumerable<T> charts, Axis<T> axis = null) {
+        public Chart(IEnumerable<T> charts, Axis axis = null) {
             ValidateCharts(charts);
             _charts = new List<T>(charts);
-            _labelChart = charts.ElementAt(0);
             SetAxis(charts, axis);
             ScaleAxes();
         }
 
         //Initiates the rendering of all the charts in the collection
         internal void Plot(CanvasWrapper canvasWrapper) {
+            ChartArea = canvasWrapper.Converter.Rect;
+            XOffset = canvasWrapper.Converter.XOffset;
+            YOffset = canvasWrapper.Converter.YOffset;
+            _converter = canvasWrapper.Converter;
+
+            Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight);
+            SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             NormalizeAllDataPoints();
             canvasWrapper.NumberOfCharts = _charts.Count;
-            _charts.ForEach(chart => chart.RenderChart(canvasWrapper));
+            _charts.ForEach(chart => chart.RenderChart(canvasWrapper, Axis, this));
         }
 
         //Sets the grid and Initiates the drawing of the grid lines
         internal void SetGrid(SKCanvas canvas, int gridLines) {
-            _converter = new Converter(ChartArea, XOffset, YOffset);
+            if (gridLines < 1) return;
             var widthSpacing = (ChartArea.Right - ChartArea.Left) / gridLines;
             var heightSpacing = (ChartArea.Bottom - ChartArea.Top) / gridLines;
             ConstructVerticalLines(canvas, gridLines, widthSpacing);
@@ -59,8 +66,6 @@ namespace SkiaChart {
             canvas.DrawLine(new SKPoint(left, YOffset), new SKPoint(right, YOffset), _gridPaint);
             for (int i = 0; i < gridLines; i++) {
                 canvas.DrawLine(new SKPoint(left, heightSpacing), new SKPoint(right, heightSpacing), _gridPaint);
-                var labelValue = _converter.YValueToRealScale(heightSpacing, Ymax, Ymin);
-                Axis.PositionYLabel(_labelChart.GetYLabel(labelValue), heightSpacing, left, _gridPaint);
                 heightSpacing += heightHolder;
             }
         }
@@ -74,12 +79,8 @@ namespace SkiaChart {
             canvas.DrawLine(new SKPoint(XOffset, top), new SKPoint(XOffset, bottom), _gridPaint);
             for (int i = 0; i < gridLines; i++) {
                 canvas.DrawLine(new SKPoint(widthSpacing, top), new SKPoint(widthSpacing, bottom), _gridPaint);
-                var labelValue = _converter.XValueToRealScale(widthSpacing, Xmax, Xmin);
-                Axis.PositionXLabel(_labelChart.GetXLabel(labelValue), widthSpacing, bottom, _gridPaint);
                 widthSpacing += widthHolder;
             }
-            widthSpacing = (ChartArea.Right - ChartArea.Left) / 2;
-            Axis.PositionXLabel("Time", widthSpacing, bottom + 40, _gridPaint);//This is a quick fix (Remove)
         }
 
         //Initiates the conversion from real world data to pixel scale data
@@ -128,9 +129,9 @@ namespace SkiaChart {
         }
 
         //Setup chart Orientation
-        private void SetAxis(IEnumerable<T> charts, Axis<T> axis) {
+        private void SetAxis(IEnumerable<T> charts, Axis axis) {
             if (axis == null) {
-                Axis = new NormalXYAxis<T>(charts);
+                Axis = new NormalXYAxis(charts);
             }
             else {
                 Axis = axis;
@@ -170,7 +171,7 @@ namespace SkiaChart {
         /// <summary>
         /// Gets and sets the axis orientation for the chart
         /// </summary>
-        public Axis<T> Axis { get; set; }
+        public Axis Axis { get; set; }
         internal SKRect ChartArea { get; set; }
         private SKColor _gridColor;
         internal SKColor GridColor {
@@ -185,7 +186,6 @@ namespace SkiaChart {
 
         private Converter _converter;
         private readonly List<T> _charts;
-        private readonly T _labelChart;
         private readonly SKPaint _gridPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,

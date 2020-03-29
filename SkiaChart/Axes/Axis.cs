@@ -7,8 +7,8 @@ namespace SkiaChart.Axes {
     /// <summary>
     /// The abstract class that cordinates the Axis of the chart
     /// </summary>
-    public abstract class Axis<T> where T: ChartBase {
-        internal Axis(IEnumerable<T> lineSeries) {
+    public abstract class Axis {
+        internal Axis(IEnumerable<ChartBase> lineSeries) {
             LineSeries = lineSeries;
         }
 
@@ -73,7 +73,7 @@ namespace SkiaChart.Axes {
         internal abstract void PositionYLabel(string label, float heightSpacing, 
             float rightOrLeft, SKPaint paint);
 
-        internal IEnumerable<T> LineSeries;
+        internal IEnumerable<ChartBase> LineSeries;
 
     }
 }

@@ -9,6 +9,7 @@ namespace TestApp.ViewModels {
     public class LineChartViewModel {
         public LineChartViewModel() {
             Chart = new Chart<LineChart>(GenerateLineCharts());
+            GridColor = SKColors.Blue;
         }
 
         private IEnumerable<LineChart> GenerateLineCharts() {
@@ -16,7 +17,7 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Red
             };
 
-            var random1 = new LineChart(GetXValues(), Random(300).OrderBy(x => x)) {
+            var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
                 ChartColor = SKColors.Green
             };
 
@@ -35,7 +36,7 @@ namespace TestApp.ViewModels {
         private IEnumerable<float> Random(int lowerLimit) {
             var rand = new Random();
             for (int i = 0; i < 500; i++) {
-                yield return 500 - (1 - (float)rand.NextDouble() * (500 - lowerLimit));
+                yield return 500 - ((1 - (float)rand.NextDouble()) * (500 - lowerLimit));
             }
         }
 
@@ -46,5 +47,6 @@ namespace TestApp.ViewModels {
         }
 
         public Chart<LineChart> Chart { get; set; }
+        public SKColor GridColor { get; set; }
     }
 }

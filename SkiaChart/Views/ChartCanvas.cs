@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Charts;
+using SkiaChart.Helpers;
 using SkiaChart.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
@@ -12,7 +13,7 @@ namespace SkiaChart.Views {
     public class ChartCanvas<T> : SKCanvasView where T : ChartBase {
         public static readonly BindableProperty ChartProperty = BindableProperty.Create(
             nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null);
-       
+
         /// <summary>
         /// An instance of the Chart class. It is a bindable property
         /// </summary>
@@ -37,7 +38,7 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridColorProperty = BindableProperty.Create(
-            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Black);
+            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent);
 
         /// <summary>
         /// The color of the grid lines drawn on the chart canvas. It is a bindable property
@@ -59,13 +60,9 @@ namespace SkiaChart.Views {
             var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
             canvas.DrawRect(chartArea, _blackPaint);
 
-            Chart.ChartArea = chartArea;
-            Chart.XOffset = xOffset;
-            Chart.YOffset = yOffset;
             Chart.GridColor = GridColor;
-            Chart.Axis.OrientAxis(canvas, e.Info.Width, e.Info.Height);
-            Chart.SetGrid(canvas, GridLines);
-            Chart.Plot(new CanvasWrapper(canvas,chartArea));
+            Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width,
+                new Converter(chartArea,xOffset,yOffset)));
         }
 
         private readonly SKPaint _blackPaint = new SKPaint() {

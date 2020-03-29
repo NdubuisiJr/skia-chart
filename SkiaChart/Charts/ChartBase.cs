@@ -1,4 +1,6 @@
-﻿using SkiaChart.Exceptions;
+﻿using SkiaChart.Axes;
+using SkiaChart.Exceptions;
+using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
 using System;
@@ -170,6 +172,7 @@ namespace SkiaChart.Charts {
             StrokeCap = SKStrokeCap.Round
         };
 
-        public abstract void RenderChart(CanvasWrapper canvas);
+        public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
+        //protected abstract void RenderLabels()
     }
 }

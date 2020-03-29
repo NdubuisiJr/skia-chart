@@ -17,5 +17,6 @@
                            x:Name="chartView" 
                            Chart="{Binding Chart}"
                            GridLines="10"
+                           GridColor="{Binding GridColor}"
                            />
 </ContentPage>

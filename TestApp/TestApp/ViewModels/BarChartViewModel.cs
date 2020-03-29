@@ -9,6 +9,7 @@ namespace TestApp.ViewModels {
         public BarChartViewModel() {
 
             Chart = new Chart<BarChart>(GenerateBarCharts());
+            GridColor = SKColors.Black;
         }
 
         private IEnumerable<BarChart> GenerateBarCharts() {
@@ -27,7 +28,7 @@ namespace TestApp.ViewModels {
         private IEnumerable<float> Random(int lowerLimit) {
             var rand = new Random();
             for (int i = 0; i < 10; i++) {
-                yield return 15 - (1 - (float)rand.NextDouble() * (15 - lowerLimit));
+                yield return 15 - ((1 - (float)rand.NextDouble()) * (15 - lowerLimit));
             }
         }
 
@@ -38,5 +39,6 @@ namespace TestApp.ViewModels {
         }
 
         public Chart<BarChart> Chart { get; set; }
+        public SKColor GridColor { get; set; }
     }
 }

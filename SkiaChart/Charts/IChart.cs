@@ -1,11 +1,13 @@
-﻿using SkiaChart.Models;
+﻿using SkiaChart.Axes;
+using SkiaChart.Interfaces;
+using SkiaChart.Models;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
 
 namespace SkiaChart.Charts {
     public interface IChart {
-        void RenderChart(CanvasWrapper canvas);
+        void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
         IEnumerable<SKPoint> ConstructionData { get; set; }
         IEnumerable<SKPoint> OriginalData { get; set; }
         List<string> XLabel { get; set; }

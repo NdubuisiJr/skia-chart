@@ -7,8 +7,8 @@ namespace SkiaChart.Axes {
     /// A class that orients the X-Y axis of a chart to the bottom left hand corner
     /// </summary>
     /// <typeparam name="T">type of chart</typeparam>
-    public class NormalXYAxis<T> : Axis<T> where T: ChartBase {
-        public NormalXYAxis(IEnumerable<T> lineSeries) : base(lineSeries) {
+    public class NormalXYAxis : Axis {
+        public NormalXYAxis(IEnumerable<ChartBase> lineSeries) : base(lineSeries) {
         }
 
         internal override void OrientAxis(SKCanvas canvas, float width, 
