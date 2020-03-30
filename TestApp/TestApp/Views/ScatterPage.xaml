@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:chartview="clr-namespace:SkiaChart.Views;assembly=SkiaChart"
+             xmlns:chart="clr-namespace:SkiaChart.Charts;assembly=SkiaChart"
+             xmlns:viewModels="clr-namespace:TestApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="TestApp.Views.ScatterPage">
+    <ContentPage.BindingContext>
+        <viewModels:ScatterPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <chartview:ChartCanvas x:TypeArguments="chart:ScatterChart"
+                           x:Name="chartView" 
+                           Chart="{Binding Chart}"
+                           GridLines="10"
+                           GridColor="{Binding GridColor}"
+                           />
+</ContentPage>

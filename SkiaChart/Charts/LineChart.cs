@@ -63,19 +63,12 @@ namespace SkiaChart.Charts {
 
 
             var canvas = canvasWrapper.Canvas;
-            var firstPoint = ConstructionData.ElementAt(0);
-            var chartPath = new SKPath();
-            chartPath.MoveTo(firstPoint);
-            
-            for (int index = 1; index < ConstructionData.Count(); index++) {
-                chartPath.LineTo(ConstructionData.ElementAt(index));
-            }
-            canvas.DrawPath(chartPath, _chartPaint);
+            canvas.DrawPoints(SKPointMode.Lines, ConstructionData.ToArray(), _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
         }
 
         //Draws the vertical labels
-        private void DrawVerticalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+        protected void DrawVerticalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
             var heightSpacing = (canvasWrapper.ChartArea.Bottom - canvasWrapper.ChartArea.Top)
                                                 / canvasWrapper.GridLines;
             var heightHolder = heightSpacing;
@@ -89,7 +82,7 @@ namespace SkiaChart.Charts {
         }
 
         //Draws the horizontal labels
-        private void DrawHorizontalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+        protected void DrawHorizontalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
 
             var widthSpacing = (canvasWrapper.ChartArea.Right - canvasWrapper.ChartArea.Left)
                                                     / canvasWrapper.GridLines;
@@ -118,7 +111,7 @@ namespace SkiaChart.Charts {
             }
         }
 
-        private readonly SKPaint _labelPaint = new SKPaint() {
+        protected readonly SKPaint _labelPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,
             StrokeWidth = 3,

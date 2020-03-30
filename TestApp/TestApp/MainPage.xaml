@@ -16,6 +16,9 @@
 
         <Button x:Name="barChart" Text="Bar Chart"
                 Clicked="barChart_Clicked"/>
+
+        <Button x:Name="scatterChart" Text="Scatter Chart"
+                Clicked="scatterChart_Clicked"/>
     </StackLayout>
 
 </ContentPage>
