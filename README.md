@@ -1,15 +1,20 @@
 # skia-chart
 A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.
 
-## Features
+## Supported Charts
 * Line Chart.
-* Plots multiple line chart on the same axis.
 * Bar Chart.
+* Scatter Chart.
+
+## Features
+* Plots multiple line chart on the same axis.
 * Plots multiple bars on the same axis.
+* Plots Multiple scatter points on the same axis.
 
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350" title="Single line"> 
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350" title="Single line"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350"> 
 </p
 
 ## Code Example
@@ -62,7 +67,7 @@ namespace TestApp.ViewModels {
 } 
   ``` 
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350" title="Multiple lines">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350" title="Line Chart">
 </p>
 
 ### Bar Chart
@@ -111,7 +116,59 @@ namespace TestApp.ViewModels {
     }
   ``` 
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350" title="Multiple lines">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350" title="Bar chart">
+</p>
+
+### Scatter Chart
+  XAML-page  
+  ```
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:chartview="clr-namespace:SkiaChart.Views;assembly=SkiaChart"
+             xmlns:chart="clr-namespace:SkiaChart.Charts;assembly=SkiaChart"
+             xmlns:viewModels="clr-namespace:TestApp.ViewModels"
+             x:Class="TestApp.Views.BarChartPage">   
+    <ContentPage.BindingContext>
+        <viewModels:ScatterChartViewModel/>
+    </ContentPage.BindingContext>
+    <chartview:ChartCanvas x:TypeArguments="chart:ScatterChart" x:Name="chartView" Chart="{Binding Chart}"
+                           GridLines="10" GridColor="{Binding GridColor}" />
+</ContentPage>
+  ```
+  View Model
+  ```
+    public class ScatterPageViewModel {
+        public ScatterPageViewModel() {
+            Chart = new Chart<ScatterChart>(GenerateLineCharts());
+            GridColor = SKColors.LightGray;
+        }
+
+        private IEnumerable<ScatterChart> GenerateLineCharts() {
+            var random = new ScatterChart(GetXValues(), Random(5)) {
+                ChartColor = SKColors.Red,
+                IsStroked=true
+            };
+
+            var random1 = new ScatterChart(GetXValues(), Random(20)) {
+                ChartColor = SKColors.Green
+            };
+
+            var random2 = new ScatterChart(GetXValues(), Random(40)) {
+                ChartColor = SKColors.Yellow,
+                IsStroked = true
+            };
+            return new List<ScatterChart> { random, random1, random2 };
+        }
+        public Chart<ScatterChart> Chart { get; set; }
+        public SKColor GridColor { get; set; }
+    }
+  ``` 
+<p>
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350" title="Scatter chart">
 </p>
 
 ## Getting Started
