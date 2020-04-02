@@ -173,6 +173,5 @@ namespace SkiaChart.Charts {
         };
 
         public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
-        //protected abstract void RenderLabels()
     }
 }

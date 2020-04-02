@@ -27,5 +27,9 @@ namespace TestApp {
         private async void scatterChart_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(new ScatterPage());
         }
+
+        private async void AreaChart_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new AreaChartPage());
+        }
     }
 }
