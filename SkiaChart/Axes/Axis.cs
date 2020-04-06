@@ -64,16 +64,24 @@ namespace SkiaChart.Axes {
             return yMin;
         }
 
-        internal abstract void OrientAxis(SKCanvas canvas, float width, 
-            float height);
+        internal virtual void AntiOrientAxis(float heightSpacing) { }
 
-        internal abstract void PositionXLabel(string label, float widthSpacing, 
+        internal abstract void OrientAxis(SKCanvas canvas, float deviceWidth, 
+            float deviceHeight, float xOffset, float yOffset);
+
+        internal abstract void DrawAndPositionXTickMark(string label, float widthSpacing, 
             float bottomOrTop, SKPaint paint);
 
-        internal abstract void PositionYLabel(string label, float heightSpacing, 
+        internal abstract void DrawAndPositionYTickMark(string label, float heightSpacing, 
             float rightOrLeft, SKPaint paint);
 
-        internal IEnumerable<ChartBase> LineSeries;
+        internal abstract void DrawAndPositionLegend(string legend, float heightSpacing,
+            float basePosition, SKPaint paint, bool isFirstCall = false);
 
+        internal abstract void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint);
+
+        internal abstract void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint);
+
+        internal IEnumerable<ChartBase> LineSeries;
     }
 }

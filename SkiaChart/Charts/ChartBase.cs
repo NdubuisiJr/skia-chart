@@ -106,6 +106,11 @@ namespace SkiaChart.Charts {
         }
 
         /// <summary>
+        /// Gets and sets the name of the series. 
+        /// </summary>
+        public string ChartName { get; set; } = "Chart Name";
+
+        /// <summary>
         /// Pixel scale data used for rendering the lines. Generated from X-Y values
         /// </summary>
         public IEnumerable<SKPoint> ConstructionData { get; set; }

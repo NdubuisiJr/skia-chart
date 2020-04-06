@@ -8,7 +8,10 @@ namespace TestApp.ViewModels {
     public class BarChartViewModel {
         public BarChartViewModel() {
 
-            Chart = new Chart<BarChart>(GenerateBarCharts());
+            Chart = new Chart<BarChart>(GenerateBarCharts()) {
+                YTitle = "Y-Axis Title",
+                XTitle = "X-Axis Title"
+            };
             GridColor = SKColors.Black;
         }
 

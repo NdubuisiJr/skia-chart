@@ -18,5 +18,5 @@
                            Chart="{Binding Chart}"
                            GridLines="10"
                            GridColor="{Binding GridColor}"
-                           />
+                           CanShowLegend="True"/>
 </ContentPage>

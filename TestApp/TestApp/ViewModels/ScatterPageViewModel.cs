@@ -8,7 +8,10 @@ using System.Text;
 namespace TestApp.ViewModels {
     public class ScatterPageViewModel {
         public ScatterPageViewModel() {
-            Chart = new Chart<ScatterChart>(GenerateLineCharts());
+            Chart = new Chart<ScatterChart>(GenerateLineCharts()) {
+                YTitle = "Y-Axis Title",
+                XTitle = "X-Axis Title"
+            };
             GridColor = SKColors.LightGray;
         }
 

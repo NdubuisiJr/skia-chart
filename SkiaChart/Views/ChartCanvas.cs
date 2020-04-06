@@ -50,18 +50,31 @@ namespace SkiaChart.Views {
             }
         }
 
+        public static readonly BindableProperty CanShowLegendProperty = BindableProperty.Create(
+            nameof(CanShowLegend), typeof(bool), typeof(ChartCanvas<T>), false);
+
+        /// <summary>
+        /// The color of the grid lines drawn on the chart canvas. It is a bindable property
+        /// </summary>
+        public bool CanShowLegend {
+            get => (bool)GetValue(CanShowLegendProperty);
+            set {
+                SetValue(CanShowLegendProperty, value);
+            }
+        }
+
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs e) {
             base.OnPaintSurface(e);
 
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);
             var xOffset = (float)e.Info.Width / 15;
-            var yOffset = (float)e.Info.Height / 15;
+            var yOffset =CanShowLegend? 3*((float)e.Info.Height / 15):(float)e.Info.Height / 15;
             var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
             canvas.DrawRect(chartArea, _blackPaint);
 
             Chart.GridColor = GridColor;
-            Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width,
+            Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, CanShowLegend,
                 new Converter(chartArea,xOffset,yOffset)));
         }
 

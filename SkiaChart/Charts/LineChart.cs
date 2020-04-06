@@ -2,7 +2,6 @@
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -55,16 +54,25 @@ namespace SkiaChart.Charts {
         /// <param name="gridPaint">Paint object for the grid lines</param>
         public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
             CheckConstructionPolicy(nameof(LineChart));
-            
+            var canvas = canvasWrapper.Canvas;
+
             if (canvasWrapper.NumberPlottedChart < 1) {
                 DrawHorizontalLabels(canvasWrapper, axis, minMax);
                 DrawVerticalLabels(canvasWrapper, axis, minMax);
             }
 
-
-            var canvas = canvasWrapper.Canvas;
             canvas.DrawPoints(SKPointMode.Lines, ConstructionData.ToArray(), _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
+
+            if (canvasWrapper.CanShowLegend) {
+                var start = (canvasWrapper.ChartArea.Bottom + 60);
+                var end = start + (40f * canvasWrapper.NumberPlottedChart);
+                canvas.Save();
+                axis.AntiOrientAxis(float.MaxValue);
+                canvas.DrawLine(canvasWrapper.ChartArea.Left, end, canvasWrapper.ChartArea.Left + 40, end, _chartPaint);
+                canvas.Restore();
+                axis.DrawAndPositionLegend(ChartName, end, canvasWrapper.ChartArea.Left + 40, _chartPaint);
+            }
         }
 
         //Draws the vertical labels
@@ -76,7 +84,7 @@ namespace SkiaChart.Charts {
             for (int i = 0; i < canvasWrapper.GridLines; i++) {
                 var labelValue = canvasWrapper.Converter
                                               .YValueToRealScale(heightSpacing, minMax.Ymax, minMax.Ymin);
-                axis.PositionYLabel(GetYLabel(labelValue), heightSpacing, canvasWrapper.ChartArea.Left, _labelPaint);
+                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing, canvasWrapper.ChartArea.Left, _labelPaint);
                 heightSpacing += heightHolder;
             }
         }
@@ -91,7 +99,7 @@ namespace SkiaChart.Charts {
             for (int i = 0; i < canvasWrapper.GridLines; i++) {
                 var labelValue = canvasWrapper.Converter
                                           .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
-                axis.PositionXLabel(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
+                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
                 widthSpacing += widthHolder;
             }
 

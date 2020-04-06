@@ -34,7 +34,10 @@ namespace SkiaChart {
             YOffset = canvasWrapper.Converter.YOffset;
             _converter = canvasWrapper.Converter;
 
-            Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight);
+            Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight, XOffset, YOffset);
+            Axis.DrawAndPositionXLabel(XTitle, ChartArea.Bottom, _gridPaint);
+            Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint);
+            Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint, true);
             SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             NormalizeAllDataPoints();
             canvasWrapper.NumberOfCharts = _charts.Count;
@@ -137,6 +140,15 @@ namespace SkiaChart {
                 Axis = axis;
             }
         }
+        /// <summary>
+        /// Gets and sets the title of the Y-Axis
+        /// </summary>
+        public string YTitle { get; set; }
+
+        /// <summary>
+        /// Gets and sets the title of the X-Axis
+        /// </summary>
+        public string XTitle { get; set; }
 
         /// <summary>
         /// Gets and sets the Offset from the left of the screen

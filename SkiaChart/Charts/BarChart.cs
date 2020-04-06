@@ -45,11 +45,11 @@ namespace SkiaChart.Charts {
                 canvasWrapper.Canvas.DrawRect(rect, _chartPaint);
 
                 var xLabel = XLabel[counter];
-                axis.PositionXLabel(xLabel, (x1 + (x2 - x1) / 2), 
+                axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2), 
                     canvasWrapper.ChartArea.Bottom, _labelPaint);
 
                 var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
-                axis.PositionYLabel(yLabel, point.Y, (x1 + (x2 - x1) / 2), _labelPaint);
+                axis.DrawAndPositionYTickMark(yLabel, point.Y, (x1 + (x2 - x1) / 2), _labelPaint);
                 counter++;
             }
             canvasWrapper.NumberPlottedChart += 1;

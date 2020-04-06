@@ -8,7 +8,10 @@ using System.Linq;
 namespace TestApp.ViewModels {
     public class LineChartViewModel {
         public LineChartViewModel() {
-            Chart = new Chart<LineChart>(GenerateLineCharts());
+            Chart = new Chart<LineChart>(GenerateLineCharts()) {
+                YTitle = "Y-Axis Title",
+                XTitle = "X-Axis Title"
+            };
             GridColor = SKColors.Blue;
         }
 

@@ -8,7 +8,10 @@ using System.Linq;
 namespace TestApp.ViewModels {
     public class AreaChartViewModel {
         public AreaChartViewModel() {
-            Chart = new Chart<AreaChart>(GenerateLineCharts());
+            Chart = new Chart<AreaChart>(GenerateLineCharts()) {
+                YTitle = "Y-Axis Title",
+                XTitle = "X-Axis Title"
+            };
             GridColor = SKColors.Blue;
         }
 
