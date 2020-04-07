@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Axes;
+using SkiaChart.Enums;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
@@ -56,6 +57,10 @@ namespace SkiaChart.Charts {
                 canvas.DrawCircle(point,PointRadius, _chartPaint);
             }
             canvasWrapper.NumberPlottedChart += 1;
+
+            if (canvasWrapper.CanShowLegend) {
+                RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
+            }
         }
 
         /// <summary>
