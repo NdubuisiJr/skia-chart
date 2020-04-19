@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Axes;
+using SkiaChart.Enums;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
@@ -53,6 +54,9 @@ namespace SkiaChart.Charts {
                 counter++;
             }
             canvasWrapper.NumberPlottedChart += 1;
+            if (canvasWrapper.CanShowLegend) {
+                RenderLegend(canvasWrapper, axis, canvasWrapper.Canvas, PointPlotVariant.AreaChart);
+            }
         }
 
         public bool IsStroked { get; set; } = false;

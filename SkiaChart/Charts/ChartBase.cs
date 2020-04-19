@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Axes;
+using SkiaChart.Enums;
 using SkiaChart.Exceptions;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
@@ -103,6 +104,36 @@ namespace SkiaChart.Charts {
 
             var index = int.Parse(Math.Round(labelValue, 0).ToString());
             return YLabel[index];
+        }
+
+        protected void RenderLegend(CanvasWrapper canvasWrapper, Axis axis, SKCanvas canvas,
+            PointPlotVariant plotVariant) {
+            var start = (canvasWrapper.ChartArea.Bottom + 60);
+            var end = start + (40f * canvasWrapper.NumberPlottedChart);
+            var leftEdge = canvasWrapper.ChartArea.Left + 10;
+            float heightPaddingForText = 0;
+            canvas.Save();
+            axis.AntiOrientAxis(float.MaxValue);
+            switch (plotVariant) {
+                case PointPlotVariant.LineChart:
+                    _chartPaint.IsStroke = false;
+                    heightPaddingForText = 7;
+                    canvas.DrawLine(leftEdge, end, canvasWrapper.ChartArea.Left + 40, end, _chartPaint);
+                    break;
+                case PointPlotVariant.ScatterChart:
+                    _chartPaint.IsStroke = false;
+                    heightPaddingForText = 7;
+                    canvas.DrawCircle(leftEdge + 20, end, 7, _chartPaint);
+                    break;
+                case PointPlotVariant.AreaChart:
+                    heightPaddingForText = 15;
+                    canvas.DrawRect(leftEdge, end, 37, 25, _chartPaint);
+                    break;
+                default:
+                    break;
+            }
+            canvas.Restore();
+            axis.DrawAndPositionLegend(ChartName, end + heightPaddingForText, leftEdge + 40, _chartPaint);
         }
 
         /// <summary>
