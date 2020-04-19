@@ -7,6 +7,7 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static SkiaChart.Helpers.Constants;
 
 namespace SkiaChart.Charts {
     /// <summary>
@@ -108,9 +109,9 @@ namespace SkiaChart.Charts {
 
         protected void RenderLegend(CanvasWrapper canvasWrapper, Axis axis, SKCanvas canvas,
             PointPlotVariant plotVariant) {
-            var start = (canvasWrapper.ChartArea.Bottom + 60);
-            var end = start + (40f * canvasWrapper.NumberPlottedChart);
-            var leftEdge = canvasWrapper.ChartArea.Left + 10;
+            var start = canvasWrapper.ChartArea.Bottom + MarginFromChartToLegend;
+            var end = start + (LegendItemSpacing * canvasWrapper.NumberPlottedChart);
+            var leftEdge = canvasWrapper.ChartArea.Left + LeftEdgeLegendMargin;
             float heightPaddingForText = 0;
             canvas.Save();
             axis.AntiOrientAxis(float.MaxValue);
@@ -118,22 +119,26 @@ namespace SkiaChart.Charts {
                 case PointPlotVariant.LineChart:
                     _chartPaint.IsStroke = false;
                     heightPaddingForText = 7;
-                    canvas.DrawLine(leftEdge, end, canvasWrapper.ChartArea.Left + 40, end, _chartPaint);
+                    canvas.DrawLine(leftEdge, end, canvasWrapper.ChartArea.Left + LegendItemSpacing, 
+                        end, _chartPaint);
                     break;
                 case PointPlotVariant.ScatterChart:
                     _chartPaint.IsStroke = false;
                     heightPaddingForText = 7;
-                    canvas.DrawCircle(leftEdge + 20, end, 7, _chartPaint);
+                    canvas.DrawCircle(leftEdge + DistanceToCenterOfLegendCircle,
+                        end, 7, _chartPaint);
                     break;
                 case PointPlotVariant.AreaChart:
                     heightPaddingForText = 15;
-                    canvas.DrawRect(leftEdge, end, 37, 25, _chartPaint);
+                    canvas.DrawRect(leftEdge, end, WidthOfLegendRect, HeightOfLegendRect
+                        , _chartPaint);
                     break;
                 default:
                     break;
             }
             canvas.Restore();
-            axis.DrawAndPositionLegend(ChartName, end + heightPaddingForText, leftEdge + 40, _chartPaint);
+            axis.DrawAndPositionLegend(ChartName, end + heightPaddingForText, 
+                leftEdge + LegendItemSpacing, _chartPaint);
         }
 
         /// <summary>

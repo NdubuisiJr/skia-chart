@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SkiaChart.Charts;
 using SkiaSharp;
+using static SkiaChart.Helpers.Constants;
 
 namespace SkiaChart.Axes {
     /// <summary>
@@ -52,9 +53,11 @@ namespace SkiaChart.Axes {
             if (isFirstCall) {
                 _canvas.Save();
                 AntiOrientAxis(float.MaxValue);
-                var height = (int.Parse(legend) + 1) * 40f;
-                _canvas.DrawText("Legend", (_deviceWidth / 2) - 7, heightSpacing + 75,paint);
-                var rectangle = new SKRect(basePosition, heightSpacing + 60, _deviceWidth - _xOffset, heightSpacing + 60 + height);
+                var height = NumberOfLegendItem * LegendItemSpacing;
+                _canvas.DrawText("Legend", (_deviceWidth / 2) - 7, heightSpacing + MarginFromChartToLegendText, 
+                    paint);
+                var rectangle = new SKRect(basePosition, heightSpacing + MarginFromChartToLegend,
+                    _deviceWidth - _xOffset, heightSpacing + 60 + height);
                 _canvas.DrawRect(rectangle, paint);
                 _canvas.Restore();
             }
