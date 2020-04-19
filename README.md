@@ -8,18 +8,28 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Area Chart.
 
 ## Features
+* Horizontal axis title.
+* Vertical axis title.
+* Legend
 * Plots multiple line chart on the same axis.
 * Plots multiple bars on the same axis.
 * Plots multiple scatter points on the same axis.
 * Plots multiple area charts on the same axis.
 
-## Gallery
+## Gallery - With Legend and Title
+<p>
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="350"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234609.png" width="350">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="350"> 
+</p>
+
+## Gallery - Without Legend and Title
 <p>
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585849946.png" width="350"> 
-</p
+</p>
 
 ## Code Example
 ### Line Chart
