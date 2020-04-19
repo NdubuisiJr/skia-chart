@@ -27,7 +27,27 @@ namespace TestApp.ViewModels {
             var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
                 ChartColor = SKColors.Yellow
             };
-            return new List<LineChart> { linear, random1, random2 };
+
+            var linear3 = new LineChart(GetXValues(), GetYValuesLinearly()) {
+                ChartColor = SKColors.Blue
+            };
+
+            var random4 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
+                ChartColor = SKColors.Brown
+            };
+
+            var random5 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
+                ChartColor = SKColors.Pink
+            };
+
+            var random6 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
+                ChartColor = SKColors.DarkOrange
+            };
+
+            var random7 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
+                ChartColor = SKColors.Purple
+            };
+            return new List<LineChart> { linear, random1, linear3, random2,random4,random5,random6,random7 };
         }
 
         private IEnumerable<float> GetXValues() {

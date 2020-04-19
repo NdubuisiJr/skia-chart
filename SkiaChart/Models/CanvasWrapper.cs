@@ -13,6 +13,7 @@ namespace SkiaChart.Models {
             DeviceWidth = width;
             Converter = converter;
             CanShowLegend = canShowLegend;
+            LegendDrawingStartX = chartArea.Left;
         }
 
         public SKCanvas Canvas { get; }
@@ -24,5 +25,7 @@ namespace SkiaChart.Models {
         internal Converter Converter { get; }
         public int NumberOfCharts { get; set; }
         public int NumberPlottedChart { get; set; }
+        public int NumberOfDrawnLegend { get; set; }
+        public float LegendDrawingStartX { get; set; }
     }
 }
