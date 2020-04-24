@@ -11,6 +11,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Horizontal axis title.
 * Vertical axis title.
 * Legend
+* Point markers for line and area charts.
 * Plots multiple line chart on the same axis.
 * Plots multiple bars on the same axis.
 * Plots multiple scatter points on the same axis.
