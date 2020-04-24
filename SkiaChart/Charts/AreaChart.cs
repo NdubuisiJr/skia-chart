@@ -52,14 +52,15 @@ namespace SkiaChart.Charts {
 
             var canvas = canvasWrapper.Canvas;
             var path = new SKPath();
-            var constructionPoints = ConstructionData.ToList();
             var firstPoint = ConstructionData.First();
             var lastPoint = ConstructionData.Last();
             var connectionPoint = new SKPoint(lastPoint.X, firstPoint.Y);
-            constructionPoints.Add(connectionPoint);
-            path.MoveTo(constructionPoints.First());
-            foreach (var point in constructionPoints.Skip(1)) {
+            ConstructionData.Add(connectionPoint);
+            path.MoveTo(ConstructionData.First());
+            foreach (var point in ConstructionData.Skip(1)) {
                 path.LineTo(point);
+                if(ShowPoints)
+                    canvas.DrawCircle(point, PointRadius, _chartPaint);
             }
             path.FillType = SKPathFillType.EvenOdd;
             path.Close();
@@ -71,6 +72,5 @@ namespace SkiaChart.Charts {
                 RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.AreaChart);
             }
         }
-
     }
 }

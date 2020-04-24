@@ -8,13 +8,12 @@ using System.Collections.Generic;
 namespace SkiaChart.Charts {
     public interface IChart {
         void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
-        IEnumerable<SKPoint> ConstructionData { get; set; }
+        List<SKPoint> ConstructionData { get; }
         IEnumerable<SKPoint> OriginalData { get; set; }
-        List<string> XLabel { get; set; }
-        List<string> YLabel { get; set; }
-        Type XValueType { get; set; }
-        Type YValueType { get; set; }
+        List<string> XLabel { get;}
+        List<string> YLabel { get; }
+        Type XValueType { get; }
+        Type YValueType { get; }
         SKColor ChartColor { get; set; }
-        float Width { get; set; }
     }
 }

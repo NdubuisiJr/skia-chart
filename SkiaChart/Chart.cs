@@ -56,7 +56,7 @@ namespace SkiaChart {
         //Initiates the conversion chart points
         private void NormalizeAllDataPoints() {
             _charts.ForEach(serie => {
-                serie.ConstructionData = NormalizePoints(serie.OriginalData);
+               NormalizePoints(serie.OriginalData, serie.ConstructionData);
             });
         }
 
@@ -87,12 +87,11 @@ namespace SkiaChart {
         }
 
         //Initiates the conversion from real world data to pixel scale data
-        private List<SKPoint> NormalizePoints(IEnumerable<SKPoint> chartValues) {
-            var listOfPoints = new List<SKPoint>();
+        private void NormalizePoints(IEnumerable<SKPoint> chartValues, List<SKPoint> constructionData) {
+            constructionData = new List<SKPoint>();
             foreach (var point in chartValues) {
-                listOfPoints.Add(_converter.ToPixelScale(point, Xmax, Xmin, Ymax, Ymin));
+                constructionData.Add(_converter.ToPixelScale(point, Xmax, Xmin, Ymax, Ymin));
             }
-            return listOfPoints;
         }
 
         //Automatical scales the axes with the max and min values from the data

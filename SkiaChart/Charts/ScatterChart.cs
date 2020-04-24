@@ -44,33 +44,19 @@ namespace SkiaChart.Charts {
         /// <param name="minMax">Data for the extreme values</param>
         /// <param name="gridPaint">Paint object for the grid lines</param>
         public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
-            CheckConstructionPolicy(nameof(LineChart));
+            CheckConstructionPolicy(nameof(ScatterChart));
 
             if (canvasWrapper.NumberPlottedChart < 1) {
                 DrawHorizontalLabels(canvasWrapper, axis, minMax);
                 DrawVerticalLabels(canvasWrapper, axis, minMax);
             }
 
-            var canvas = canvasWrapper.Canvas;
-            _chartPaint.IsStroke = IsStroked;
-            foreach (var point in ConstructionData) {
-                canvas.DrawCircle(point,PointRadius, _chartPaint);
-            }
+            var canvas = DisplayPoints(canvasWrapper);
             canvasWrapper.NumberPlottedChart += 1;
 
             if (canvasWrapper.CanShowLegend) {
                 RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
             }
         }
-
-        /// <summary>
-        /// Radius of the scatter points in pixels
-        /// </summary>
-        public float PointRadius { get; set; } = 7;
-
-        /// <summary>
-        /// Makes the points hollow. It is false by default.
-        /// </summary>
-        public bool IsStroked { get; set; } = false;
     }
 }

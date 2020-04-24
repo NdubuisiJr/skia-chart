@@ -32,10 +32,11 @@ namespace SkiaChart.Charts {
         public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
             CheckConstructionPolicy(nameof(BarChart));
 
-            var drawingSpace = canvasWrapper.ChartArea.Right / ConstructionData.Count() * 0.9;
+            var count = ConstructionData.Count();
+            var drawingSpace = canvasWrapper.ChartArea.Right / count * 0.9;
             var rectSpace = (float)drawingSpace / canvasWrapper.NumberOfCharts;
-            var columnSpace = (float)((canvasWrapper.ChartArea.Right / ConstructionData.Count()) - drawingSpace) / 2;
-            var pointX = canvasWrapper.ChartArea.Width / ConstructionData.Count();
+            var columnSpace = (float)((canvasWrapper.ChartArea.Right / count) - drawingSpace) / 2;
+            var pointX = canvasWrapper.ChartArea.Width / count;
             var counter = 0;
             foreach (var point in ConstructionData) {
                 var x1 = (pointX * counter) + canvasWrapper.ChartArea.Left + columnSpace +

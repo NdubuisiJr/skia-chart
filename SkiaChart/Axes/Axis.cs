@@ -15,11 +15,10 @@ namespace SkiaChart.Axes {
         internal float FindXMax() {
             var xMax = float.MinValue;
             foreach (var serie in LineSeries) {
-                var xData = serie.OriginalData.Select(x => x.X).ToList();
-                foreach (var xValue in xData) {
-                    if (xValue > xMax) {
-                        xMax = xValue;
-                    }
+                var xData = serie.OriginalData.Select(x => x.X);
+                var maxXData = xData.Max();
+                if (maxXData > xMax) {
+                    xMax = maxXData;
                 }
             }
             return xMax;
@@ -28,11 +27,10 @@ namespace SkiaChart.Axes {
         internal float FindXMin() {
             var xMin = float.MaxValue;
             foreach (var serie in LineSeries) {
-                var xData = serie.OriginalData.Select(x => x.X).ToList();
-                foreach (var xValue in xData) {
-                    if (xValue < xMin) {
-                        xMin = xValue;
-                    }
+                var xData = serie.OriginalData.Select(x => x.X);
+                var xMinData = xData.Min();
+                if (xMinData < xMin) {
+                    xMin = xMinData;
                 }
             }
             return xMin;
@@ -42,10 +40,9 @@ namespace SkiaChart.Axes {
             var yMax = float.MinValue;
             foreach (var serie in LineSeries) {
                 var yData = serie.OriginalData.Select(y => y.Y);
-                foreach (var yValue in yData) {
-                    if (yValue > yMax) {
-                        yMax = yValue;
-                    }
+                var yMaxData = yData.Max();
+                if (yMaxData > yMax) {
+                    yMax = yMaxData;
                 }
             }
             return yMax;
@@ -55,10 +52,9 @@ namespace SkiaChart.Axes {
             var yMin = float.MaxValue;
             foreach (var serie in LineSeries) {
                 var yData = serie.OriginalData.Select(y => y.Y);
-                foreach (var yValue in yData) {
-                    if (yValue < yMin) {
-                        yMin = yValue;
-                    }
+                var yMinData = yData.Min();
+                if (yMinData < yMin) {
+                    yMin = yMinData;
                 }
             }
             return yMin;

@@ -17,7 +17,10 @@ namespace TestApp.ViewModels {
 
         private IEnumerable<AreaChart> GenerateLineCharts() {
             var linear = new AreaChart(GetXValues(), GetYValuesLinearly()) {
-                ChartColor = SKColors.Red
+                ChartColor = SKColors.Red,
+                ShowPoints=true,
+                ChartName="Linear",
+                
             };
 
             var random = new AreaChart(GetXValues(), Random(100).OrderBy(x=>x)) {

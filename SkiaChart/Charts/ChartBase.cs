@@ -119,8 +119,7 @@ namespace SkiaChart.Charts {
             }
             else {
                 canvasWrapper.NumberOfDrawnLegend = 0;
-                canvasWrapper.LegendDrawingStartX = canvasWrapper.LegendDrawingStartX +
-                    (canvasWrapper.ChartArea.Width / NumberOfLegendItem - 1);
+                canvasWrapper.LegendDrawingStartX += (canvasWrapper.ChartArea.Width / NumberOfLegendItem - 1);
                 RenderLegend(canvasWrapper, axis, canvas, plotVariant);
             }
             float heightPaddingForText = 0;
@@ -162,7 +161,7 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// Pixel scale data used for rendering the lines. Generated from X-Y values
         /// </summary>
-        public IEnumerable<SKPoint> ConstructionData { get; set; }
+        public List<SKPoint> ConstructionData { get; }
 
         /// <summary>
         /// Points generated from the original X-Y values
@@ -172,22 +171,22 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// A collection of Labels used for the X-Axis
         /// </summary>
-        public List<string> XLabel { get; set; }
+        public List<string> XLabel { get; private set; }
 
         /// <summary>
         /// A collection of Labels used for the Y-Axis
         /// </summary>
-        public List<string> YLabel { get; set; }
+        public List<string> YLabel { get; private set; }
 
         /// <summary>
         /// The data type of the XValues
         /// </summary>
-        public Type XValueType { get; set; }
+        public Type XValueType { get; private set; }
 
         /// <summary>
         /// The data type of the YValues
         /// </summary>
-        public Type YValueType { get; set; }
+        public Type YValueType { get; private set; }
 
         private SKColor _chartColor;
         /// <summary>

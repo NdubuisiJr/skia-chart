@@ -64,6 +64,9 @@ namespace SkiaChart.Charts {
 
             _chartPaint.IsStroke = true;
             canvas.DrawPoints(SKPointMode.Lines, ConstructionData.ToArray(), _chartPaint);
+            if (ShowPoints) {
+                DisplayPoints(canvasWrapper);
+            }
             canvasWrapper.NumberPlottedChart += 1;
 
             if (canvasWrapper.CanShowLegend) {
@@ -98,7 +101,16 @@ namespace SkiaChart.Charts {
                 axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
                 widthSpacing += widthHolder;
             }
+        }
 
+        //Draw points
+        protected SKCanvas DisplayPoints(CanvasWrapper canvasWrapper) {
+            var canvas = canvasWrapper.Canvas;
+            _chartPaint.IsStroke = IsStroked;
+            foreach (var point in ConstructionData) {
+                canvas.DrawCircle(point, PointRadius, _chartPaint);
+            }
+            return canvas;
         }
 
         private SKColor _labelColor;
@@ -114,6 +126,21 @@ namespace SkiaChart.Charts {
                 }
             }
         }
+
+        /// <summary>
+        /// Sets and gets a value indicating whether point markers should be showed
+        /// </summary>
+        public bool ShowPoints { get; set; } = false;
+
+        /// <summary>
+        /// Radius of the scatter points in pixels
+        /// </summary>
+        public float PointRadius { get; set; } = 7;
+
+        /// <summary>
+        /// Makes the points hollow. It is false by default.
+        /// </summary>
+        public bool IsStroked { get; set; } = false;
 
         protected readonly SKPaint _labelPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
