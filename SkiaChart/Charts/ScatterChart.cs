@@ -2,9 +2,7 @@
 using SkiaChart.Enums;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
-using SkiaSharp;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SkiaChart.Charts {
     public class ScatterChart : LineChart {

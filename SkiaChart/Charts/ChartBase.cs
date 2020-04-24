@@ -161,7 +161,7 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// Pixel scale data used for rendering the lines. Generated from X-Y values
         /// </summary>
-        public List<SKPoint> ConstructionData { get; }
+        public List<SKPoint> ConstructionData { get; internal set; }
 
         /// <summary>
         /// Points generated from the original X-Y values
@@ -202,27 +202,21 @@ namespace SkiaChart.Charts {
             }
         }
 
-        private float _strokeWidth;
-        /// <summary>
-        /// The stroke with of the line chart
-        /// </summary>
-        public float Width {
-            get => _strokeWidth;
-            set {
-                if (value != _strokeWidth) {
-                    _strokeWidth = value;
-                    _chartPaint.StrokeWidth = value;
-                }
-            }
-        }
-
-        //The SkPaint used for drawing the line chart
+        //The SkPaint used for drawing charts
         protected readonly SKPaint _chartPaint = new SKPaint() {
             IsAntialias = true,
             Style = SKPaintStyle.Stroke,
             Color = SKColors.Green,
             StrokeWidth = 5,
             StrokeCap = SKStrokeCap.Round
+        };
+
+        //The SkPaint used for drawing labels
+        protected readonly SKPaint _labelPaint = new SKPaint() {
+            Style = SKPaintStyle.Stroke,
+            IsAntialias = true,
+            StrokeWidth = 3,
+            Color = SKColors.Gray
         };
 
         public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);

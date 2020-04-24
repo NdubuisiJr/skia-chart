@@ -4,7 +4,6 @@ using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SkiaChart.Charts {
 
@@ -142,11 +141,18 @@ namespace SkiaChart.Charts {
         /// </summary>
         public bool IsStroked { get; set; } = false;
 
-        protected readonly SKPaint _labelPaint = new SKPaint() {
-            Style = SKPaintStyle.Stroke,
-            IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Gray
-        };
+        private float _strokeWidth;
+        /// <summary>
+        /// The stroke with of the line chart
+        /// </summary>
+        public float Width {
+            get => _strokeWidth;
+            set {
+                if (value != _strokeWidth) {
+                    _strokeWidth = value;
+                    _chartPaint.StrokeWidth = value;
+                }
+            }
+        }
     }
 }

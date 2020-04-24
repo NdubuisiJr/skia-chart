@@ -9,45 +9,38 @@ namespace TestApp.ViewModels {
     public class LineChartViewModel {
         public LineChartViewModel() {
             Chart = new Chart<LineChart>(GenerateLineCharts()) {
-                YTitle = "Y-Axis Title",
-                XTitle = "X-Axis Title"
+                YTitle = "Randomly generated values",
+                XTitle = "Distributed values"
             };
-            GridColor = SKColors.Blue;
+            GridColor = SKColors.LightPink;
         }
 
         private IEnumerable<LineChart> GenerateLineCharts() {
             var linear = new LineChart(GetXValues(), GetYValuesLinearly()) {
-                ChartColor = SKColors.Red
+                ChartColor = SKColors.Red,
+                ChartName="Linear",
+                ShowPoints=true
             };
 
             var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
-                ChartColor = SKColors.Green
+                ChartColor = SKColors.Green,
+                ChartName = "Random starting from 10",
+                ShowPoints = true
             };
 
             var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
-                ChartColor = SKColors.Yellow
+                ChartColor = SKColors.Yellow,
+                ChartName = "Random starting from 50",
+                ShowPoints = true
             };
 
             var linear3 = new LineChart(GetXValues(), GetYValuesLinearly()) {
-                ChartColor = SKColors.Blue
+                ChartColor = SKColors.Blue,
+                ChartName = "Second Linear",
+                ShowPoints = true
             };
 
-            var random4 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
-                ChartColor = SKColors.Brown
-            };
-
-            var random5 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
-                ChartColor = SKColors.Pink
-            };
-
-            var random6 = new LineChart(GetXValues(), Random(10).OrderBy(x => x)) {
-                ChartColor = SKColors.DarkOrange
-            };
-
-            var random7 = new LineChart(GetXValues(), Random(50).OrderBy(x => x)) {
-                ChartColor = SKColors.Purple
-            };
-            return new List<LineChart> { linear, random1, linear3, random2,random4,random5,random6,random7 };
+            return new List<LineChart> { linear, random1, linear3, random2};
         }
 
         private IEnumerable<float> GetXValues() {

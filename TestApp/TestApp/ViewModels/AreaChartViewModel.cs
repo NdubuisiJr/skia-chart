@@ -9,27 +9,30 @@ namespace TestApp.ViewModels {
     public class AreaChartViewModel {
         public AreaChartViewModel() {
             Chart = new Chart<AreaChart>(GenerateLineCharts()) {
-                YTitle = "Y-Axis Title",
-                XTitle = "X-Axis Title"
+                YTitle = "Population values",
+                XTitle = "Prediction curve values"
             };
-            GridColor = SKColors.Blue;
+            GridColor = SKColors.Gray;
         }
 
         private IEnumerable<AreaChart> GenerateLineCharts() {
             var linear = new AreaChart(GetXValues(), GetYValuesLinearly()) {
                 ChartColor = SKColors.Red,
                 ShowPoints=true,
-                ChartName="Linear",
-                
+                ChartName="Linear"
             };
 
             var random = new AreaChart(GetXValues(), Random(100).OrderBy(x=>x)) {
-                ChartColor = SKColors.Green
+                ChartColor = SKColors.Green,
+                ShowPoints = true,
+                ChartName = "Random"
             };
 
             var trigValues = Trigonometric();
             var sineCurve = new AreaChart(trigValues.Item1, trigValues.Item2) {
-                ChartColor = SKColors.Yellow
+                ChartColor = SKColors.Yellow,
+                ShowPoints = true,
+                ChartName = "Trigonometric"
             };
             return new List<AreaChart> { linear, random, sineCurve };
         }

@@ -75,12 +75,5 @@ namespace SkiaChart.Charts {
                 }
             }
         }
-
-        private readonly SKPaint _labelPaint = new SKPaint() {
-            Style = SKPaintStyle.Stroke,
-            IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Gray
-        };
     }
 }

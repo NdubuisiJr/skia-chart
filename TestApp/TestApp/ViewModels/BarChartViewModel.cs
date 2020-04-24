@@ -9,21 +9,24 @@ namespace TestApp.ViewModels {
         public BarChartViewModel() {
 
             Chart = new Chart<BarChart>(GenerateBarCharts()) {
-                YTitle = "Y-Axis Title",
-                XTitle = "X-Axis Title"
+                YTitle = "Randomly generated values",
+                XTitle = "Distributed values"
             };
             GridColor = SKColors.Black;
         }
 
         private IEnumerable<BarChart> GenerateBarCharts() {
             var bar1 = new BarChart(GetXValues(), Random(1)) {
-                ChartColor = SKColors.Green
+                ChartColor = SKColors.Green,
+                ChartName="Random starting from 1"
             };
             var bar2 = new BarChart(GetXValues(), Random(5)) {
-                ChartColor = SKColors.Red
+                ChartColor = SKColors.Red,
+                ChartName = "Random starting from 5"
             };
             var bar3 = new BarChart(GetXValues(), Random(10)) {
-                ChartColor = SKColors.Yellow
+                ChartColor = SKColors.Yellow,
+                ChartName = "Random starting from 10"
             };
             return new List<BarChart> { bar1, bar2, bar3 };
         }
