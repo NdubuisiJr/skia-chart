@@ -20,7 +20,8 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 <p>
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="350"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234609.png" width="350">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="350"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="350">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1587333013.png" width="350">
 </p>
 
 ## Gallery - Without Legend and Title
@@ -119,9 +120,16 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Run the Test App.
 * Contribute!
 
-## Authors
+## Author
 
 * **Ndubuisi Jr Chukuigwe** - *Initial work* - [NdubuisiJr](https://github.com/NdubuisiJr)
+
+## Contributors
+<a href="https://github.com/NdubuisiJr/skia-chart/graphs/contributors">
+  <p>
+     <img src="https://avatars3.githubusercontent.com/u/44238346?v=4" width="50"/>
+  </p>
+</a>
 
 
 ## License
