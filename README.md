@@ -113,7 +113,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350" title="Scatter chart">
 </p>
 
-## Getting Started - Using
+## Tutorials - Watch the YouTube video below:
 [![Watch the video](https://img.youtube.com/vi/066CmRSQE0k/hqdefault.jpg)](https://youtu.be/066CmRSQE0k)
 
 ## Getting Started - Contributing
