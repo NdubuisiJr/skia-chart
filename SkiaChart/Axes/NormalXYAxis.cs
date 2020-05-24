@@ -25,11 +25,20 @@ namespace SkiaChart.Axes {
         }
 
         private void Execute(string text, float spacing, float basePosition, SKPaint paint,
-            bool isHorizontal) {
+            bool isHorizontal, bool shouldTilt = false) {
             _canvas.Save();
             if (isHorizontal) {
                 AntiOrientAxis(float.MaxValue);
-                _canvas.DrawText(text, spacing, basePosition, paint);
+                if (shouldTilt) {
+                    var path = new SKPath();
+                    path.MoveTo(spacing, basePosition);
+                    path.LineTo(spacing + 200, basePosition+80);
+                    _canvas.DrawTextOnPath(text, path, new SKPoint(0,-10), paint);
+                }
+                else {
+                    _canvas.DrawText(text, spacing, basePosition, paint);
+                }
+
             }
             else {
                 AntiOrientAxis(spacing);
@@ -40,7 +49,8 @@ namespace SkiaChart.Axes {
 
         internal override void DrawAndPositionXTickMark(string label, float widthSpacing,
             float bottomOrTop, SKPaint paint) {
-            Execute(label, widthSpacing - (label.Length / 2f), bottomOrTop + 20, paint, true);
+            var check = label.Length > 5;
+            Execute(label, widthSpacing - (label.Length / 2f), bottomOrTop + 20, paint, true, check);
         }
 
         internal override void DrawAndPositionYTickMark(string label, float heightSpacing,
@@ -55,7 +65,7 @@ namespace SkiaChart.Axes {
                 AntiOrientAxis(float.MaxValue);
                 var height = NumberOfLegendItem * LegendItemSpacing;
                 _numOfCharts = int.Parse(legend) + 1;
-                _canvas.DrawText("Legend", (_deviceWidth / 2) - 7, heightSpacing + MarginFromChartToLegendText, 
+                _canvas.DrawText("Legend", (_deviceWidth / 2) - 7, heightSpacing + MarginFromChartToLegendText,
                     paint);
                 var rectangle = new SKRect(basePosition, heightSpacing + MarginFromChartToLegend,
                     _deviceWidth - _xOffset, heightSpacing + 60 + height);
@@ -69,7 +79,7 @@ namespace SkiaChart.Axes {
         }
 
         internal override void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint) {
-            Execute(label, (_deviceWidth / 2) - (label.Length), bottomOrTop + 45, paint, true);
+            Execute(label, (_deviceWidth / 2) - (label.Length), bottomOrTop + DistanceBetweenXbaseAndXTitle, paint, true);
         }
 
         internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint) {

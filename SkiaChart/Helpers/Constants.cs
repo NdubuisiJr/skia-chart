@@ -8,5 +8,6 @@
         public const float DistanceToCenterOfLegendCircle = 20;
         public const float WidthOfLegendRect = 37;
         public const float HeightOfLegendRect = 25;
+        public const float DistanceBetweenXbaseAndXTitle = 50;
     }
 }
