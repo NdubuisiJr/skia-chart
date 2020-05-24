@@ -40,7 +40,7 @@ namespace TestApp.ViewModels {
 
         private IEnumerable<string> GetXValues() {
             for (int i = 0; i < 10; i++) {
-                yield return (i + 1).ToString();
+                yield return $"{i + 1}value";
             }
         }
 
