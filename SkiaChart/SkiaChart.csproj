@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>SkiaChart.Forms</PackageId>
-    <Version>1.0.1-beta</Version>
+    <Version>1.0.2</Version>
     <Authors>Ndubuisi Jr Chukuigwe</Authors>
     <Description>A simple xamarin.Forms chart library, built on top of the skiasharp graphics library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.</Description>
     <Copyright>Copyright (c) 2020 Ndubuisi Jr Chukuigwe</Copyright>
@@ -12,7 +12,7 @@
     <PackageIcon>skiaChartIcon.JPG</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/NdubuisiJr/skia-chart</RepositoryUrl>
-    <PackageTags>chart, skiasharp, skia, skiachart, skiachart.forms, xamarin.forms, xamarin, chartlibrary, xamarinChartLibrary, xamarinFormsChartLibrary</PackageTags>
+    <PackageTags>chart, skiasharp, skia, skiachart, skiachart.forms, xamarin.forms, xamarin, chartlibrary, xamarinChartLibrary, xamarinFormsChartLibrary, xamarinChart</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

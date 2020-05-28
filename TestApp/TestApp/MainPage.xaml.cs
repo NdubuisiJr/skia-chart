@@ -31,5 +31,9 @@ namespace TestApp {
         private async void AreaChart_Clicked(object sender, EventArgs e) {
             await Navigation.PushAsync(new AreaChartPage());
         }
+
+        private async void TestView_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new TestVIew());
+        }
     }
 }
