@@ -3,16 +3,24 @@ using SkiaChart.Charts;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
-    public class BarChartViewModel {
+    public class BarChartViewModel : INotifyPropertyChanged {
         public BarChartViewModel() {
+            CreateCommand = new Command(CreateAction);
+            GridColor = SKColors.Black;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void CreateAction(object obj) {
 
             Chart = new Chart<BarChart>(GenerateBarCharts()) {
                 YTitle = "Randomly generated values",
                 XTitle = "Distributed values"
             };
-            GridColor = SKColors.Black;
         }
 
         private IEnumerable<BarChart> GenerateBarCharts() {
@@ -44,7 +52,22 @@ namespace TestApp.ViewModels {
             }
         }
 
-        public Chart<BarChart> Chart { get; set; }
+        private void RaisePropertyChanged(string propName) {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+
+        public Command CreateCommand { get; }
+        private Chart<BarChart> _chart;
+        public Chart<BarChart> Chart {
+            get => _chart;
+            set {
+                if (_chart != value) {
+                    _chart = value;
+                    RaisePropertyChanged(nameof(Chart));
+                }
+            }
+        }
         public SKColor GridColor { get; set; }
+       
     }
 }

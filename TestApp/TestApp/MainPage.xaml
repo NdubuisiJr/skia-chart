@@ -22,6 +22,9 @@
 
         <Button x:Name="AreaChart" Text="Area Chart"
                 Clicked="AreaChart_Clicked"/>
+
+        <Button x:Name="TestView" Text="Test view"
+                Clicked="TestView_Clicked"/>
     </StackLayout>
 
 </ContentPage>
