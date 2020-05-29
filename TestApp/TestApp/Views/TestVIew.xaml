@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:chartview="clr-namespace:SkiaChart.Views;assembly=SkiaChart"
-             xmlns:chart="clr-namespace:SkiaChart.Charts;assembly=SkiaChart"
+             xmlns:chartView="clr-namespace:SkiaChart.Views;assembly=SkiaChart"
+             xmlns:charts="clr-namespace:SkiaChart.Charts;assembly=SkiaChart"
              xmlns:viewModels="clr-namespace:TestApp.ViewModels"
              x:Class="TestApp.Views.TestVIew">
 
@@ -13,13 +13,12 @@
         <viewModels:BarChartViewModel/>
     </ContentPage.BindingContext>
     <Grid>
-        <chartview:ChartCanvas x:TypeArguments="chart:BarChart"
-                           x:Name="chartView" 
-                           Chart="{Binding Chart}"
-                           GridLines="10"
-                           GridColor="{Binding GridColor}"
-                           CanShowLegend="True"
-                            VerticalOptions="FillAndExpand" />
+        <chartView:ChartCanvas VerticalOptions="FillAndExpand"
+                                   x:TypeArguments="charts:BarChart"
+                                   Chart="{Binding BarChart}"
+                                   GridColor="{Binding BarchartColor}"
+                                   GridLines="5"
+                                   CanShowLegend="True"/>
 
         <Button Text="Create"
                 HorizontalOptions="CenterAndExpand"

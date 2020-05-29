@@ -4,23 +4,38 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
     public class BarChartViewModel : INotifyPropertyChanged {
         public BarChartViewModel() {
             CreateCommand = new Command(CreateAction);
-            GridColor = SKColors.Black;
+        }
+        private async Task CreateCharts() {
+            await Task.Run(() => {
+                BarChart = new Chart<BarChart>(GenerateBarCharts());
+            });
+        }
+        private Chart<BarChart> _barchart;
+        public Chart<BarChart> BarChart {
+            get => _barchart;
+            set {
+                if (_barchart != value) {
+                    _barchart = value;
+                    RaisePropertyChanged(nameof(BarChart));
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void CreateAction(object obj) {
-
-            Chart = new Chart<BarChart>(GenerateBarCharts()) {
-                YTitle = "Randomly generated values",
-                XTitle = "Distributed values"
-            };
+        private async void CreateAction(object obj) {
+            await CreateCharts();
+            //Chart = new Chart<BarChart>(GenerateBarCharts()) {
+            //    YTitle = "Randomly generated values",
+            //    XTitle = "Distributed values"
+            //};
         }
 
         private IEnumerable<BarChart> GenerateBarCharts() {
@@ -67,7 +82,9 @@ namespace TestApp.ViewModels {
                 }
             }
         }
-        public SKColor GridColor { get; set; }
-       
+        public SKColor BarchartColor { get; }
+        = SKColor.Parse("#2196F3");
+        public SKColor GridColor { get; }
+                = SKColor.Parse("#2196F3");
     }
 }
