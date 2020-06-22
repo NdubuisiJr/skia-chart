@@ -16,7 +16,8 @@ namespace TestApp.ViewModels
 				YTitle = "Randomly generated values",
 				XTitle = "Distributed values"
 			};
-			GridColor = SKColors.LightPink;
+			GridColor = SKColors.LightBlue;
+			//GridColor = SKColors.LightPink;
 		}
 
 		private IEnumerable<LineChart> GenerateLineCharts()
@@ -26,7 +27,6 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Red,
 				ChartName = "Linear",
 				ShowPoints = true
-				, Width = 0.5f
 			};
 
 			var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x))
@@ -34,7 +34,6 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Green,
 				ChartName = "Random starting from 10",
 				ShowPoints = true
-				, Width = 0.5f
 			};
 
 			var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x => x))
@@ -42,7 +41,6 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Yellow,
 				ChartName = "Random starting from 50",
 				ShowPoints = true
-				, Width = 0.5f
 			};
 
 			var linear3 = new LineChart(GetXValues(), GetYValuesLinearly())
@@ -50,7 +48,6 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Blue,
 				ChartName = "Second Linear",
 				ShowPoints = true
-				, Width = 0.5f
 			};
 
 			return new List<LineChart> { linear, random1, linear3, random2 };

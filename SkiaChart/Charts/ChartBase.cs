@@ -217,8 +217,7 @@ namespace SkiaChart.Charts {
             IsAntialias = true,
 			//StrokeWidth = 0.2f,
 			Color = SKColors.Black
-			,
-			TextSize = 20
+            //, TextSize = 30
 		};
 
         public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);

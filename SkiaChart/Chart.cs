@@ -197,8 +197,10 @@ namespace SkiaChart {
         private readonly SKPaint _gridPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Gray
+            //StrokeWidth = 3,
+            Color = SKColors.Black
+            //Color = SKColors.Gray
+            , TextSize = 20
         };
     }
 }
