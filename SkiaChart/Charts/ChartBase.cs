@@ -207,17 +207,19 @@ namespace SkiaChart.Charts {
             IsAntialias = true,
             Style = SKPaintStyle.Stroke,
             Color = SKColors.Green,
-            StrokeWidth = 5,
-            StrokeCap = SKStrokeCap.Round
-        };
+			//StrokeWidth = 5,
+			StrokeCap = SKStrokeCap.Round
+		};
 
         //The SkPaint used for drawing labels
         protected readonly SKPaint _labelPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Gray
-        };
+			//StrokeWidth = 0.2f,
+			Color = SKColors.Black
+			,
+			TextSize = 20
+		};
 
         public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
     }
