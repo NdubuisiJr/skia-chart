@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace TestApp.Views {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LineChartView : ContentPage {
-        public LineChartView() {
-            InitializeComponent();
-        }
-    }
+namespace TestApp.Views
+{
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class LineChartView : ContentPage
+	{
+		public LineChartView()
+		{
+			InitializeComponent();
+		}
+	}
 }
