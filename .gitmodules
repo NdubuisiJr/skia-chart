@@ -1,3 +1,3 @@
 [submodule "SkiaChart"]
 	path = SkiaChart
-	url = //BUFFALO/share/GIT_Root/xamarinProjs/SkiaChartEks
+	url = https://dev.azure.com/ekrogh/skiaChartEks/_git/SkiaChart
