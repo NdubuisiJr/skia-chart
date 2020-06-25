@@ -26,7 +26,7 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Red,
 				ChartName = "Linear",
 				ShowPoints = true
-				, LabelTextSize = 30
+				, LabelTextSize = 40
 			};
 
 			var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x))
