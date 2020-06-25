@@ -17,7 +17,6 @@ namespace TestApp.ViewModels
 				XTitle = "Distributed values"
 			};
 			GridColor = SKColors.LightBlue;
-			//GridColor = SKColors.LightPink;
 		}
 
 		private IEnumerable<LineChart> GenerateLineCharts()
@@ -27,6 +26,7 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Red,
 				ChartName = "Linear",
 				ShowPoints = true
+				, LabelTextSize = 30
 			};
 
 			var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x))
@@ -50,16 +50,31 @@ namespace TestApp.ViewModels
 				ShowPoints = true
 			};
 
-			return new List<LineChart> { linear, random1, linear3, random2 };
+			return new List<LineChart> { linear, random1 };
+			//return new List<LineChart> { linear, random1, linear3, random2 };
 		}
 
 		private IEnumerable<float> GetXValues()
 		{
+			DateTime dtNow = DateTime.Now;
+			DateTime dt = DateTime.Now;
+			TimeSpan ts = TimeSpan.Zero;
+			float tmpflt = 0f;
 			for (int i = 0; i < 500; i++)
 			{
-				yield return i + 1;
+				dt = dtNow.AddMonths(i)/*.AddDays(i)*/;
+				ts = dt - dtNow;
+				tmpflt = (float)ts.TotalDays;
+				yield return tmpflt;
 			}
 		}
+		//private IEnumerable<float> GetXValues()
+		//{
+		//	for (int i = 0; i < 500; i++)
+		//	{
+		//		yield return i + 1;
+		//	}
+		//}
 
 		private IEnumerable<float> Random(int lowerLimit)
 		{
@@ -72,11 +87,18 @@ namespace TestApp.ViewModels
 
 		private IEnumerable<float> GetYValuesLinearly()
 		{
-			for (int i = 0; i < 500; i++)
+			for (int i = -250; i < 250; i++)
 			{
 				yield return i + 1;
 			}
 		}
+		//private IEnumerable<float> GetYValuesLinearly()
+		//{
+		//	for (int i = 0; i < 500; i++)
+		//	{
+		//		yield return i + 1;
+		//	}
+		//}
 
 		public Chart<LineChart> Chart { get; set; }
 		public SKColor GridColor { get; set; }
