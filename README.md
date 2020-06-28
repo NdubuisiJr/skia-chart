@@ -120,6 +120,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 
 ## Tutorials - Watch the YouTube video below:
 [![Watch the video](https://img.youtube.com/vi/066CmRSQE0k/hqdefault.jpg)](https://youtu.be/066CmRSQE0k)
+<br/> [Full tutorial series](https://www.youtube.com/watch?v=ExjwgJ3Y0z8&list=PL918TratNgZxkJGbr3t-NiIftscT5O_cq)
 
 ## Contributing
 
