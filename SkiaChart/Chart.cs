@@ -198,7 +198,7 @@ namespace SkiaChart {
             Style = SKPaintStyle.Stroke,
             IsAntialias = true,
             StrokeWidth = 3,
-            Color = SKColors.Gray
+            Color = SKColors.Black
         };
     }
 }

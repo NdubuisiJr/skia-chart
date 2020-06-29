@@ -2,6 +2,7 @@
 using SkiaChart.Enums;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
+using SkiaSharp;
 using System.Collections.Generic;
 
 namespace SkiaChart.Charts {
@@ -14,6 +15,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
         public ScatterChart(IEnumerable<float> xValues, IEnumerable<float> yValues)
             : base(xValues, yValues) {
+            SetScatterChartDefaults();
         }
 
         /// <summary>
@@ -23,6 +25,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
         public ScatterChart(IEnumerable<string> xValues, IEnumerable<float> yValues)
              : base(xValues, yValues) {
+            SetScatterChartDefaults();
         }
 
         /// <summary>
@@ -32,6 +35,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot as string labels</param>
         public ScatterChart(IEnumerable<float> xValues, IEnumerable<string> yValues)
              : base(xValues, yValues) {
+            SetScatterChartDefaults();
         }
 
         /// <summary>
@@ -55,6 +59,21 @@ namespace SkiaChart.Charts {
             if (canvasWrapper.CanShowLegend) {
                 RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
             }
+        }
+
+        //Draw points
+        protected SKCanvas DisplayPoints(CanvasWrapper canvasWrapper) {
+            var canvas = canvasWrapper.Canvas;
+            _chartPaint.IsStroke = IsStroked;
+            foreach (var point in ConstructionData) {
+                canvas.DrawCircle(point, PointRadius, _chartPaint);
+            }
+            return canvas;
+        }
+
+        private void SetScatterChartDefaults() {
+            PointRadius = 5;
+            ShowPoints = true;
         }
     }
 }
