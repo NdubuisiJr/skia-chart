@@ -3,88 +3,46 @@ using SkiaChart.Charts;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
-    public class BarChartViewModel : INotifyPropertyChanged {
+    public class BarChartViewModel {
         public BarChartViewModel() {
-            CreateCommand = new Command(CreateAction);
-        }
-        private async Task CreateCharts() {
-            await Task.Run(() => {
-                BarChart = new Chart<BarChart>(GenerateBarCharts());
-            });
-        }
-        private Chart<BarChart> _barchart;
-        public Chart<BarChart> BarChart {
-            get => _barchart;
-            set {
-                if (_barchart != value) {
-                    _barchart = value;
-                    RaisePropertyChanged(nameof(BarChart));
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private async void CreateAction(object obj) {
-            await CreateCharts();
-            //Chart = new Chart<BarChart>(GenerateBarCharts()) {
-            //    YTitle = "Randomly generated values",
-            //    XTitle = "Distributed values"
-            //};
-        }
-
-        private IEnumerable<BarChart> GenerateBarCharts() {
-            var bar1 = new BarChart(GetXValues(), Random(1)) {
-                ChartColor = SKColors.Green,
-                ChartName="Random starting from 1"
+            Chart = new Chart<BarChart>(GenerateLineCharts()) {
+                YTitle = "Population values",
+                XTitle = "Prediction curve values"
             };
-            var bar2 = new BarChart(GetXValues(), Random(5)) {
+            GridColor = SKColors.Gray;
+        }
+
+        private IEnumerable<BarChart> GenerateLineCharts() {
+            var linear = new BarChart(GetXValues(), Random(100)) {
                 ChartColor = SKColors.Red,
-                ChartName = "Random starting from 5"
+                ChartName = "Linear"
             };
-            var bar3 = new BarChart(GetXValues(), Random(10)) {
-                ChartColor = SKColors.Yellow,
-                ChartName = "Random starting from 10"
+
+            var random = new BarChart(GetXValues(), Random(100)) {
+                ChartColor = SKColors.Green,
+                ChartName = "Random"
             };
-            return new List<BarChart> { bar1, bar2, bar3 };
+            return new List<BarChart> { linear, random };
+        }
+
+        private IEnumerable<string> GetXValues() {
+            for (int i = 0; i < 15; i++) {
+                yield return (i + 1).ToString();
+            }
         }
 
         private IEnumerable<float> Random(int lowerLimit) {
             var rand = new Random();
-            for (int i = 0; i < 10; i++) {
-                yield return 15 - ((1 - (float)rand.NextDouble()) * (15 - lowerLimit));
+            for (int i = 0; i < 15; i++) {
+                yield return 500 - ((1 - (float)rand.NextDouble()) * (500 - lowerLimit));
             }
         }
 
-        private IEnumerable<string> GetXValues() {
-            for (int i = 0; i < 10; i++) {
-                yield return $"{i + 1}value";
-            }
-        }
-
-        private void RaisePropertyChanged(string propName) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
-        }
-
-        public Command CreateCommand { get; }
-        private Chart<BarChart> _chart;
-        public Chart<BarChart> Chart {
-            get => _chart;
-            set {
-                if (_chart != value) {
-                    _chart = value;
-                    RaisePropertyChanged(nameof(Chart));
-                }
-            }
-        }
-        public SKColor BarchartColor { get; }
-        = SKColor.Parse("#2196F3");
-        public SKColor GridColor { get; }
-                = SKColor.Parse("#2196F3");
+        public Chart<BarChart> Chart { get; set; }
+        public SKColor GridColor { get; set; }
     }
 }

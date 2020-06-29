@@ -4,6 +4,7 @@ using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SkiaChart.Charts {
 
@@ -62,10 +63,14 @@ namespace SkiaChart.Charts {
             }
 
             _chartPaint.IsStroke = true;
-            canvas.DrawPoints(SKPointMode.Lines, ConstructionData.ToArray(), _chartPaint);
-            if (ShowPoints) {
-                DisplayPoints(canvasWrapper);
+            var path = new SKPath();
+            path.MoveTo(ConstructionData.First());
+            foreach (var point in ConstructionData.Skip(1)) {
+                path.LineTo(point);
+                if(ShowPoints)
+                    canvas.DrawCircle(point, PointRadius, _chartPaint);
             }
+            canvas.DrawPath(path, _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
 
             if (canvasWrapper.CanShowLegend) {
@@ -102,16 +107,6 @@ namespace SkiaChart.Charts {
             }
         }
 
-        //Draw points
-        protected SKCanvas DisplayPoints(CanvasWrapper canvasWrapper) {
-            var canvas = canvasWrapper.Canvas;
-            _chartPaint.IsStroke = IsStroked;
-            foreach (var point in ConstructionData) {
-                canvas.DrawCircle(point, PointRadius, _chartPaint);
-            }
-            return canvas;
-        }
-
         private SKColor _labelColor;
         /// <summary>
         ///  Color of Label
@@ -134,7 +129,7 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// Radius of the scatter points in pixels
         /// </summary>
-        public float PointRadius { get; set; } = 7;
+		public float PointRadius { get; set; } = 1;
 
         /// <summary>
         /// Makes the points hollow. It is false by default.

@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Axes;
+using SkiaChart.Axes;
 using SkiaChart.Enums;
 using SkiaChart.Exceptions;
 using SkiaChart.Interfaces;
@@ -207,16 +208,29 @@ namespace SkiaChart.Charts {
             IsAntialias = true,
             Style = SKPaintStyle.Stroke,
             Color = SKColors.Green,
-            StrokeWidth = 5,
             StrokeCap = SKStrokeCap.Round
         };
 
+        private float _labelTextSize = 20f;
+        /// <summary>
+        /// The TextSize of labels
+        /// </summary>
+        public float LabelTextSize {
+            get => _labelTextSize;
+            set {
+                if (value != _labelTextSize) {
+                    _labelTextSize = value;
+                    _labelPaint.TextSize = value;
+                }
+            }
+        }
+
         //The SkPaint used for drawing labels
         protected readonly SKPaint _labelPaint = new SKPaint() {
-            Style = SKPaintStyle.Stroke,
+            Style = SKPaintStyle.StrokeAndFill,
             IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Gray
+            Color = SKColors.Black,
+            TextSize = 20f
         };
 
         public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);
