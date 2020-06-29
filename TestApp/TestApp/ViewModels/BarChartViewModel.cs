@@ -3,102 +3,83 @@ using SkiaChart.Charts;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
-    public class BarChartViewModel : INotifyPropertyChanged {
+    public class BarChartViewModel {
         public BarChartViewModel() {
-            CreateCommand = new Command(CreateAction);
-        }
-        private async Task CreateCharts() {
-            await Task.Run(() => {
-                BarChart = new Chart<BarChart>(GenerateBarCharts());
-            });
-        }
-        private Chart<BarChart> _barchart;
-        public Chart<BarChart> BarChart {
-            get => _barchart;
-            set {
-                if (_barchart != value) {
-                    _barchart = value;
-                    RaisePropertyChanged(nameof(BarChart));
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private async void CreateAction(object obj) {
-            await CreateCharts();
-            //Chart = new Chart<BarChart>(GenerateBarCharts()) {
-            //    YTitle = "Randomly generated values",
-            //    XTitle = "Distributed values"
-            //};
-        }
-
-        private IEnumerable<BarChart> GenerateBarCharts() {
-            var bar1 = new BarChart(GetXValues(), Random(1)) {
-                ChartColor = SKColors.Green,
-                ChartName="Random starting from 1"
+            Chart = new Chart<AreaChart>(GenerateLineCharts()) {
+                YTitle = "Population values",
+                XTitle = "Prediction curve values"
             };
-            switch (Device.RuntimePlatform)
-            {
-                case Device.UWP:
-                    {
-                        bar1.LabelTextSize = 15;
-                        break;
-                    }
-                default:
-                    {
-                        bar1.LabelTextSize = 30;
-                        break;
-                    }
-            };
+            GridColor = SKColors.Gray;
+        }
 
-            var bar2 = new BarChart(GetXValues(), Random(5)) {
+        private IEnumerable<AreaChart> GenerateLineCharts() {
+            var linear = new AreaChart(GetXValues(), GetYValuesLinearly()) {
                 ChartColor = SKColors.Red,
-                ChartName = "Random starting from 5"
+                ShowPoints = true,
+                ChartName = "Linear"
             };
-            var bar3 = new BarChart(GetXValues(), Random(10)) {
+            switch (Device.RuntimePlatform) {
+                case Device.UWP: {
+                        linear.LabelTextSize = 15;
+                        break;
+                    }
+                default: {
+                        linear.LabelTextSize = 30;
+                        break;
+                    }
+            };
+
+            var random = new AreaChart(GetXValues(), Random(100).OrderBy(x => x)) {
+                ChartColor = SKColors.Green,
+                ShowPoints = true,
+                ChartName = "Random"
+            };
+
+            var trigValues = Trigonometric();
+            var sineCurve = new AreaChart(trigValues.Item1, trigValues.Item2) {
                 ChartColor = SKColors.DarkBlue,
-                ChartName = "Random starting from 10"
+                ShowPoints = true,
+                ChartName = "Trigonometric"
             };
-            return new List<BarChart> { bar1, bar2, bar3 };
+            return new List<AreaChart> { linear, random, sineCurve };
+        }
+
+        private IEnumerable<float> GetXValues() {
+            for (int i = 0; i < 500; i++) {
+                yield return i + 1;
+            }
         }
 
         private IEnumerable<float> Random(int lowerLimit) {
             var rand = new Random();
-            for (int i = 0; i < 10; i++) {
-                yield return 15 - ((1 - (float)rand.NextDouble()) * (15 - lowerLimit));
+            for (int i = 0; i < 500; i++) {
+                yield return 500 - ((1 - (float)rand.NextDouble()) * (500 - lowerLimit));
             }
         }
 
-        private IEnumerable<string> GetXValues() {
-            for (int i = 0; i < 10; i++) {
-                yield return $"{i + 1}value";
+        private IEnumerable<float> GetYValuesLinearly() {
+            for (int i = 0; i < 500; i++) {
+                yield return i + 1;
             }
         }
 
-        private void RaisePropertyChanged(string propName) {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        private Tuple<IEnumerable<float>, IEnumerable<float>> Trigonometric() {
+            var yValues = new List<float>();
+            var xValues = new List<float>();
+            for (int i = 0; i < 150; i++) {
+                double x = i * Math.PI;
+                double y = 200 + 100 * Math.Sin(x / 10);
+                xValues.Add((float)x);
+                yValues.Add((float)y);
+            }
+            return new Tuple<IEnumerable<float>, IEnumerable<float>>(xValues, yValues);
         }
 
-        public Command CreateCommand { get; }
-        private Chart<BarChart> _chart;
-        public Chart<BarChart> Chart {
-            get => _chart;
-            set {
-                if (_chart != value) {
-                    _chart = value;
-                    RaisePropertyChanged(nameof(Chart));
-                }
-            }
-        }
-        public SKColor BarchartColor { get; }
-        = SKColor.Parse("#2196F3");
-        public SKColor GridColor { get; }
-                = SKColor.Parse("#2196F3");
+        public Chart<AreaChart> Chart { get; set; }
+        public SKColor GridColor { get; set; }
     }
 }

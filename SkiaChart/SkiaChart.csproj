@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>SkiaChart.Forms</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.3.1</Version>
     <Authors>Ndubuisi Jr Chukuigwe</Authors>
     <Description>A simple xamarin.Forms chart library, built on top of the skiasharp graphics library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.</Description>
     <Copyright>Copyright (c) 2020 Ndubuisi Jr Chukuigwe</Copyright>

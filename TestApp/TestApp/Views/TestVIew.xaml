@@ -10,7 +10,7 @@
              x:Class="TestApp.Views.TestVIew">
 
     <ContentPage.BindingContext>
-        <viewModels:BarChartViewModel/>
+        <viewModels:TestViewModel/>
     </ContentPage.BindingContext>
     <Grid>
         <chartView:ChartCanvas VerticalOptions="FillAndExpand"
