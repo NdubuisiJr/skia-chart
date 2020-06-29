@@ -158,7 +158,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TestApp\TestApp\TestApp.csproj">
+    <ProjectReference Include="..\TestApp\TestApp.csproj">
       <Project>{d332cc76-e615-471c-9601-20306f570170}</Project>
       <Name>TestApp</Name>
     </ProjectReference>
