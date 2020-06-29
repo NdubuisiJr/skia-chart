@@ -110,7 +110,6 @@ namespace SkiaChart.Views {
         private readonly SKPaint _blackPaint = new SKPaint() {
             Style = SKPaintStyle.Stroke,
             Color = SKColors.Transparent,
-            //StrokeWidth = 5,
             IsAntialias = true
         };
     }
