@@ -4,6 +4,7 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
     public class ScatterPageViewModel {
@@ -20,13 +21,26 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Red,
                 IsStroked=true
             };
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    {
+                        random.LabelTextSize = 15;
+                        break;
+                    }
+                default:
+                    {
+                        random.LabelTextSize = 30;
+                        break;
+                    }
+            };
 
             var random1 = new ScatterChart(GetXValues(), Random(20)) {
                 ChartColor = SKColors.Green
             };
 
             var random2 = new ScatterChart(GetXValues(), Random(40)) {
-                ChartColor = SKColors.Yellow,
+                ChartColor = SKColors.DarkBlue,
                 IsStroked = true
             };
             return new List<ScatterChart> { random, random1, random2 };
