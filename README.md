@@ -1,3 +1,5 @@
+ [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg)](https://github.com/NdubuisiJr/skia-chart/actions)
+
 # skia-chart
 A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.
 
@@ -135,12 +137,6 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 ## Author
 
 * **Ndubuisi Jr Chukuigwe** - *Initial work* - [NdubuisiJr](https://github.com/NdubuisiJr)
-
-## Contributors
-<a href="https://github.com/NdubuisiJr/skia-chart/graphs/contributors">
-    <img src="https://contributors-img.firebaseapp.com/image?repo=NdubuisiJr/skia-chart" />
-</a>
-
 
 ## License
 
