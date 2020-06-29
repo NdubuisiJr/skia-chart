@@ -98,9 +98,9 @@ namespace SkiaChart.Views {
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);
             var xOffset = (float)e.Info.Width / 15;
-            var yOffset =CanShowLegend? 3*((float)e.Info.Height / 15):(float)e.Info.Height / 15;
-            var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
-            canvas.DrawRect(chartArea, _blackPaint);
+			var yOffset = CanShowLegend ? 3 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
+			var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
+			canvas.DrawRect(chartArea, _blackPaint);
             if (Chart == null) return;
             Chart.GridColor = GridColor;
             Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, CanShowLegend,

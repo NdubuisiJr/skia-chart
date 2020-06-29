@@ -4,6 +4,7 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
     public class AreaChartViewModel {
@@ -21,6 +22,19 @@ namespace TestApp.ViewModels {
                 ShowPoints=true,
                 ChartName="Linear"
             };
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    {
+                        linear.LabelTextSize = 15;
+                        break;
+                    }
+                default:
+                    {
+                        linear.LabelTextSize = 30;
+                        break;
+                    }
+            };
 
             var random = new AreaChart(GetXValues(), Random(100).OrderBy(x=>x)) {
                 ChartColor = SKColors.Green,
@@ -30,7 +44,7 @@ namespace TestApp.ViewModels {
 
             var trigValues = Trigonometric();
             var sineCurve = new AreaChart(trigValues.Item1, trigValues.Item2) {
-                ChartColor = SKColors.Yellow,
+                ChartColor = SKColors.DarkBlue,
                 ShowPoints = true,
                 ChartName = "Trigonometric"
             };

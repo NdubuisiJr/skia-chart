@@ -43,12 +43,26 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Green,
                 ChartName="Random starting from 1"
             };
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    {
+                        bar1.LabelTextSize = 15;
+                        break;
+                    }
+                default:
+                    {
+                        bar1.LabelTextSize = 30;
+                        break;
+                    }
+            };
+
             var bar2 = new BarChart(GetXValues(), Random(5)) {
                 ChartColor = SKColors.Red,
                 ChartName = "Random starting from 5"
             };
             var bar3 = new BarChart(GetXValues(), Random(10)) {
-                ChartColor = SKColors.Yellow,
+                ChartColor = SKColors.DarkBlue,
                 ChartName = "Random starting from 10"
             };
             return new List<BarChart> { bar1, bar2, bar3 };

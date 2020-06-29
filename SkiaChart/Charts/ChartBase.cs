@@ -236,7 +236,7 @@ namespace SkiaChart.Charts
 			StrokeCap = SKStrokeCap.Round
 		};
 
-		private float _labelTextSize = 10f;
+		private float _labelTextSize = 20f;
 		/// <summary>
 		/// The TextSize of labels
 		/// </summary>
@@ -256,11 +256,13 @@ namespace SkiaChart.Charts
 		//The SkPaint used for drawing labels
 		protected readonly SKPaint _labelPaint = new SKPaint()
 		{
-			Style = SKPaintStyle.Stroke,
-			IsAntialias = true,
+			Style = SKPaintStyle.StrokeAndFill
+			,
+			IsAntialias = true
+			,
 			Color = SKColors.Black
 			,
-			TextSize = 10f
+			TextSize = 20f
 		};
 
 		public abstract void RenderChart(CanvasWrapper canvas, Axis axis, IMinMax minMax);

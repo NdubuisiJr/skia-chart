@@ -4,6 +4,7 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace TestApp.ViewModels
 {
@@ -26,7 +27,19 @@ namespace TestApp.ViewModels
 				ChartColor = SKColors.Red,
 				ChartName = "Linear",
 				ShowPoints = true
-				, LabelTextSize = 40
+			};
+			switch (Device.RuntimePlatform)
+			{
+				case Device.UWP:
+					{
+						linear.LabelTextSize = 15;
+						break;
+					}
+				default:
+					{
+						linear.LabelTextSize = 30;
+						break;
+					}
 			};
 
 			var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x))
@@ -38,7 +51,7 @@ namespace TestApp.ViewModels
 
 			var random2 = new LineChart(GetXValues(), Random(50).OrderBy(x => x))
 			{
-				ChartColor = SKColors.Yellow,
+				ChartColor = SKColors.DarkBlue,
 				ChartName = "Random starting from 50",
 				ShowPoints = true
 			};
@@ -50,31 +63,16 @@ namespace TestApp.ViewModels
 				ShowPoints = true
 			};
 
-			return new List<LineChart> { linear, random1 };
-			//return new List<LineChart> { linear, random1, linear3, random2 };
+			return new List<LineChart> { linear, random1, linear3, random2 };
 		}
 
 		private IEnumerable<float> GetXValues()
 		{
-			DateTime dtNow = DateTime.Now;
-			DateTime dt = DateTime.Now;
-			TimeSpan ts = TimeSpan.Zero;
-			float tmpflt = 0f;
 			for (int i = 0; i < 500; i++)
 			{
-				dt = dtNow.AddMonths(i)/*.AddDays(i)*/;
-				ts = dt - dtNow;
-				tmpflt = (float)ts.TotalDays;
-				yield return tmpflt;
+				yield return i + 1;
 			}
 		}
-		//private IEnumerable<float> GetXValues()
-		//{
-		//	for (int i = 0; i < 500; i++)
-		//	{
-		//		yield return i + 1;
-		//	}
-		//}
 
 		private IEnumerable<float> Random(int lowerLimit)
 		{
@@ -87,18 +85,11 @@ namespace TestApp.ViewModels
 
 		private IEnumerable<float> GetYValuesLinearly()
 		{
-			for (int i = -250; i < 250; i++)
+			for (int i = 0; i < 500; i++)
 			{
 				yield return i + 1;
 			}
 		}
-		//private IEnumerable<float> GetYValuesLinearly()
-		//{
-		//	for (int i = 0; i < 500; i++)
-		//	{
-		//		yield return i + 1;
-		//	}
-		//}
 
 		public Chart<LineChart> Chart { get; set; }
 		public SKColor GridColor { get; set; }
