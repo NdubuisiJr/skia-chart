@@ -138,9 +138,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 
 ## Contributors
 <a href="https://github.com/NdubuisiJr/skia-chart/graphs/contributors">
-  <p>
-     <img src="https://avatars3.githubusercontent.com/u/44238346?v=4" width="50"/>
-  </p>
+    <img src="https://contributors-img.firebaseapp.com/image?repo=NdubuisiJr/skia-chart" />
 </a>
 
 
