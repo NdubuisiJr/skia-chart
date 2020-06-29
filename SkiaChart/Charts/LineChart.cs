@@ -134,7 +134,7 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// Radius of the scatter points in pixels
         /// </summary>
-        public float PointRadius { get; set; } = 7;
+		public float PointRadius { get; set; } = 1;
 
         /// <summary>
         /// Makes the points hollow. It is false by default.
