@@ -33,6 +33,11 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585849946.png" width="350"> 
 </p>
 
+## Getting Started
+* Open Nuget package manager for solution
+* Search for SkiaChart.Forms
+* Install on all the projects
+
 ## Code Example
 ### Line Chart
   XAML-page
@@ -115,14 +120,17 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 
 ## Tutorials - Watch the YouTube video below:
 [![Watch the video](https://img.youtube.com/vi/066CmRSQE0k/hqdefault.jpg)](https://youtu.be/066CmRSQE0k)
+<br/> [Full tutorial series](https://www.youtube.com/watch?v=ExjwgJ3Y0z8&list=PL918TratNgZxkJGbr3t-NiIftscT5O_cq)
 
-## Getting Started - Contributing
+## Contributing
 
-* Fork.
-* Clone.
-* Restore nuget packages.
-* Run the Test App.
-* Contribute!
+* Create a Fork from this repository.
+* Clone your fork into your work station.
+* Switch to the development branch.
+* Make your changes on the development branch.
+* Push your changes to your fork.
+* Create a pull request back to the main repository.
+* Add a new remote called upstream to point to the main repository.
 
 ## Author
 
