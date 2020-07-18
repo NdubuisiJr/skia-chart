@@ -111,6 +111,10 @@
     <None Include="OpenTK.dll.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SkiaChart\SkiaChart.csproj">
+      <Project>{ef6f07a5-38a6-40bf-926a-1b7643c9c7f2}</Project>
+      <Name>SkiaChart</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestApp\TestApp.csproj">
       <Project>{D332CC76-E615-471C-9601-20306F570170}</Project>
       <Name>TestApp</Name>
