@@ -1,5 +1,4 @@
 ﻿using SkiaChart.Axes;
-using SkiaChart.Axes;
 using SkiaChart.Enums;
 using SkiaChart.Exceptions;
 using SkiaChart.Interfaces;
@@ -10,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using static SkiaChart.Helpers.Constants;
 
-namespace SkiaChart.Charts {
+namespace SkiaChart.Charts
+{
     /// <summary>
     /// Base class for the implementation of different chart types
     /// </summary>
