@@ -47,10 +47,12 @@ namespace SkiaChart.Charts {
                 canvasWrapper.Canvas.DrawRect(rect, _chartPaint);
 
                 var xLabel = XLabel[counter];
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
                 axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2), 
                     canvasWrapper.ChartArea.Bottom, _labelPaint);
 
                 var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
                 axis.DrawAndPositionYTickMark(yLabel, point.Y, (x1 + (x2 - x1) / 2), _labelPaint);
                 counter++;
             }

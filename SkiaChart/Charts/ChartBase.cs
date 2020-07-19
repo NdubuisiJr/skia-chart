@@ -211,22 +211,8 @@ namespace SkiaChart.Charts
             StrokeCap = SKStrokeCap.Round
         };
 
-        private float _labelTextSize = 20f;
-        /// <summary>
-        /// The TextSize of labels
-        /// </summary>
-        public float LabelTextSize {
-            get => _labelTextSize;
-            set {
-                if (value != _labelTextSize) {
-                    _labelTextSize = value;
-                    _labelPaint.TextSize = value;
-                }
-            }
-        }
-
-        //The SkPaint used for drawing labels
-        protected readonly SKPaint _labelPaint = new SKPaint() {
+		//The SkPaint used for drawing labels
+		protected readonly SKPaint _labelPaint = new SKPaint() {
             Style = SKPaintStyle.StrokeAndFill,
             IsAntialias = true,
             Color = SKColors.Black,

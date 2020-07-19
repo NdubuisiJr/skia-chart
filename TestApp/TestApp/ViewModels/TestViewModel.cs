@@ -44,13 +44,19 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Green,
                 ChartName = "Random starting from 1"
             };
-            switch (Device.RuntimePlatform) {
-                case Device.UWP: {
-                        bar1.LabelTextSize = 15;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    {
+                        LabelTextSize = 15f;
+                        LegendItemSpacing = 20f;
                         break;
                     }
-                default: {
-                        bar1.LabelTextSize = 30;
+                default:
+                    {
+                        LabelTextSize = 30f;
+                        LegendItemSpacing = 40f;
                         break;
                     }
             };
@@ -98,5 +104,7 @@ namespace TestApp.ViewModels {
         = SKColor.Parse("#2196F3");
         public SKColor GridColor { get; }
                 = SKColor.Parse("#2196F3");
+		public float LabelTextSize { get; set; }
+		public float LegendItemSpacing { get; set; }
     }
 }

@@ -13,7 +13,24 @@ namespace TestApp.ViewModels {
                 YTitle = "Population values",
                 XTitle = "Prediction curve values"
             };
+            
             GridColor = SKColors.Gray;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+                    {
+                        LabelTextSize = 15f;
+                        LegendItemSpacing = 20f;
+                        break;
+                    }
+                default:
+                    {
+                        LabelTextSize = 30f;
+                        LegendItemSpacing = 40f;
+                        break;
+                    }
+            };
         }
 
         private IEnumerable<AreaChart> GenerateLineCharts() {
@@ -21,19 +38,6 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Red,
                 ShowPoints=true,
                 ChartName="Linear"
-            };
-            switch (Device.RuntimePlatform)
-            {
-                case Device.UWP:
-                    {
-                        linear.LabelTextSize = 15;
-                        break;
-                    }
-                default:
-                    {
-                        linear.LabelTextSize = 30;
-                        break;
-                    }
             };
 
             var random = new AreaChart(GetXValues(), Random(100).OrderBy(x=>x)) {
@@ -84,5 +88,7 @@ namespace TestApp.ViewModels {
 
         public Chart<AreaChart> Chart { get; set; }
         public SKColor GridColor { get; set; }
+		public float LabelTextSize { get; set; }
+        public float LegendItemSpacing { get; set; }
     }
 }

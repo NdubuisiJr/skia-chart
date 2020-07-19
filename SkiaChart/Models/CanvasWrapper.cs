@@ -5,7 +5,8 @@ namespace SkiaChart.Models {
     //A class that wraps the canvas with additional information
     public class CanvasWrapper {
         internal CanvasWrapper(SKCanvas canvas, SKRect chartArea, int gridLines,
-            int height, int width, bool canShowLegend, float legendItemSpacing, Converter converter) {
+            int height, int width, bool canShowLegend, float legendItemSpacing, float labelTextSize,
+                Converter converter) {
             Canvas = canvas;
             ChartArea = chartArea;
             GridLines = gridLines;
@@ -15,6 +16,7 @@ namespace SkiaChart.Models {
             CanShowLegend = canShowLegend;
             LegendItemSpacing = legendItemSpacing;
             LegendDrawingStartX = chartArea.Left;
+            LabelTextSize = labelTextSize;
         }
 
         public SKCanvas Canvas { get; }
@@ -29,5 +31,6 @@ namespace SkiaChart.Models {
         public int NumberPlottedChart { get; set; }
         public int NumberOfDrawnLegend { get; set; }
         public float LegendDrawingStartX { get; set; }
+        public float LabelTextSize { get; }
     }
 }

@@ -22,6 +22,8 @@
 		GridLines="10"
 		GridColor="{Binding GridColor}"
 		CanShowLegend="True"
+        LegendItemSpacing="{Binding LegendItemSpacing}"
+        LabelTextSize="{Binding LabelTextSize}"
 	/>
 	
 </ContentPage>
