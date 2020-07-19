@@ -19,20 +19,33 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Plots multiple scatter points on the same axis.
 * Plots multiple area charts on the same axis.
 
-## Gallery - With Legend and Title
+## Gallery - Display on Android, IOS, UWP, and macOS
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="350"> 
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234609.png" width="350">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="350">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1587333013.png" width="350">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234609.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1587333013.png" width="175">
+ 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/scatter.png" width="175">
+  
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/scatter.png" width="175">
+  
+  
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/scatter.png" width="175">
 </p>
 
 ## Gallery - Without Legend and Title
-<p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350"> 
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350"> 
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585849946.png" width="350"> 
+<p>/
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585849946.png" width="175"> 
 </p>
 
 ## Getting Started
@@ -67,7 +80,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
  see <a href="https://github.com/NdubuisiJr/skia-chart/tree/master/TestApp/TestApp">Test App<a/> for typical bindings.
  
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="350" title="Line Chart">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585258837.png" width="175" title="Line Chart">
 </p>
 
 ### Bar Chart
@@ -92,7 +105,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   ```
   see <a href="https://github.com/NdubuisiJr/skia-chart/tree/master/TestApp/TestApp">Test App<a/> for typical bindings.
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="350" title="Bar chart">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585492508.png" width="175" title="Bar chart">
 </p>
 
 ### Scatter Chart
@@ -117,7 +130,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   ```
  see <a href="https://github.com/NdubuisiJr/skia-chart/tree/master/TestApp/TestApp">Test App<a/> for typical bindings.
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="350" title="Scatter chart">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1585603936.png" width="175" title="Scatter chart">
 </p>
 
 ## Tutorials - Watch the YouTube video below:
