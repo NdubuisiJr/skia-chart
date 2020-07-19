@@ -83,7 +83,7 @@ namespace SkiaChart.Views {
         }
 
         /// <summary>
-        /// The color of the grid lines drawn on the chart canvas. It is a bindable property
+        /// Show legend or not. It is a bindable property
         /// </summary>
         public bool CanShowLegend {
             get => (bool)GetValue(CanShowLegendProperty);
@@ -92,19 +92,47 @@ namespace SkiaChart.Views {
             }
         }
 
+        // Legend items spacing
+        public static readonly BindableProperty LegendItemSpacingProperty = BindableProperty.Create(
+            nameof(LegendItemSpacing), typeof(float), typeof(ChartCanvas<T>), 40f, propertyChanged: LegendItemSpacingChanged);
+
+        private static void LegendItemSpacingChanged(BindableObject bindable,
+            object oldValue, object newValue)
+        {
+            var canvas = (ChartCanvas<T>)bindable;
+            canvas.LegendItemSpacing = (float)newValue;
+            canvas.InvalidateSurface();
+        }
+
+        /// <summary>
+        /// TheSpacing between legend lines. It is a bindable property
+        /// </summary>
+        public float LegendItemSpacing
+        {
+            get => (float)GetValue(LegendItemSpacingProperty);
+            set
+            {
+                SetValue(LegendItemSpacingProperty, value);
+            }
+        }
+
+
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs e) {
             base.OnPaintSurface(e);
 
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);
             var xOffset = (float)e.Info.Width / 15;
-			var yOffset = CanShowLegend ? 3 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
-			var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
-			canvas.DrawRect(chartArea, _blackPaint);
+			var yOffset = 160f;
+            //var yOffset = CanShowLegend ? 3 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
+            //Info:  SKRect(flot leftX, float buttomY, float width, float topY);
+            var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height-40f);
+            //var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
+            canvas.DrawRect(chartArea, _blackPaint);
             if (Chart == null) return;
             Chart.GridColor = GridColor;
             Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, CanShowLegend,
-                new Converter(chartArea,xOffset,yOffset)));
+                LegendItemSpacing, new Converter(chartArea,xOffset,yOffset)));
         }
 
         private readonly SKPaint _blackPaint = new SKPaint() {

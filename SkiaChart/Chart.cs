@@ -37,7 +37,8 @@ namespace SkiaChart {
             Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight, XOffset, YOffset);
             Axis.DrawAndPositionXLabel(XTitle, ChartArea.Bottom, _gridPaint);
             Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint);
-            Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint, true);
+            Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                canvasWrapper.LegendItemSpacing, true);
             SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             NormalizeAllDataPoints();
             canvasWrapper.NumberOfCharts = _charts.Count;

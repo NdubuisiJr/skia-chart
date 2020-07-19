@@ -72,7 +72,7 @@ namespace SkiaChart.Axes {
             float rightOrLeft, SKPaint paint);
 
         internal abstract void DrawAndPositionLegend(string legend, float heightSpacing,
-            float basePosition, SKPaint paint, bool isFirstCall = false);
+            float basePosition, SKPaint paint, float LegendItemSpacing = 40f, bool isFirstCall = false);
 
         internal abstract void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint);
 

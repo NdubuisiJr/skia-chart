@@ -59,7 +59,7 @@ namespace SkiaChart.Axes {
         }
 
         internal override void DrawAndPositionLegend(string legend, float heightSpacing, float basePosition,
-            SKPaint paint, bool isFirstCall = false) {
+            SKPaint paint, float LegendItemSpacing = 40f, bool isFirstCall = false) {
             if (isFirstCall) {
                 _canvas.Save();
                 AntiOrientAxis(float.MaxValue);

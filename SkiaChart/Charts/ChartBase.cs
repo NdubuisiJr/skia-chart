@@ -115,7 +115,7 @@ namespace SkiaChart.Charts
             float end = 0;
             float leftEdge = 0;
             if (canvasWrapper.NumberOfDrawnLegend <= NumberOfLegendItem - 1) {
-                end = start + (LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
+                end = start + (canvasWrapper.LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
                 leftEdge = canvasWrapper.LegendDrawingStartX + LeftEdgeLegendMargin;
             }
             else {
@@ -131,7 +131,7 @@ namespace SkiaChart.Charts
                 case PointPlotVariant.LineChart:
                     _chartPaint.IsStroke = false;
                     heightPaddingForText = 7;
-                    canvas.DrawLine(leftEdge, end, canvasWrapper.LegendDrawingStartX + LegendItemSpacing,
+                    canvas.DrawLine(leftEdge, end, canvasWrapper.LegendDrawingStartX + canvasWrapper.LegendItemSpacing,
                         end, _chartPaint);
                     break;
                 case PointPlotVariant.ScatterChart:
@@ -151,7 +151,7 @@ namespace SkiaChart.Charts
             canvas.Restore();
 
             axis.DrawAndPositionLegend(ChartName, end + heightPaddingForText,
-                leftEdge + LegendItemSpacing, _chartPaint);
+                leftEdge + canvasWrapper.LegendItemSpacing, _chartPaint);
         }
 
         /// <summary>
