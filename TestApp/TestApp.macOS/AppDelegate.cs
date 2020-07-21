@@ -31,5 +31,15 @@ namespace SkiachartTstProj.macOS
             LoadApplication(new App());
             base.DidFinishLaunching(notification);
         }
+
+        public override void WillTerminate(NSNotification notification)
+        {
+            // Insert code here to tear down your application
+        }
+
+        public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender)
+        {
+            return true;
+        }
     }
 }
