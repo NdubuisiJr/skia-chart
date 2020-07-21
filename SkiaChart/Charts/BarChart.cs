@@ -49,7 +49,7 @@ namespace SkiaChart.Charts {
                 var xLabel = XLabel[counter];
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;
                 axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2), 
-                    canvasWrapper.Converter.YOffset * 2, _labelPaint);
+                    (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
                 //axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2),
                 //    canvasWrapper.ChartArea.Bottom, _labelPaint);
 

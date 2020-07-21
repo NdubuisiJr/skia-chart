@@ -105,7 +105,7 @@ namespace SkiaChart.Charts {
                 var labelValue = canvasWrapper.Converter
                                           .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;
-                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.Converter.YOffset * 2, _labelPaint);
+                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
                 widthSpacing += widthHolder;
             }
         }
