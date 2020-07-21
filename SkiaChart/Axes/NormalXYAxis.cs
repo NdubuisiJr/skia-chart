@@ -69,7 +69,9 @@ namespace SkiaChart.Axes {
                     paint);
                 var rectangle = new SKRect(basePosition, heightSpacing + MarginFromChartToLegend,
                     _deviceWidth - _xOffset, heightSpacing + 60 + height);
+                paint.Style = SKPaintStyle.Stroke;
                 _canvas.DrawRect(rectangle, paint);
+                paint.Style = SKPaintStyle.StrokeAndFill;
                 _canvas.Restore();
             }
             else {

@@ -17,6 +17,8 @@ namespace TestApp
 		public MainPage()
 		{
 			InitializeComponent();
+		
+			Navigation.PushAsync(new LineChartView());
 		}
 
 		private async void lineButton_Clicked(object sender, EventArgs e)

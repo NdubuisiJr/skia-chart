@@ -88,7 +88,8 @@ namespace SkiaChart.Charts {
                 var labelValue = canvasWrapper.Converter
                                               .YValueToRealScale(heightSpacing, minMax.Ymax, minMax.Ymin);
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;
-                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing, canvasWrapper.ChartArea.Left, _labelPaint);
+                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing,
+                    canvasWrapper.Converter.Rect.Left - (_labelPaint.TextSize * 2.5f), _labelPaint);
                 heightSpacing += heightHolder;
             }
         }
@@ -104,7 +105,7 @@ namespace SkiaChart.Charts {
                 var labelValue = canvasWrapper.Converter
                                           .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;
-                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
+                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.Converter.YOffset * 2, _labelPaint);
                 widthSpacing += widthHolder;
             }
         }

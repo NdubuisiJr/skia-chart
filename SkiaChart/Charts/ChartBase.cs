@@ -101,7 +101,7 @@ namespace SkiaChart.Charts
         /// <returns></returns>
         public string GetYLabel(float labelValue) {
             if (YLabel == null || !YLabel.Any()) {
-                return labelValue.ToString();
+                return string.Format("{0, 9}", labelValue.ToString("N2"));
             }
 
             var index = int.Parse(Math.Round(labelValue, 0).ToString());
@@ -111,7 +111,7 @@ namespace SkiaChart.Charts
         protected void RenderLegend(CanvasWrapper canvasWrapper, Axis axis, SKCanvas canvas,
             PointPlotVariant plotVariant) {
             canvasWrapper.NumberOfDrawnLegend += 1;
-            var start = canvasWrapper.ChartArea.Bottom + MarginFromChartToLegend;
+            var start = (canvasWrapper.Converter.YOffset * 2) + MarginFromChartToLegend;
             float end = 0;
             float leftEdge = 0;
             if (canvasWrapper.NumberOfDrawnLegend <= NumberOfLegendItem - 1) {
@@ -206,7 +206,7 @@ namespace SkiaChart.Charts
         //The SkPaint used for drawing charts
         protected readonly SKPaint _chartPaint = new SKPaint() {
             IsAntialias = true,
-            Style = SKPaintStyle.Stroke,
+            Style = SKPaintStyle.StrokeAndFill,
             Color = SKColors.Green,
             StrokeCap = SKStrokeCap.Round
         };

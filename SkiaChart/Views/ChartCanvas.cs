@@ -162,17 +162,15 @@ namespace SkiaChart.Views
 
 			var canvas = e.Surface.Canvas;
 			canvas.Clear(SKColors.White);
-			var xOffset = (float)e.Info.Width / 15;
-			var yOffset = 160f;
-			//var yOffset = CanShowLegend ? 3 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
-			//Info:  SKRect(flot leftX, float buttomY, float width, float topY);
-			var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - 40f);
-			//var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
+			var leftX = (float)e.Info.Width / 15;
+			var buttomY = CanShowLegend ? 5 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
+			//Info:               Plot(flot leftX, float buttomY, float width, float topY);
+			var chartArea = new SKRect(leftX, buttomY, e.Info.Width - (leftX), e.Info.Height - 40f);
 			canvas.DrawRect(chartArea, _blackPaint);
 			if (Chart == null) return;
 			Chart.GridColor = GridColor;
 			Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, CanShowLegend,
-				LegendItemSpacing, LabelTextSize, new Converter(chartArea, xOffset, yOffset)));
+				LegendItemSpacing, LabelTextSize, new Converter(chartArea, leftX, buttomY)));
 		}
 
 		private readonly SKPaint _blackPaint = new SKPaint()
