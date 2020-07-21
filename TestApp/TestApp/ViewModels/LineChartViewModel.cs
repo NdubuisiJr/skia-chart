@@ -22,6 +22,7 @@ namespace TestApp.ViewModels
 
 			switch (Device.RuntimePlatform)
 			{
+                case Device.GTK:
 				case Device.UWP:
 					{
 						LabelTextSize = 15f;
