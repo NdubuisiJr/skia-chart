@@ -71,7 +71,7 @@ namespace SkiaChart.Axes {
         internal abstract void DrawAndPositionYTickMark(string label, float heightSpacing, 
             float rightOrLeft, SKPaint paint);
 
-        internal abstract void DrawAndPositionLegend(string legend, float heightSpacing,
+		internal abstract void DrawAndPositionLegend(string legend, float heightSpacing,
             float basePosition, SKPaint paint, float LegendItemSpacing = 40f, bool isFirstCall = false);
 
         internal abstract void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint);

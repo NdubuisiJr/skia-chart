@@ -59,7 +59,7 @@ namespace TestApp.ViewModels
 				ShowPoints = true
 			};
 
-			var linear3 = new LineChart(GetXValues(), GetYValuesLinearly())
+			var linear3 = new LineChart(GetXValues(), GetYValuesLinearly2())
 			{
 				ChartColor = SKColors.Blue,
 				ChartName = "Second Linear",
@@ -89,6 +89,14 @@ namespace TestApp.ViewModels
 		private IEnumerable<float> GetYValuesLinearly()
 		{
 			for (int i = 0; i < 500; i++)
+			{
+				yield return i + 1;
+			}
+		}
+
+		private IEnumerable<float> GetYValuesLinearly2()
+		{
+			for (int i = 100; i < 600; i++)
 			{
 				yield return i + 1;
 			}
