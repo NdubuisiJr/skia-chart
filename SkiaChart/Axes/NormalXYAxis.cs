@@ -85,12 +85,20 @@ namespace SkiaChart.Axes {
             Execute(label, (_deviceWidth / 2) - (label.Length), bottomOrTop + DistanceBetweenXbaseAndXTitle, paint, true);
         }
 
-        internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint) {
+        internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint,
+            bool ThisIsiOSOrAndroid = true) {
             if (string.IsNullOrWhiteSpace(label)) return;
             _canvas.Save();
             AntiOrientAxis((_deviceHeight / 2) + 40);
             _canvas.RotateDegrees(90f);
-            _canvas.DrawText(label, _xOffset, -_xOffset / 2, paint);
+			if (ThisIsiOSOrAndroid)
+			{
+                _canvas.DrawText(label, _xOffset, -_xOffset / 2, paint);
+            }
+			else
+			{
+                _canvas.DrawText(label, -_xOffset / 2, -_xOffset / 2, paint);
+            }
             _canvas.Restore();
         }
 

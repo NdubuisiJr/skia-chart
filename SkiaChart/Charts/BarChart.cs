@@ -48,10 +48,17 @@ namespace SkiaChart.Charts {
 
                 var xLabel = XLabel[counter];
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;
-                axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2), 
-                    (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
-                //axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2),
-                //    canvasWrapper.ChartArea.Bottom, _labelPaint);
+				
+                if (canvasWrapper.ThisIsiOSOrAndroid)
+				{
+                    axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2),
+                        canvasWrapper.ChartArea.Bottom, _labelPaint);
+                }
+				else
+				{
+                    axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2),
+                        (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
+                }
 
                 var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
                 _labelPaint.TextSize = canvasWrapper.LabelTextSize;

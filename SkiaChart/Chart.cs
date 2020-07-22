@@ -36,11 +36,20 @@ namespace SkiaChart {
 
             Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight, XOffset, YOffset);
             _gridPaint.TextSize = canvasWrapper.LabelTextSize * 1.2f;
-            Axis.DrawAndPositionXLabel(XTitle, YOffset * 2, _gridPaint);
-            Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
-                canvasWrapper.LegendItemSpacing, true);
-            //Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
-            //    canvasWrapper.LegendItemSpacing, true);
+			if (canvasWrapper.ThisIsiOSOrAndroid)
+			{
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Bottom, _gridPaint);
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            }
+            else
+			{
+                Axis.DrawAndPositionXLabel(XTitle, YOffset * 2, _gridPaint);
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            }
+            Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint,
+                canvasWrapper.ThisIsiOSOrAndroid);
             SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             NormalizeAllDataPoints();
             canvasWrapper.NumberOfCharts = _charts.Count;
@@ -198,7 +207,7 @@ namespace SkiaChart {
         private Converter _converter;
         private readonly List<T> _charts;
         private readonly SKPaint _gridPaint = new SKPaint() {
-			Style = SKPaintStyle.StrokeAndFill
+			  Style = SKPaintStyle.StrokeAndFill
 			, IsAntialias = true
             , StrokeWidth = 3
             , Color = SKColors.Black
