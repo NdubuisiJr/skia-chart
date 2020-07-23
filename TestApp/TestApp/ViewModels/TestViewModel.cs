@@ -92,6 +92,7 @@ namespace TestApp.ViewModels {
         }
 
         public Command CreateCommand { get; }
+
         private Chart<BarChart> _chart;
         public Chart<BarChart> Chart {
             get => _chart;
@@ -106,7 +107,23 @@ namespace TestApp.ViewModels {
         = SKColor.Parse("#2196F3");
         public SKColor GridColor { get; }
                 = SKColor.Parse("#2196F3");
-		public float LabelTextSize { get; set; }
-		public float LegendItemSpacing { get; set; }
+
+        private float _labelTextSize;
+		public float LabelTextSize {
+            get => _labelTextSize;
+            set {
+                _labelTextSize = value;
+                RaisePropertyChanged(nameof(LabelTextSize));
+            }
+        }
+
+        private float _legendItemSpacing;
+		public float LegendItemSpacing {
+            get => _legendItemSpacing;
+            set {
+                _legendItemSpacing = value;
+                RaisePropertyChanged(nameof(LegendItemSpacing));
+            }
+        }
     }
 }

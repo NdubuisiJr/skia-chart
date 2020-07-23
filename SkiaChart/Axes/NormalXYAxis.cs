@@ -32,8 +32,8 @@ namespace SkiaChart.Axes {
                 if (shouldTilt) {
                     var path = new SKPath();
                     path.MoveTo(spacing, basePosition);
-                    path.LineTo(spacing + 200, basePosition+80);
-                    _canvas.DrawTextOnPath(text, path, new SKPoint(0,-10), paint);
+                    path.LineTo(spacing + 200, basePosition + 80);
+                    _canvas.DrawTextOnPath(text, path, new SKPoint(0, -10), paint);
                 }
                 else {
                     _canvas.DrawText(text, spacing, basePosition, paint);
@@ -82,21 +82,19 @@ namespace SkiaChart.Axes {
 
         internal override void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint) {
             if (string.IsNullOrWhiteSpace(label)) return;
-            Execute(label, (_deviceWidth / 2) - (label.Length), bottomOrTop + DistanceBetweenXbaseAndXTitle, paint, true);
+            Execute(label, (_deviceWidth / 2) - (5 * label.Length), bottomOrTop + DistanceBetweenXbaseAndXTitle, paint, true);
         }
 
         internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint,
-            bool ThisIsiOSOrAndroid = true) {
+            bool ThisIsiOSOrAndroid) {
             if (string.IsNullOrWhiteSpace(label)) return;
             _canvas.Save();
             AntiOrientAxis((_deviceHeight / 2) + 40);
             _canvas.RotateDegrees(90f);
-			if (ThisIsiOSOrAndroid)
-			{
-                _canvas.DrawText(label, _xOffset, -_xOffset / 2, paint);
+            if (ThisIsiOSOrAndroid) {
+                _canvas.DrawText(label, _xOffset - (5 * label.Length), -_xOffset/2 , paint);
             }
-			else
-			{
+            else {
                 _canvas.DrawText(label, -_xOffset / 2, -_xOffset / 2, paint);
             }
             _canvas.Restore();

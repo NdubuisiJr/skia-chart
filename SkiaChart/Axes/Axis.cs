@@ -77,7 +77,7 @@ namespace SkiaChart.Axes {
         internal abstract void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint);
 
         internal abstract void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint,
-            bool ThisIsiOSOrAndroid = true);
+            bool ThisIsiOSOrAndroid);
 
         internal IEnumerable<ChartBase> LineSeries;
     }
