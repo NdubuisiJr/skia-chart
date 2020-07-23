@@ -147,11 +147,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SkiaChart\SkiaChart.csproj">
+    <ProjectReference Include="..\..\SkiaChart\SkiaChart.csproj">
       <Project>{ef6f07a5-38a6-40bf-926a-1b7643c9c7f2}</Project>
       <Name>SkiaChart</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestApp\TestApp\TestApp.csproj">
+    <ProjectReference Include="..\TestApp\TestApp.csproj">
       <Project>{d332cc76-e615-471c-9601-20306f570170}</Project>
       <Name>TestApp</Name>
     </ProjectReference>

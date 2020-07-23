@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.iOS", "TestApp\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Gtk", "TestApp\TestApp.GTK\TestApp.Gtk.csproj", "{4F3727EC-6A62-454F-96E7-D5538022DAE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.WPF", "TestApp.WPF\TestApp.WPF.csproj", "{2C4763FA-08BB-4512-999E-8E169FEBDA0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.WPF", "TestApp\TestApp.WPF\TestApp.WPF.csproj", "{2C4763FA-08BB-4512-999E-8E169FEBDA0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
