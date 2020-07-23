@@ -22,6 +22,7 @@ namespace TestApp.ViewModels
 
 			switch (Device.RuntimePlatform)
 			{
+				case Device.WPF:
                 case Device.GTK:
                 case Device.macOS:
 				case Device.UWP:

@@ -61,6 +61,10 @@
     <Reference Include="GLibSharp, Version=3.22.25.98, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\GLibSharp.3.22.25.98\lib\netstandard2.0\GLibSharp.dll</HintPath>
     </Reference>
+    <Reference Include="gtk-dotnet, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\GtkSharp\2.12\lib\gtk-sharp-2.0\gtk-dotnet.dll</HintPath>
+    </Reference>
     <Reference Include="PangoSharp, Version=3.22.25.98, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PangoSharp.3.22.25.98\lib\netstandard2.0\PangoSharp.dll</HintPath>
     </Reference>
@@ -78,6 +82,15 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="atk-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="libglib-2.0-0, Version=2.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="libgdk-win32-2.0-0, Version=2.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="libgtk-win32-2.0-0, Version=2.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">

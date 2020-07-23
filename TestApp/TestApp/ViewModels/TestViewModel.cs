@@ -112,8 +112,11 @@ namespace TestApp.ViewModels {
 		public float LabelTextSize {
             get => _labelTextSize;
             set {
-                _labelTextSize = value;
-                RaisePropertyChanged(nameof(LabelTextSize));
+                if (_labelTextSize!=value) {
+                    _labelTextSize = value;
+                    RaisePropertyChanged(nameof(LabelTextSize));
+                }
+
             }
         }
 
@@ -121,8 +124,10 @@ namespace TestApp.ViewModels {
 		public float LegendItemSpacing {
             get => _legendItemSpacing;
             set {
-                _legendItemSpacing = value;
-                RaisePropertyChanged(nameof(LegendItemSpacing));
+                if (_legendItemSpacing!=value) {
+                    _legendItemSpacing = value;
+                    RaisePropertyChanged(nameof(LegendItemSpacing));
+                }
             }
         }
     }

@@ -14,7 +14,8 @@ namespace SkiaChart.Views {
     public class ChartCanvas<T> : SKCanvasView where T : ChartBase {
 
         public static readonly BindableProperty ChartProperty = BindableProperty.Create(
-            nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null, propertyChanged: ChartChanged);
+            nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: ChartChanged);
 
         private static void ChartChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -34,7 +35,8 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridLineProperty = BindableProperty.Create(
-            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0, propertyChanged: GridLinesChanged);
+            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0, 
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: GridLinesChanged);
 
         private static void GridLinesChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -54,7 +56,8 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridColorProperty = BindableProperty.Create(
-            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent, propertyChanged: GridColorChanged);
+            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: GridColorChanged);
 
         private static void GridColorChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -76,7 +79,8 @@ namespace SkiaChart.Views {
 
         // Show legend or not
         public static readonly BindableProperty CanShowLegendProperty = BindableProperty.Create(
-            nameof(CanShowLegend), typeof(bool), typeof(ChartCanvas<T>), false, propertyChanged: CanShowLegendChanged);
+            nameof(CanShowLegend), typeof(bool), typeof(ChartCanvas<T>), false,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: CanShowLegendChanged);
 
         private static void CanShowLegendChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -97,7 +101,8 @@ namespace SkiaChart.Views {
 
         // Legend items spacing
         public static readonly BindableProperty LegendItemSpacingProperty = BindableProperty.Create(
-            nameof(LegendItemSpacing), typeof(float), typeof(ChartCanvas<T>), 40f, propertyChanged: LegendItemSpacingChanged);
+            nameof(LegendItemSpacing), typeof(float), typeof(ChartCanvas<T>), 40f,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: LegendItemSpacingChanged);
 
         private static void LegendItemSpacingChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -119,7 +124,8 @@ namespace SkiaChart.Views {
 
         // Label text size
         public static readonly BindableProperty LabelTextSizeProperty = BindableProperty.Create(
-            nameof(LabelTextSize), typeof(float), typeof(ChartCanvas<T>), 15f, propertyChanged: LabelTextSizeChanged);
+            nameof(LabelTextSize), typeof(float), typeof(ChartCanvas<T>), 15f,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: LabelTextSizeChanged);
 
         private static void LabelTextSizeChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -146,6 +152,7 @@ namespace SkiaChart.Views {
             int heightScaler;
             float bottomMargin;
             switch (Device.RuntimePlatform) {
+                case Device.WPF:
                 case Device.GTK:
                 case Device.macOS:
                 case Device.UWP: {
