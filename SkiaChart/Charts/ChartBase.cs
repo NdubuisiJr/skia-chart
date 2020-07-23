@@ -163,6 +163,42 @@ namespace SkiaChart.Charts {
                 canvasWrapper.NumberOfDrawnLegend = 0;
             }
         }
+        //Draws the vertical labels
+        protected void DrawVerticalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+            var heightSpacing = (canvasWrapper.ChartArea.Bottom - canvasWrapper.ChartArea.Top)
+                                                / canvasWrapper.GridLines;
+            var heightHolder = heightSpacing;
+            heightSpacing += canvasWrapper.Converter.YOffset;
+            for (int i = 0; i < canvasWrapper.GridLines; i++) {
+                var labelValue = canvasWrapper.Converter
+                                              .YValueToRealScale(heightSpacing, minMax.Ymax, minMax.Ymin);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing,
+                    canvasWrapper.Converter.Rect.Left - (_labelPaint.TextSize * 2.5f), _labelPaint);
+                heightSpacing += heightHolder;
+            }
+        }
+
+        //Draws the horizontal labels
+        protected void DrawHorizontalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+
+            var widthSpacing = (canvasWrapper.ChartArea.Right - canvasWrapper.ChartArea.Left)
+                                                    / canvasWrapper.GridLines;
+            var widthHolder = widthSpacing;
+            widthSpacing += canvasWrapper.Converter.XOffset;
+            for (int i = 0; i < canvasWrapper.GridLines; i++) {
+                var labelValue = canvasWrapper.Converter
+                                          .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+                if (canvasWrapper.ThisIsiOSOrAndroid) {
+                    axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
+                }
+                else {
+                    axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
+                }
+                widthSpacing += widthHolder;
+            }
+        }
 
         /// <summary>
         /// Gets and sets the name of the series. 

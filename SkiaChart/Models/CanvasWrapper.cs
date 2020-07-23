@@ -34,5 +34,6 @@ namespace SkiaChart.Models {
         public int NumberOfDrawnLegend { get; set; }
         public float LegendDrawingStartX { get; set; }
         public float LabelTextSize { get; }
+        internal bool drawYTickMarkOnBars = true;
     }
 }
