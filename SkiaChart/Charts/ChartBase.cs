@@ -218,7 +218,8 @@ namespace SkiaChart.Charts {
             IsAntialias = true,
             Style = SKPaintStyle.StrokeAndFill,
             Color = SKColors.Green,
-            StrokeCap = SKStrokeCap.Round
+            StrokeCap = SKStrokeCap.Round,
+            TextSize = 20f
         };
 
         private float _labelTextSize = 20f;
