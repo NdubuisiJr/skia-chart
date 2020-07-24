@@ -27,12 +27,12 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * GTK
 * WPF
 
-## Gallery - Display on Android, IOS, UWP, and macOS
+## Gallery - Display on Android, IOS, UWP, GTK, WPF and macOS
 <p>
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="175"> 
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234609.png" width="175">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234621.png" width="175">
-  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1587333013.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/line.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/scatter.png" width="175">
  
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/bar.png" width="175">
@@ -50,6 +50,11 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/scatter.png" width="175">
+  
+   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/line.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/scatter.png" width="175">
 </p>
 
 ## Gallery - Without Legend and Title
