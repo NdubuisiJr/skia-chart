@@ -47,16 +47,40 @@ namespace SkiaChart.Charts {
                 canvasWrapper.Canvas.DrawRect(rect, _chartPaint);
 
                 var xLabel = XLabel[counter];
-                axis.DrawAndPositionXTickMark(xLabel, (x1 + (x2 - x1) / 2), 
-                    canvasWrapper.ChartArea.Bottom, _labelPaint);
-
-                var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
-                axis.DrawAndPositionYTickMark(yLabel, point.Y, (x1 + (x2 - x1) / 2), _labelPaint);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+                if (canvasWrapper.NumberPlottedChart == 0) {
+                    RenderXTickMark(canvasWrapper, axis, x1, x2, xLabel);
+                    var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
+                    if (yLabel.Trim().Length > 5) {
+                        canvasWrapper.drawYTickMarkOnBars = false;
+                        DrawVerticalLabels(canvasWrapper, axis, minMax);
+                    }
+                }
+                if (canvasWrapper.drawYTickMarkOnBars)
+                    RenderYTickMark(canvasWrapper, axis, counter, point, rect);
                 counter++;
             }
             canvasWrapper.NumberPlottedChart += 1;
             if (canvasWrapper.CanShowLegend) {
                 RenderLegend(canvasWrapper, axis, canvasWrapper.Canvas, PointPlotVariant.AreaChart);
+            }
+        }
+
+        private void RenderYTickMark(CanvasWrapper canvasWrapper, Axis axis, int counter, SKPoint point, SKRect rect) {
+            var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
+            _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+            axis.DrawAndPositionYTickMark(yLabel, point.Y, rect.Left, _labelPaint);
+        }
+
+        private void RenderXTickMark(CanvasWrapper canvasWrapper, Axis axis, float x1, float x2, string xLabel) {
+            var widthSpace = canvasWrapper.NumberOfCharts == 1 ? (x1 + (x2 - x1) / 2) : (x1 + (x2 - x1));
+            if (canvasWrapper.ThisIsiOSOrAndroid) {
+                axis.DrawAndPositionXTickMark(xLabel, widthSpace,
+                    canvasWrapper.ChartArea.Bottom, _labelPaint);
+            }
+            else {
+                axis.DrawAndPositionXTickMark(xLabel, widthSpace,
+                    (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
             }
         }
 

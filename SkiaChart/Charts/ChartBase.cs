@@ -1,5 +1,4 @@
 ﻿using SkiaChart.Axes;
-using SkiaChart.Axes;
 using SkiaChart.Enums;
 using SkiaChart.Exceptions;
 using SkiaChart.Interfaces;
@@ -101,7 +100,7 @@ namespace SkiaChart.Charts {
         /// <returns></returns>
         public string GetYLabel(float labelValue) {
             if (YLabel == null || !YLabel.Any()) {
-                return labelValue.ToString();
+                return string.Format("{0, 9}", labelValue.ToString("N2"));
             }
 
             var index = int.Parse(Math.Round(labelValue, 0).ToString());
@@ -110,19 +109,19 @@ namespace SkiaChart.Charts {
 
         protected void RenderLegend(CanvasWrapper canvasWrapper, Axis axis, SKCanvas canvas,
             PointPlotVariant plotVariant) {
-            canvasWrapper.NumberOfDrawnLegend += 1;
-            var start = canvasWrapper.ChartArea.Bottom + MarginFromChartToLegend;
-            float end = 0;
-            float leftEdge = 0;
-            if (canvasWrapper.NumberOfDrawnLegend <= NumberOfLegendItem - 1) {
-                end = start + (LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
-                leftEdge = canvasWrapper.LegendDrawingStartX + LeftEdgeLegendMargin;
+            canvasWrapper.NumberOfDrawnLegend++;
+            float start;
+            if(canvasWrapper.ThisIsiOSOrAndroid) {
+                start = canvasWrapper.ChartArea.Bottom + MarginFromChartToLegend;
             }
             else {
-                canvasWrapper.NumberOfDrawnLegend = 0;
-                canvasWrapper.LegendDrawingStartX += (canvasWrapper.ChartArea.Width / NumberOfLegendItem - 1);
-                RenderLegend(canvasWrapper, axis, canvas, plotVariant);
+                start = (canvasWrapper.Converter.YOffset * 2) + MarginFromChartToLegend;
             }
+            float end = 0;
+            float leftEdge = 0;
+            end = start + (canvasWrapper.LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
+            leftEdge = canvasWrapper.LegendDrawingStartX + LeftEdgeLegendMargin;
+
             float heightPaddingForText = 0;
 
             canvas.Save();
@@ -131,7 +130,7 @@ namespace SkiaChart.Charts {
                 case PointPlotVariant.LineChart:
                     _chartPaint.IsStroke = false;
                     heightPaddingForText = 7;
-                    canvas.DrawLine(leftEdge, end, canvasWrapper.LegendDrawingStartX + LegendItemSpacing,
+                    canvas.DrawLine(leftEdge, end, canvasWrapper.LegendDrawingStartX + canvasWrapper.LegendItemSpacing,
                         end, _chartPaint);
                     break;
                 case PointPlotVariant.ScatterChart:
@@ -139,11 +138,17 @@ namespace SkiaChart.Charts {
                     heightPaddingForText = 7;
                     canvas.DrawCircle(leftEdge + DistanceToCenterOfLegendCircle,
                         end, 7, _chartPaint);
+                    if (!canvasWrapper.ThisIsiOSOrAndroid) {
+                        leftEdge += 10;
+                    }
                     break;
                 case PointPlotVariant.AreaChart:
                     heightPaddingForText = 15;
                     canvas.DrawRect(leftEdge, end, WidthOfLegendRect, HeightOfLegendRect
                         , _chartPaint);
+                    if (!canvasWrapper.ThisIsiOSOrAndroid) {
+                        leftEdge += WidthOfLegendRect;
+                    }
                     break;
                 default:
                     break;
@@ -151,7 +156,48 @@ namespace SkiaChart.Charts {
             canvas.Restore();
 
             axis.DrawAndPositionLegend(ChartName, end + heightPaddingForText,
-                leftEdge + LegendItemSpacing, _chartPaint);
+                leftEdge + canvasWrapper.LegendItemSpacing, _chartPaint);
+
+            if (canvasWrapper.NumberOfDrawnLegend == NumberOfLegendItem) {
+                canvasWrapper.LegendDrawingStartX += canvasWrapper.ChartArea.Width / (NumberOfLegendItem + 1);
+                canvasWrapper.NumberOfDrawnLegend = 0;
+            }
+        }
+        //Draws the vertical labels
+        protected void DrawVerticalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+            var heightSpacing = (canvasWrapper.ChartArea.Bottom - canvasWrapper.ChartArea.Top)
+                                                / canvasWrapper.GridLines;
+            var heightHolder = heightSpacing;
+            heightSpacing += canvasWrapper.Converter.YOffset;
+            for (int i = 0; i < canvasWrapper.GridLines; i++) {
+                var labelValue = canvasWrapper.Converter
+                                              .YValueToRealScale(heightSpacing, minMax.Ymax, minMax.Ymin);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing,
+                    canvasWrapper.Converter.Rect.Left - (_labelPaint.TextSize * 2.5f), _labelPaint);
+                heightSpacing += heightHolder;
+            }
+        }
+
+        //Draws the horizontal labels
+        protected void DrawHorizontalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+
+            var widthSpacing = (canvasWrapper.ChartArea.Right - canvasWrapper.ChartArea.Left)
+                                                    / canvasWrapper.GridLines;
+            var widthHolder = widthSpacing;
+            widthSpacing += canvasWrapper.Converter.XOffset;
+            for (int i = 0; i < canvasWrapper.GridLines; i++) {
+                var labelValue = canvasWrapper.Converter
+                                          .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
+                _labelPaint.TextSize = canvasWrapper.LabelTextSize;
+                if (canvasWrapper.ThisIsiOSOrAndroid) {
+                    axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
+                }
+                else {
+                    axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, (canvasWrapper.Converter.YOffset * 2) + 4f, _labelPaint);
+                }
+                widthSpacing += widthHolder;
+            }
         }
 
         /// <summary>
@@ -206,9 +252,10 @@ namespace SkiaChart.Charts {
         //The SkPaint used for drawing charts
         protected readonly SKPaint _chartPaint = new SKPaint() {
             IsAntialias = true,
-            Style = SKPaintStyle.Stroke,
+            Style = SKPaintStyle.StrokeAndFill,
             Color = SKColors.Green,
-            StrokeCap = SKStrokeCap.Round
+            StrokeCap = SKStrokeCap.Round,
+            TextSize = 20f
         };
 
         private float _labelTextSize = 20f;

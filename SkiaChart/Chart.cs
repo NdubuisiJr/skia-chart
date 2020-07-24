@@ -35,13 +35,28 @@ namespace SkiaChart {
             _converter = canvasWrapper.Converter;
 
             Axis.OrientAxis(canvasWrapper.Canvas, canvasWrapper.DeviceWidth, canvasWrapper.DeviceHeight, XOffset, YOffset);
-            Axis.DrawAndPositionXLabel(XTitle, ChartArea.Bottom, _gridPaint);
-            Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint);
-            Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint, true);
-            SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
+            _gridPaint.TextSize = canvasWrapper.LabelTextSize * 1.2f;
             NormalizeAllDataPoints();
+            RenderXYLabelAndLegend(canvasWrapper);
+            SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             canvasWrapper.NumberOfCharts = _charts.Count;
             _charts.ForEach(chart => chart.RenderChart(canvasWrapper, Axis, this));
+        }
+
+        //Renders the x-y labels and the chart legend
+        private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
+            if (canvasWrapper.ThisIsiOSOrAndroid) {
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            }
+            else {
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top-(ChartArea.Top/2)-60, _gridPaint);
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            }
+            Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint,
+                canvasWrapper.ThisIsiOSOrAndroid);
         }
 
         //Sets the grid and Initiates the drawing of the grid lines
@@ -194,11 +209,12 @@ namespace SkiaChart {
 
         private Converter _converter;
         private readonly List<T> _charts;
-        private readonly SKPaint _gridPaint = new SKPaint() {
-            Style = SKPaintStyle.Stroke,
+
+        protected readonly SKPaint _gridPaint = new SKPaint() {
+            Style = SKPaintStyle.StrokeAndFill,
             IsAntialias = true,
-            StrokeWidth = 3,
-            Color = SKColors.Black
+            Color = SKColors.Black,
+            TextSize = 20f
         };
     }
 }

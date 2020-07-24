@@ -78,35 +78,6 @@ namespace SkiaChart.Charts {
             }
         }
 
-        //Draws the vertical labels
-        protected void DrawVerticalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
-            var heightSpacing = (canvasWrapper.ChartArea.Bottom - canvasWrapper.ChartArea.Top)
-                                                / canvasWrapper.GridLines;
-            var heightHolder = heightSpacing;
-            heightSpacing += canvasWrapper.Converter.YOffset;
-            for (int i = 0; i < canvasWrapper.GridLines; i++) {
-                var labelValue = canvasWrapper.Converter
-                                              .YValueToRealScale(heightSpacing, minMax.Ymax, minMax.Ymin);
-                axis.DrawAndPositionYTickMark(GetYLabel(labelValue), heightSpacing, canvasWrapper.ChartArea.Left, _labelPaint);
-                heightSpacing += heightHolder;
-            }
-        }
-
-        //Draws the horizontal labels
-        protected void DrawHorizontalLabels(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
-
-            var widthSpacing = (canvasWrapper.ChartArea.Right - canvasWrapper.ChartArea.Left)
-                                                    / canvasWrapper.GridLines;
-            var widthHolder = widthSpacing;
-            widthSpacing += canvasWrapper.Converter.XOffset;
-            for (int i = 0; i < canvasWrapper.GridLines; i++) {
-                var labelValue = canvasWrapper.Converter
-                                          .XValueToRealScale(widthSpacing, minMax.Xmax, minMax.Xmin);
-                axis.DrawAndPositionXTickMark(GetXLabel(labelValue), widthSpacing, canvasWrapper.ChartArea.Bottom, _labelPaint);
-                widthSpacing += widthHolder;
-            }
-        }
-
         private SKColor _labelColor;
         /// <summary>
         ///  Color of Label

@@ -44,13 +44,22 @@ namespace TestApp.ViewModels {
                 ChartColor = SKColors.Green,
                 ChartName = "Random starting from 1"
             };
-            switch (Device.RuntimePlatform) {
-                case Device.UWP: {
-                        bar1.LabelTextSize = 15;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+                case Device.UWP:
+                    {
+                        LabelTextSize = 15f;
+                        LegendItemSpacing = 20f;
                         break;
                     }
-                default: {
-                        bar1.LabelTextSize = 30;
+                default:
+                    {
+                        LabelTextSize = 30f;
+                        LegendItemSpacing = 40f;
                         break;
                     }
             };
@@ -84,6 +93,7 @@ namespace TestApp.ViewModels {
         }
 
         public Command CreateCommand { get; }
+
         private Chart<BarChart> _chart;
         public Chart<BarChart> Chart {
             get => _chart;
@@ -98,5 +108,28 @@ namespace TestApp.ViewModels {
         = SKColor.Parse("#2196F3");
         public SKColor GridColor { get; }
                 = SKColor.Parse("#2196F3");
+
+        private float _labelTextSize;
+		public float LabelTextSize {
+            get => _labelTextSize;
+            set {
+                if (_labelTextSize!=value) {
+                    _labelTextSize = value;
+                    RaisePropertyChanged(nameof(LabelTextSize));
+                }
+
+            }
+        }
+
+        private float _legendItemSpacing;
+		public float LegendItemSpacing {
+            get => _legendItemSpacing;
+            set {
+                if (_legendItemSpacing!=value) {
+                    _legendItemSpacing = value;
+                    RaisePropertyChanged(nameof(LegendItemSpacing));
+                }
+            }
+        }
     }
 }

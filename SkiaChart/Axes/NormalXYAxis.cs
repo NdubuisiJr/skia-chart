@@ -32,8 +32,8 @@ namespace SkiaChart.Axes {
                 if (shouldTilt) {
                     var path = new SKPath();
                     path.MoveTo(spacing, basePosition);
-                    path.LineTo(spacing + 200, basePosition+80);
-                    _canvas.DrawTextOnPath(text, path, new SKPoint(0,-10), paint);
+                    path.LineTo(spacing + 200, basePosition + 80);
+                    _canvas.DrawTextOnPath(text, path, new SKPoint(0, -10), paint);
                 }
                 else {
                     _canvas.DrawText(text, spacing, basePosition, paint);
@@ -59,17 +59,19 @@ namespace SkiaChart.Axes {
         }
 
         internal override void DrawAndPositionLegend(string legend, float heightSpacing, float basePosition,
-            SKPaint paint, bool isFirstCall = false) {
+            SKPaint paint, float LegendItemSpacing = 40f, bool isFirstCall = false) {
             if (isFirstCall) {
                 _canvas.Save();
                 AntiOrientAxis(float.MaxValue);
-                var height = NumberOfLegendItem * LegendItemSpacing;
+                var height = (NumberOfLegendItem + 1) * LegendItemSpacing;
                 _numOfCharts = int.Parse(legend) + 1;
-                _canvas.DrawText("Legend", (_deviceWidth / 2) - 7, heightSpacing + MarginFromChartToLegendText,
+                _canvas.DrawText("Legend", (_deviceWidth / 2) - 8, heightSpacing + MarginFromChartToLegendText,
                     paint);
                 var rectangle = new SKRect(basePosition, heightSpacing + MarginFromChartToLegend,
-                    _deviceWidth - _xOffset, heightSpacing + 60 + height);
+                    _deviceWidth - _xOffset, heightSpacing + 70 + height);
+                paint.Style = SKPaintStyle.Stroke;
                 _canvas.DrawRect(rectangle, paint);
+                paint.Style = SKPaintStyle.StrokeAndFill;
                 _canvas.Restore();
             }
             else {
@@ -80,15 +82,16 @@ namespace SkiaChart.Axes {
 
         internal override void DrawAndPositionXLabel(string label, float bottomOrTop, SKPaint paint) {
             if (string.IsNullOrWhiteSpace(label)) return;
-            Execute(label, (_deviceWidth / 2) - (label.Length), bottomOrTop + DistanceBetweenXbaseAndXTitle, paint, true);
+            Execute(label, (_deviceWidth / 2) - (5 * label.Length), bottomOrTop - 10, paint, true);
         }
 
-        internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint) {
+        internal override void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint,
+            bool ThisIsiOSOrAndroid) {
             if (string.IsNullOrWhiteSpace(label)) return;
             _canvas.Save();
             AntiOrientAxis((_deviceHeight / 2) + 40);
             _canvas.RotateDegrees(90f);
-            _canvas.DrawText(label, _xOffset, -_xOffset / 2, paint);
+            _canvas.DrawText(label, _xOffset - (10 * label.Length), (-rightOrLeft - 10), paint);
             _canvas.Restore();
         }
 

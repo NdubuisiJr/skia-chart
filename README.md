@@ -19,6 +19,14 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Plots multiple scatter points on the same axis.
 * Plots multiple area charts on the same axis.
 
+## Supported Platforms
+* Android
+* IOS
+* UWP
+* macOS
+* GTK
+* WPF
+
 ## Gallery - Display on Android, IOS, UWP, and macOS
 <p>
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Screenshot_1586234593.png" width="175"> 
@@ -34,10 +42,14 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/scatter.png" width="175">
   
-  
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/scatter.png" width="175">
+    
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/line.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/area.png" width="175"> 
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/bar.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/scatter.png" width="175">
 </p>
 
 ## Gallery - Without Legend and Title

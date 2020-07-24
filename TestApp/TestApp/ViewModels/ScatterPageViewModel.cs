@@ -13,26 +13,33 @@ namespace TestApp.ViewModels {
                 YTitle = "Y-Axis Title",
                 XTitle = "X-Axis Title"
             };
+
             GridColor = SKColors.LightGray;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+                case Device.UWP:
+                    {
+                        LabelTextSize = 15f;
+                        LegendItemSpacing = 20f;
+                        break;
+                    }
+                default:
+                    {
+                        LabelTextSize = 30f;
+                        LegendItemSpacing = 40f;
+                        break;
+                    }
+            };
         }
 
         private IEnumerable<ScatterChart> GenerateLineCharts() {
             var random = new ScatterChart(GetXValues(), Random(5)) {
                 ChartColor = SKColors.Red,
                 IsStroked=true
-            };
-            switch (Device.RuntimePlatform)
-            {
-                case Device.UWP:
-                    {
-                        random.LabelTextSize = 15;
-                        break;
-                    }
-                default:
-                    {
-                        random.LabelTextSize = 30;
-                        break;
-                    }
             };
 
             var random1 = new ScatterChart(GetXValues(), Random(20)) {
@@ -61,5 +68,7 @@ namespace TestApp.ViewModels {
 
         public Chart<ScatterChart> Chart { get; set; }
         public SKColor GridColor { get; set; }
+		public float LabelTextSize { get; set; }
+        public float LegendItemSpacing { get; set; }
     }
 }

@@ -12,10 +12,12 @@ namespace SkiaChart.Views {
     /// </summary>
     /// <typeparam name="T">The type of the chart to render</typeparam>
     public class ChartCanvas<T> : SKCanvasView where T : ChartBase {
-        public static readonly BindableProperty ChartProperty = BindableProperty.Create(
-            nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null,propertyChanged:ChartChanged);
 
-        private static void ChartChanged(BindableObject bindable, 
+        public static readonly BindableProperty ChartProperty = BindableProperty.Create(
+            nameof(Chart), typeof(Chart<T>), typeof(ChartCanvas<T>), null,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: ChartChanged);
+
+        private static void ChartChanged(BindableObject bindable,
             object oldValue, object newValue) {
             var canvas = (ChartCanvas<T>)bindable;
             canvas.Chart = (Chart<T>)newValue;
@@ -33,9 +35,10 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridLineProperty = BindableProperty.Create(
-            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0,propertyChanged:GridLinesChanged);
+            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0, 
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: GridLinesChanged);
 
-        private static void GridLinesChanged(BindableObject bindable, 
+        private static void GridLinesChanged(BindableObject bindable,
             object oldValue, object newValue) {
             var canvas = (ChartCanvas<T>)bindable;
             canvas.GridLines = (int)newValue;
@@ -53,9 +56,10 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridColorProperty = BindableProperty.Create(
-            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent,propertyChanged:GridColorChanged);
+            nameof(GridColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: GridColorChanged);
 
-        private static void GridColorChanged(BindableObject bindable, 
+        private static void GridColorChanged(BindableObject bindable,
             object oldValue, object newValue) {
             var canvas = (ChartCanvas<T>)bindable;
             canvas.GridColor = (SKColor)newValue;
@@ -72,8 +76,11 @@ namespace SkiaChart.Views {
             }
         }
 
+
+        // Show legend or not
         public static readonly BindableProperty CanShowLegendProperty = BindableProperty.Create(
-            nameof(CanShowLegend), typeof(bool), typeof(ChartCanvas<T>), false,propertyChanged:CanShowLegendChanged);
+            nameof(CanShowLegend), typeof(bool), typeof(ChartCanvas<T>), false,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: CanShowLegendChanged);
 
         private static void CanShowLegendChanged(BindableObject bindable,
             object oldValue, object newValue) {
@@ -92,19 +99,86 @@ namespace SkiaChart.Views {
             }
         }
 
+        // Legend items spacing
+        public static readonly BindableProperty LegendItemSpacingProperty = BindableProperty.Create(
+            nameof(LegendItemSpacing), typeof(float), typeof(ChartCanvas<T>), 40f,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: LegendItemSpacingChanged);
+
+        private static void LegendItemSpacingChanged(BindableObject bindable,
+            object oldValue, object newValue) {
+            var canvas = (ChartCanvas<T>)bindable;
+            canvas.LegendItemSpacing = (float)newValue;
+            canvas.InvalidateSurface();
+        }
+
+        /// <summary>
+        /// TheSpacing between legend lines. It is a bindable property
+        /// </summary>
+        public float LegendItemSpacing {
+            get => (float)GetValue(LegendItemSpacingProperty);
+            set {
+                SetValue(LegendItemSpacingProperty, value);
+            }
+        }
+
+
+        // Label text size
+        public static readonly BindableProperty LabelTextSizeProperty = BindableProperty.Create(
+            nameof(LabelTextSize), typeof(float), typeof(ChartCanvas<T>), 15f,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: LabelTextSizeChanged);
+
+        private static void LabelTextSizeChanged(BindableObject bindable,
+            object oldValue, object newValue) {
+            var canvas = (ChartCanvas<T>)bindable;
+            canvas.LabelTextSize = (float)newValue;
+            canvas.InvalidateSurface();
+        }
+
+        /// <summary>
+        /// TheSpacing between legend lines. It is a bindable property
+        /// </summary>
+        public float LabelTextSize {
+            get => (float)GetValue(LabelTextSizeProperty);
+            set {
+                SetValue(LabelTextSizeProperty, value);
+            }
+        }
+
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs e) {
             base.OnPaintSurface(e);
+            if (Chart == null) return;
+
+            bool isAndroidOrIOS;
+            int heightScaler;
+            float bottomMargin;
+            switch (Device.RuntimePlatform) {
+                case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+                case Device.UWP: {
+                        isAndroidOrIOS = false;
+                        heightScaler = 5;
+                        bottomMargin = 40;
+                        break;
+                    }
+                default: {
+                        isAndroidOrIOS = true;
+                        heightScaler = 3;
+                        bottomMargin = CanShowLegend ? heightScaler * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
+                        break;
+                    }
+            };
 
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);
+
             var xOffset = (float)e.Info.Width / 15;
-			var yOffset = CanShowLegend ? 3 * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
-			var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - (yOffset));
-			canvas.DrawRect(chartArea, _blackPaint);
-            if (Chart == null) return;
+            var yOffset = CanShowLegend ? heightScaler * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;
+            var chartArea = new SKRect(xOffset, yOffset, e.Info.Width - (xOffset), e.Info.Height - bottomMargin);
+            canvas.DrawRect(chartArea, _blackPaint);
             Chart.GridColor = GridColor;
-            Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, CanShowLegend,
-                new Converter(chartArea,xOffset,yOffset)));
+            Chart.Plot(new CanvasWrapper(canvas, chartArea, GridLines, e.Info.Height, e.Info.Width, isAndroidOrIOS,
+                CanShowLegend, LegendItemSpacing, LabelTextSize, new Converter(chartArea, xOffset, yOffset)));
         }
 
         private readonly SKPaint _blackPaint = new SKPaint() {

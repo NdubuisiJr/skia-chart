@@ -13,7 +13,27 @@ namespace TestApp.ViewModels {
                 YTitle = "Population values",
                 XTitle = "Prediction curve values"
             };
+            
             GridColor = SKColors.Gray;
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+                case Device.UWP:
+                    {
+                        LabelTextSize = 15f;
+                        LegendItemSpacing = 20f;
+                        break;
+                    }
+                default:
+                    {
+                        LabelTextSize = 30f;
+                        LegendItemSpacing = 40f;
+                        break;
+                    }
+            };
         }
 
         private IEnumerable<BarChart> GenerateLineCharts() {
@@ -44,5 +64,7 @@ namespace TestApp.ViewModels {
 
         public Chart<BarChart> Chart { get; set; }
         public SKColor GridColor { get; set; }
+		public float LabelTextSize { get; set; }
+		public float LegendItemSpacing { get; set; }
     }
 }

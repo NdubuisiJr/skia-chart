@@ -17,7 +17,27 @@ namespace TestApp.ViewModels
 				YTitle = "Randomly generated values",
 				XTitle = "Distributed values"
 			};
+
 			GridColor = SKColors.LightBlue;
+
+			switch (Device.RuntimePlatform)
+			{
+				case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+				case Device.UWP:
+					{
+						LabelTextSize = 15f;
+						LegendItemSpacing = 20f;
+						break;
+					}
+				default:
+					{
+						LabelTextSize = 30f;
+						LegendItemSpacing = 40f;
+						break;
+					}
+			};
 		}
 
 		private IEnumerable<LineChart> GenerateLineCharts()
@@ -28,20 +48,6 @@ namespace TestApp.ViewModels
 				ChartName = "Linear",
 				ShowPoints = true
 			};
-			switch (Device.RuntimePlatform)
-			{
-				case Device.UWP:
-					{
-						linear.LabelTextSize = 15;
-						break;
-					}
-				default:
-					{
-						linear.LabelTextSize = 30;
-						break;
-					}
-			};
-
 			var random1 = new LineChart(GetXValues(), Random(10).OrderBy(x => x))
 			{
 				ChartColor = SKColors.Green,
@@ -56,7 +62,7 @@ namespace TestApp.ViewModels
 				ShowPoints = true
 			};
 
-			var linear3 = new LineChart(GetXValues(), GetYValuesLinearly())
+			var linear3 = new LineChart(GetXValues(), GetYValuesLinearly2())
 			{
 				ChartColor = SKColors.Blue,
 				ChartName = "Second Linear",
@@ -91,7 +97,17 @@ namespace TestApp.ViewModels
 			}
 		}
 
+		private IEnumerable<float> GetYValuesLinearly2()
+		{
+			for (int i = 100; i < 600; i++)
+			{
+				yield return i + 1;
+			}
+		}
+
 		public Chart<LineChart> Chart { get; set; }
 		public SKColor GridColor { get; set; }
+		public float LabelTextSize { get; set; }
+		public float LegendItemSpacing { get; set; }
 	}
 }

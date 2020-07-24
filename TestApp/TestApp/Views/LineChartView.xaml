@@ -14,14 +14,17 @@
 	<ContentPage.BindingContext>
 		<viewModels:LineChartViewModel />
 	</ContentPage.BindingContext>
-
-	<chartview:ChartCanvas
+    <Grid Padding="10">
+        <chartview:ChartCanvas
 		x:TypeArguments="chart:LineChart"
 		x:Name="chartView"
 		Chart="{Binding Chart}"
 		GridLines="10"
 		GridColor="{Binding GridColor}"
 		CanShowLegend="True"
+        LegendItemSpacing="{Binding LegendItemSpacing}"
+        LabelTextSize="{Binding LabelTextSize}"
 	/>
-	
+    </Grid>
+
 </ContentPage>
