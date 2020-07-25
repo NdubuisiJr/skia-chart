@@ -1,4 +1,6 @@
  [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg)](https://github.com/NdubuisiJr/skia-chart/actions)
+ [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg)](https://www.nuget.org/packages/SkiaChart.Forms/)
+ ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms)
 
 # skia-chart
 A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.
