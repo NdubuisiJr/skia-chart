@@ -130,6 +130,9 @@ namespace SkiaChart {
             if (charts == null || charts.Count() < 1) {
                 throw new ArgumentException($"{nameof(charts)}");
             }
+            else if (charts.Count()>12) {
+                throw new ArgumentException($"The maximum number of charts to plot is 12. You had {charts.Count()}");
+            }
             else {
                 var numberOfCharts = charts.Count();
                 for (int index = 0; index < numberOfCharts - 1; index++) {

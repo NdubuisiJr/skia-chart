@@ -1,14 +1,12 @@
 ﻿using SkiaChart;
 using SkiaChart.Charts;
 using SkiaSharp;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace TestApp.ViewModels {
-    public class DonutChartViewModel {
-        public DonutChartViewModel() {
+    public class RadialChartViewModel {
+        public RadialChartViewModel() {
             Chart = new Chart<RadialChart>(GenerateLineCharts()) {
                 YTitle = "Population values",
                 XTitle = "Prediction curve values",
@@ -47,7 +45,11 @@ namespace TestApp.ViewModels {
             var profit = new RadialChart("Profit", 1500) {
                 ChartColor = SKColors.DarkBlue,
             };
-            return new List<RadialChart> { income, expenditure, profit };
+
+            return new List<RadialChart> { income, expenditure, profit ,
+            income, expenditure, profit ,
+            income, expenditure, profit ,
+            income, expenditure, profit };
         }
 
 

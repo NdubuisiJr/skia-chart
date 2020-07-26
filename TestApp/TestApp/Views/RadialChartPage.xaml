@@ -18,7 +18,7 @@
         Chart="{Binding Chart}"
         GridLines="10"
         GridColor="{Binding GridColor}"
-        CanShowLegend="False"
+        CanShowLegend="True"
         LegendItemSpacing="{Binding LegendItemSpacing}"
         LabelTextSize="{Binding LabelTextSize}" 
     />
