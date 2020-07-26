@@ -11,9 +11,9 @@ namespace SkiaChart.Charts {
     /// <summary>
     /// Handles the rendering of donut shaped chart
     /// </summary>
-    public class DonutChart : ChartBase {
+    public class RadialChart : ChartBase {
 
-        public DonutChart(string label, float value) {
+        public RadialChart(string label, float value) {
             var xLabel = new List<string> { label };
             var yValue = new List<float> { value };
             ValidateInputs(xLabel, yValue);

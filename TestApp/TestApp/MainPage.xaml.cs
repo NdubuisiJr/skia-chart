@@ -45,7 +45,7 @@ namespace TestApp
 		}
 
         private async void DonutChart_Clicked(object sender, EventArgs e) {
-			await Navigation.PushAsync(new DonutChartPage());
+			await Navigation.PushAsync(new RadialChartPage());
         }
     }
 }

@@ -9,8 +9,8 @@ using Xamarin.Forms.Xaml;
 
 namespace TestApp.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DonutChartPage : ContentPage {
-        public DonutChartPage() {
+    public partial class RadialChartPage : ContentPage {
+        public RadialChartPage() {
             InitializeComponent();
         }
     }

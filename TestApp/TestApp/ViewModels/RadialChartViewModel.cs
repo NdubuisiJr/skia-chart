@@ -9,7 +9,7 @@ using Xamarin.Forms;
 namespace TestApp.ViewModels {
     public class DonutChartViewModel {
         public DonutChartViewModel() {
-            Chart = new Chart<DonutChart>(GenerateLineCharts()) {
+            Chart = new Chart<RadialChart>(GenerateLineCharts()) {
                 YTitle = "Population values",
                 XTitle = "Prediction curve values",
                 Ymax=2500,
@@ -35,23 +35,23 @@ namespace TestApp.ViewModels {
             };
         }
 
-        private IEnumerable<DonutChart> GenerateLineCharts() {
-            var income = new DonutChart("Income", 2000) {
+        private IEnumerable<RadialChart> GenerateLineCharts() {
+            var income = new RadialChart("Income", 2000) {
                 ChartColor = SKColors.Red,
             };
 
-            var expenditure = new DonutChart("Expenditure", 500) {
+            var expenditure = new RadialChart("Expenditure", 500) {
                 ChartColor = SKColors.Green,
             };
 
-            var profit = new DonutChart("Profit", 1500) {
+            var profit = new RadialChart("Profit", 1500) {
                 ChartColor = SKColors.DarkBlue,
             };
-            return new List<DonutChart> { income, expenditure, profit };
+            return new List<RadialChart> { income, expenditure, profit };
         }
 
 
-        public Chart<DonutChart> Chart { get; set; }
+        public Chart<RadialChart> Chart { get; set; }
         public SKColor GridColor { get; set; }
         public float LabelTextSize { get; set; }
         public float LegendItemSpacing { get; set; }
