@@ -43,5 +43,9 @@ namespace TestApp
 		{
 			await Navigation.PushAsync(new TestVIew());
 		}
-	}
+
+        private async void DonutChart_Clicked(object sender, EventArgs e) {
+			await Navigation.PushAsync(new DonutChartPage());
+        }
+    }
 }

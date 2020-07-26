@@ -38,7 +38,8 @@ namespace SkiaChart {
             _gridPaint.TextSize = canvasWrapper.LabelTextSize * 1.2f;
             NormalizeAllDataPoints();
             RenderXYLabelAndLegend(canvasWrapper);
-            SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
+            if(typeof(T)!=typeof(DonutChart))
+                SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             canvasWrapper.NumberOfCharts = _charts.Count;
             _charts.ForEach(chart => chart.RenderChart(canvasWrapper, Axis, this));
         }

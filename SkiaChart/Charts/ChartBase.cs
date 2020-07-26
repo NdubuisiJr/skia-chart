@@ -16,7 +16,7 @@ namespace SkiaChart.Charts {
     public abstract class ChartBase : IChart {
 
         //Keeps track of the X-Y data types
-        protected void UpdateDateType<TxValues, TyValues>() {
+        protected void UpdateDataType<TxValues, TyValues>() {
             XValueType = typeof(TxValues);
             YValueType = typeof(TyValues);
         }
@@ -245,6 +245,20 @@ namespace SkiaChart.Charts {
                 if (value != _chartColor) {
                     _chartColor = value;
                     _chartPaint.Color = value;
+                }
+            }
+        }
+
+        private SKColor _labelColor;
+        /// <summary>
+        ///  Color of Label
+        /// </summary>
+        public SKColor LabelColor {
+            get => _labelColor;
+            set {
+                if (value != _labelColor) {
+                    _labelColor = value;
+                    _labelPaint.Color = value;
                 }
             }
         }
