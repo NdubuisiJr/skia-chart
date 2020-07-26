@@ -38,8 +38,7 @@ namespace SkiaChart {
             _gridPaint.TextSize = canvasWrapper.LabelTextSize * 1.2f;
             NormalizeAllDataPoints();
             RenderXYLabelAndLegend(canvasWrapper);
-            if(typeof(T)!=typeof(DonutChart))
-                SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
+            SetGrid(canvasWrapper.Canvas, canvasWrapper.GridLines);
             canvasWrapper.NumberOfCharts = _charts.Count;
             _charts.ForEach(chart => chart.RenderChart(canvasWrapper, Axis, this));
         }
@@ -48,13 +47,15 @@ namespace SkiaChart {
         private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
             if (canvasWrapper.ThisIsiOSOrAndroid) {
                 Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
-                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
-                    canvasWrapper.LegendItemSpacing, true);
+                if(canvasWrapper.CanShowLegend)
+                    Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                        canvasWrapper.LegendItemSpacing, true);
             }
             else {
-                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top-(ChartArea.Top/2)-60, _gridPaint);
-                Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
-                    canvasWrapper.LegendItemSpacing, true);
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top - (ChartArea.Top / 2) - 60, _gridPaint);
+                if(canvasWrapper.CanShowLegend)
+                    Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
+                        canvasWrapper.LegendItemSpacing, true);
             }
             Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint,
                 canvasWrapper.ThisIsiOSOrAndroid);

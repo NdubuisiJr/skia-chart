@@ -11,7 +11,9 @@ namespace TestApp.ViewModels {
         public DonutChartViewModel() {
             Chart = new Chart<DonutChart>(GenerateLineCharts()) {
                 YTitle = "Population values",
-                XTitle = "Prediction curve values"
+                XTitle = "Prediction curve values",
+                Ymax=2500,
+                Ymin=0
             };
 
             GridColor = SKColors.Gray;

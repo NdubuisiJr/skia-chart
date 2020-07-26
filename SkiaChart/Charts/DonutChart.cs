@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Axes;
+using SkiaChart.Enums;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
@@ -33,11 +34,16 @@ namespace SkiaChart.Charts {
             var teta = 360 - ((minMax.Ymax - OriginalData.ElementAt(0).Y) / (minMax.Ymax - minMax.Ymin) * 360);
             
             var rect = new SKRect(chartArea.MidX - radius, chartArea.MidY - radius, chartArea.MidX + radius, chartArea.MidY + radius);
-            canvas.DrawArc(rect, 0, teta, false, _chartPaint);
+            canvas.DrawArc(rect, 90, -teta, false, _chartPaint);
 
             _chartPaint.Color = ChartColor.WithAlpha(70);
             canvas.DrawCircle(chartArea.MidX, chartArea.MidY, radius, _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
+
+            _chartPaint.Color = ChartColor;
+            if (canvasWrapper.CanShowLegend) {
+                RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
+            }
         }
 
         public float StrokeWidth { get; set; } = 30;
