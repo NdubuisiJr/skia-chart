@@ -11,7 +11,7 @@ namespace SkiaChart.Charts {
     /// <summary>
     /// Handles the rendering of donut shaped chart
     /// </summary>
-    public class RadialChart : ChartBase {
+    public class RadialChart : ChartBase, ISingleValueChart {
 
         public RadialChart(string label, float value) {
             var xLabel = new List<string> { label };

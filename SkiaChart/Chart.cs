@@ -47,13 +47,13 @@ namespace SkiaChart {
         private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
             if (canvasWrapper.ThisIsiOSOrAndroid) {
                 Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
-                if(canvasWrapper.CanShowLegend)
+                if (canvasWrapper.CanShowLegend)
                     Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
                         canvasWrapper.LegendItemSpacing, true);
             }
             else {
                 Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top - (ChartArea.Top / 2) - 60, _gridPaint);
-                if(canvasWrapper.CanShowLegend)
+                if (canvasWrapper.CanShowLegend)
                     Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
                         canvasWrapper.LegendItemSpacing, true);
             }
@@ -63,7 +63,9 @@ namespace SkiaChart {
 
         //Sets the grid and Initiates the drawing of the grid lines
         internal void SetGrid(SKCanvas canvas, int gridLines) {
-            if (gridLines < 1) return;
+            if (gridLines < 1 || typeof(ISingleValueChart).
+                Equals(typeof(T).GetInterface("ISingleValueChart"))) return;
+
             var widthSpacing = (ChartArea.Right - ChartArea.Left) / gridLines;
             var heightSpacing = (ChartArea.Bottom - ChartArea.Top) / gridLines;
             ConstructVerticalLines(canvas, gridLines, widthSpacing);
@@ -130,7 +132,7 @@ namespace SkiaChart {
             if (charts == null || charts.Count() < 1) {
                 throw new ArgumentException($"{nameof(charts)}");
             }
-            else if (charts.Count()>12) {
+            else if (charts.Count() > 12) {
                 throw new ArgumentException($"The maximum number of charts to plot is 12. You had {charts.Count()}");
             }
             else {
