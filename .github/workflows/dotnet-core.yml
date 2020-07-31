@@ -18,7 +18,7 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.2
       
       - name: restore nuget packages
-        run: nuget restore SkiaChart.sln
+        run: nuget restore ./SkiaChart/SkiaChart.csproj
     
       - name: Build
         run: msbuild ./SkiaChart/SkiaChart.csproj --no-restore
