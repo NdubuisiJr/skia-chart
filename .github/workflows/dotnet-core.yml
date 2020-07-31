@@ -1,0 +1,30 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+     runs-on: windows-latest
+
+     steps:
+      - uses: actions/checkout@v2
+      
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1
+    
+      - name: Setup NuGet.exe for use with actions
+        uses: NuGet/setup-nuget@v1.0.2
+      
+      - name: restore nuget packages
+        run: nuget restore SkiaChart.sln
+    
+      - name: Build
+        run: msbuild ./SkiaChart/SkiaChart.csproj --no-restore
+        
+      - name: Publish SkiaChart to nuget
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+            PROJECT_FILE_PATH: SkiaChart/SkiaChart.csproj
+            NUGET_KEY: ${{secrets.NUGET_API_KEY}}
