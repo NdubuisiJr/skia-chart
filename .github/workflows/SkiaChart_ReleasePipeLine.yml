@@ -1,0 +1,29 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+     runs-on: ubuntu-latest
+
+     steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.301
+      
+      - name: Install dependencies
+        run: dotnet restore ./SkiaChart/SkiaChart.csproj
+    
+      - name: Build
+        run: dotnet build ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
+        
+      - name: Publish SkiaChart to nuget
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+            PROJECT_FILE_PATH: SkiaChart/SkiaChart.csproj
+            NUGET_KEY: ${{secrets.NUGET_API_KEY}}
