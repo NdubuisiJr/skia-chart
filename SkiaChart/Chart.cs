@@ -45,6 +45,26 @@ namespace SkiaChart {
 
         //Renders the x-y labels and the chart legend
         private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
+            if (typeof(ISingleValueChart).Equals(typeof(T)
+                .GetInterface("ISingleValueChart"))) {
+                XYLableAndLegendForSingleValueChart(canvasWrapper);
+            }
+            else {
+                XYLableAndLegendForMultiValueChart(canvasWrapper);
+            }
+        }
+
+        private void XYLableAndLegendForSingleValueChart(CanvasWrapper canvasWrapper) {
+            if (canvasWrapper.ThisIsiOSOrAndroid)
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            else
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            return;
+        }
+
+        private void XYLableAndLegendForMultiValueChart(CanvasWrapper canvasWrapper) {
             if (canvasWrapper.ThisIsiOSOrAndroid) {
                 Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
                 if (canvasWrapper.CanShowLegend)
@@ -159,12 +179,12 @@ namespace SkiaChart {
             }
         }
         /// <summary>
-        /// Gets and sets the title of the Y-Axis
+        /// Gets and sets the title of the Y-Axis. Note that this title is not rendered for single value charts
         /// </summary>
         public string YTitle { get; set; }
 
         /// <summary>
-        /// Gets and sets the title of the X-Axis
+        /// Gets and sets the title of the X-Axis. Note that this title is not rendered for single value charts
         /// </summary>
         public string XTitle { get; set; }
 

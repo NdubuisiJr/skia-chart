@@ -1,6 +1,6 @@
 ﻿namespace SkiaChart.Helpers {
     public static class Constants {
-        public const float MarginFromChartToLegendText = 80f;
+        public const float MarginFromChartToLegendText = 50f;
         public const float MarginFromChartToLegend = 60;
         public const float NumberOfLegendItem = 3;
         public const float LeftEdgeLegendMargin = 10;

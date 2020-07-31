@@ -117,8 +117,8 @@ namespace SkiaChart.Charts {
             else {
                 start = (canvasWrapper.Converter.YOffset * 2) + MarginFromChartToLegend;
             }
-            float end = 0;
-            float leftEdge = 0;
+            float end;
+            float leftEdge;
             end = start + (canvasWrapper.LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
             leftEdge = canvasWrapper.LegendDrawingStartX + LeftEdgeLegendMargin;
 
@@ -201,7 +201,8 @@ namespace SkiaChart.Charts {
         }
 
         /// <summary>
-        /// Gets and sets the name of the series. 
+        /// Gets and sets the name of the series. Note that this is not rendered for single value charts.
+        /// The label property is rendered instead.
         /// </summary>
         public string ChartName { get; set; } = "Chart Name";
 
