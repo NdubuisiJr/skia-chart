@@ -21,7 +21,7 @@ jobs:
         run: nuget restore ./SkiaChart/SkiaChart.csproj
     
       - name: Build
-        run: msbuild ./SkiaChart/SkiaChart.csproj --no-restore
+        run: msbuild ./SkiaChart/SkiaChart.csproj
         
       - name: Publish SkiaChart to nuget
         uses: brandedoutcast/publish-nuget@v2.5.5
