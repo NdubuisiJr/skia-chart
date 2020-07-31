@@ -20,7 +20,7 @@ jobs:
         run: dotnet restore ./SkiaChart/SkiaChart.csproj
     
       - name: Build
-        run: msbuild ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
+        run: dotnet build ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
         
       - name: Publish SkiaChart to nuget
         uses: brandedoutcast/publish-nuget@v2.5.5
