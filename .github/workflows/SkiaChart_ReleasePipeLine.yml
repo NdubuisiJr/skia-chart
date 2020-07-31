@@ -6,22 +6,21 @@ on:
 
 jobs:
   build:
-     runs-on: windows-latest
+     runs-on: ubuntu-latest
 
      steps:
       - uses: actions/checkout@v2
       
-      - name: setup-msbuild
-        uses: microsoft/setup-msbuild@v1
-    
-      - name: Setup NuGet.exe for use with actions
-        uses: NuGet/setup-nuget@v1.0.2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.301
       
-      - name: restore nuget packages
-        run: nuget restore ./SkiaChart/SkiaChart.csproj
+      - name: Install dependencies
+        run: dotnet restore ./SkiaChart/SkiaChart.csproj
     
       - name: Build
-        run: msbuild ./SkiaChart/SkiaChart.csproj
+        run: msbuild ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
         
       - name: Publish SkiaChart to nuget
         uses: brandedoutcast/publish-nuget@v2.5.5
