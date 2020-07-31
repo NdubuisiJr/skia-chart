@@ -22,5 +22,5 @@ jobs:
       run: nuget restore SkiaChart.sln
     
     - name: Build
-      run: msbuild ./SkiaChart/SkiaChart.csproj
+      run: msbuild ./SkiaChart/SkiaChart.csproj --no-restore
       
