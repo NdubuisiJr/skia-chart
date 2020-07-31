@@ -65,8 +65,7 @@ namespace SkiaChart.Axes {
                 AntiOrientAxis(float.MaxValue);
                 var height = (NumberOfLegendItem + 1) * LegendItemSpacing;
                 _numOfCharts = int.Parse(legend) + 1;
-                _canvas.DrawText("Legend", (_deviceWidth / 2) - 8, heightSpacing + MarginFromChartToLegendText,
-                    paint);
+                _canvas.DrawText("Legend", (_deviceWidth / 2) - 8, heightSpacing + MarginFromChartToLegendText, paint);
                 var rectangle = new SKRect(basePosition, heightSpacing + MarginFromChartToLegend,
                     _deviceWidth - _xOffset, heightSpacing + 70 + height);
                 paint.Style = SKPaintStyle.Stroke;

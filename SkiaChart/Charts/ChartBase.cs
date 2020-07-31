@@ -16,7 +16,7 @@ namespace SkiaChart.Charts {
     public abstract class ChartBase : IChart {
 
         //Keeps track of the X-Y data types
-        protected void UpdateDateType<TxValues, TyValues>() {
+        protected void UpdateDataType<TxValues, TyValues>() {
             XValueType = typeof(TxValues);
             YValueType = typeof(TyValues);
         }
@@ -117,8 +117,8 @@ namespace SkiaChart.Charts {
             else {
                 start = (canvasWrapper.Converter.YOffset * 2) + MarginFromChartToLegend;
             }
-            float end = 0;
-            float leftEdge = 0;
+            float end;
+            float leftEdge;
             end = start + (canvasWrapper.LegendItemSpacing * canvasWrapper.NumberOfDrawnLegend);
             leftEdge = canvasWrapper.LegendDrawingStartX + LeftEdgeLegendMargin;
 
@@ -201,7 +201,8 @@ namespace SkiaChart.Charts {
         }
 
         /// <summary>
-        /// Gets and sets the name of the series. 
+        /// Gets and sets the name of the series. Note that this is not rendered for single value charts.
+        /// The label property is rendered instead.
         /// </summary>
         public string ChartName { get; set; } = "Chart Name";
 
@@ -245,6 +246,20 @@ namespace SkiaChart.Charts {
                 if (value != _chartColor) {
                     _chartColor = value;
                     _chartPaint.Color = value;
+                }
+            }
+        }
+
+        private SKColor _labelColor;
+        /// <summary>
+        ///  Color of Label
+        /// </summary>
+        public SKColor LabelColor {
+            get => _labelColor;
+            set {
+                if (value != _labelColor) {
+                    _labelColor = value;
+                    _labelPaint.Color = value;
                 }
             }
         }

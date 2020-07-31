@@ -34,6 +34,11 @@
             Clicked="AreaChart_Clicked" />
 
         <Button
+            x:Name="RadialChart"
+            Text="Radial Chart"
+            Clicked="RadialChart_Clicked" />
+
+        <Button
             x:Name="TestView"
             Text="Test view"
             Clicked="TestView_Clicked" />

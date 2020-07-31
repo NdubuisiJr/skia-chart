@@ -20,7 +20,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
         public LineChart(IEnumerable<float> xValues, IEnumerable<float> yValues) {
             ValidateInputs(xValues, yValues);
-            UpdateDateType<float, float>();
+            UpdateDataType<float, float>();
             OriginalData = GenerateXYPoints(xValues, yValues);
         }
 
@@ -31,7 +31,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
         public LineChart(IEnumerable<string> xValues, IEnumerable<float> yValues) {
             ValidateInputs(xValues, yValues);
-            UpdateDateType<string, float>();
+            UpdateDataType<string, float>();
             OriginalData = DistributeXGenerateYPoints(xValues, yValues);
         }
 
@@ -42,7 +42,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Y-Cordinates of the X-Y plot as string labels</param>
         public LineChart(IEnumerable<float> xValues, IEnumerable<string> yValues) {
             ValidateInputs(xValues, yValues);
-            UpdateDateType<float, string>();
+            UpdateDataType<float, string>();
             OriginalData = DistributeYGenerateXPoints(xValues, yValues);
         }
 
@@ -75,20 +75,6 @@ namespace SkiaChart.Charts {
 
             if (canvasWrapper.CanShowLegend) {
                 RenderLegend(canvasWrapper, axis, canvas,PointPlotVariant.LineChart);
-            }
-        }
-
-        private SKColor _labelColor;
-        /// <summary>
-        ///  Color of Label
-        /// </summary>
-        public SKColor LabelColor {
-            get => _labelColor;
-            set {
-                if (value != _labelColor) {
-                    _labelColor = value;
-                    _labelPaint.Color = value;
-                }
             }
         }
 

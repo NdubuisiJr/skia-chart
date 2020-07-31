@@ -45,15 +45,37 @@ namespace SkiaChart {
 
         //Renders the x-y labels and the chart legend
         private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
-            if (canvasWrapper.ThisIsiOSOrAndroid) {
-                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
-                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
-                    canvasWrapper.LegendItemSpacing, true);
+            if (typeof(ISingleValueChart).Equals(typeof(T)
+                .GetInterface("ISingleValueChart"))) {
+                XYLableAndLegendForSingleValueChart(canvasWrapper);
             }
             else {
-                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top-(ChartArea.Top/2)-60, _gridPaint);
+                XYLableAndLegendForMultiValueChart(canvasWrapper);
+            }
+        }
+
+        private void XYLableAndLegendForSingleValueChart(CanvasWrapper canvasWrapper) {
+            if (canvasWrapper.ThisIsiOSOrAndroid)
+                Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                    canvasWrapper.LegendItemSpacing, true);
+            else
                 Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
                     canvasWrapper.LegendItemSpacing, true);
+            return;
+        }
+
+        private void XYLableAndLegendForMultiValueChart(CanvasWrapper canvasWrapper) {
+            if (canvasWrapper.ThisIsiOSOrAndroid) {
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top, _gridPaint);
+                if (canvasWrapper.CanShowLegend)
+                    Axis.DrawAndPositionLegend(_charts.Count.ToString(), ChartArea.Bottom, ChartArea.Left, _gridPaint,
+                        canvasWrapper.LegendItemSpacing, true);
+            }
+            else {
+                Axis.DrawAndPositionXLabel(XTitle, ChartArea.Top - (ChartArea.Top / 2) - 60, _gridPaint);
+                if (canvasWrapper.CanShowLegend)
+                    Axis.DrawAndPositionLegend(_charts.Count.ToString(), YOffset * 2, ChartArea.Left, _gridPaint,
+                        canvasWrapper.LegendItemSpacing, true);
             }
             Axis.DrawAndPositionYLabel(YTitle, ChartArea.Right, _gridPaint,
                 canvasWrapper.ThisIsiOSOrAndroid);
@@ -61,7 +83,9 @@ namespace SkiaChart {
 
         //Sets the grid and Initiates the drawing of the grid lines
         internal void SetGrid(SKCanvas canvas, int gridLines) {
-            if (gridLines < 1) return;
+            if (gridLines < 1 || typeof(ISingleValueChart).
+                Equals(typeof(T).GetInterface("ISingleValueChart"))) return;
+
             var widthSpacing = (ChartArea.Right - ChartArea.Left) / gridLines;
             var heightSpacing = (ChartArea.Bottom - ChartArea.Top) / gridLines;
             ConstructVerticalLines(canvas, gridLines, widthSpacing);
@@ -128,6 +152,9 @@ namespace SkiaChart {
             if (charts == null || charts.Count() < 1) {
                 throw new ArgumentException($"{nameof(charts)}");
             }
+            else if (charts.Count() > 12) {
+                throw new ArgumentException($"The maximum number of charts to plot is 12. You had {charts.Count()}");
+            }
             else {
                 var numberOfCharts = charts.Count();
                 for (int index = 0; index < numberOfCharts - 1; index++) {
@@ -152,12 +179,12 @@ namespace SkiaChart {
             }
         }
         /// <summary>
-        /// Gets and sets the title of the Y-Axis
+        /// Gets and sets the title of the Y-Axis. Note that this title is not rendered for single value charts
         /// </summary>
         public string YTitle { get; set; }
 
         /// <summary>
-        /// Gets and sets the title of the X-Axis
+        /// Gets and sets the title of the X-Axis. Note that this title is not rendered for single value charts
         /// </summary>
         public string XTitle { get; set; }
 

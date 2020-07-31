@@ -18,7 +18,7 @@ namespace SkiaChart.Charts {
         /// <param name="yValues">Values used to construct the Y-Axis</param>
         public BarChart(IEnumerable<string> xLabels, IEnumerable<float> yValues) {
             ValidateInputs(xLabels, yValues);
-            UpdateDateType<string, float>();
+            UpdateDataType<string, float>();
             OriginalData = DistributeXGenerateYPoints(xLabels, yValues);
         }
 
@@ -85,19 +85,5 @@ namespace SkiaChart.Charts {
         }
 
         public bool IsStroked { get; set; } = false;
-
-        private SKColor _labelColor;
-        /// <summary>
-        ///  Color of Label
-        /// </summary>
-        public SKColor LabelColor {
-            get => _labelColor;
-            set {
-                if (value != _labelColor) {
-                    _labelColor = value;
-                    _labelPaint.Color = value;
-                }
-            }
-        }
     }
 }

@@ -10,6 +10,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Bar Chart.
 * Scatter Chart.
 * Area Chart.
+* Radial Chart.
 
 ## Features
 * Horizontal axis title.
@@ -35,6 +36,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/line.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/scatter.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/radial.JPG" width="175">
  
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/bar.png" width="175">
@@ -43,6 +45,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/scatter.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/radial.JPG" width="175">
   
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/bar.png" width="175">
@@ -52,6 +55,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/scatter.png" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/WPF/radial.JPG" width="175">
   
    <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/line.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/GTK/area.png" width="175"> 
