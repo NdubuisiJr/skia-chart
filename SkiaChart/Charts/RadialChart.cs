@@ -65,8 +65,10 @@ namespace SkiaChart.Charts {
             var teta = 360 - ((minMax.Ymax - OriginalData.ElementAt(0).Y) / (minMax.Ymax - minMax.Ymin) * 360);
 
             var rect = new SKRect(chartArea.MidX - radius, chartArea.MidY - radius, chartArea.MidX + radius, chartArea.MidY + radius);
-            canvas.DrawArc(rect, 90, -teta, false, _chartPaint);
-
+            var path = new SKPath();
+            path.AddArc(rect, 90, -teta);
+            canvas.DrawPath(path, _chartPaint);
+            
             _chartPaint.Color = ChartColor.WithAlpha(70);
             canvas.DrawCircle(chartArea.MidX, chartArea.MidY, radius, _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
