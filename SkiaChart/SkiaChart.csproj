@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>SkiaChart.Forms</PackageId>
-    <Version>1.1.45</Version>
+    <Version>1.2.50</Version>
     <Authors>Ndubuisi Jr Chukuigwe</Authors>
     <Description>A simple xamarin.Forms chart library, built on top of the skiasharp graphics library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.</Description>
     <Copyright>Copyright (c) 2020 Ndubuisi Jr Chukuigwe</Copyright>
@@ -13,12 +13,9 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/NdubuisiJr/skia-chart</RepositoryUrl>
     <PackageTags>chart, skiasharp, skia, skiachart, skiachart.forms, xamarin.forms, xamarin, chartlibrary, xamarinChartLibrary, xamarinFormsChartLibrary, xamarinChart</PackageTags>
-    <PackageReleaseNotes>1. New Chart Type was added - Radial Type
-2. Bug fixes on Legend not showing on large screen
-3. Bug fix on legend showing up when CanShowLegend property is false
-4. Change position for rendering X-Y axis title
-5. Add bindable properties to control Label text size and Legend height
-6. Updated package reference to support older version of Xamarin.Forms</PackageReleaseNotes>
+    <PackageReleaseNotes>1. New Chart Type was added - Donut/Ring Type
+2. Bug fixes on GridLine bindable property
+4. Added bindadble property called ChartColor to control the appearance of the Chart Canvas</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
