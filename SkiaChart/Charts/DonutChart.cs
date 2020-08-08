@@ -5,14 +5,31 @@ using SkiaChart.Models;
 using SkiaSharp;
 using System;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace SkiaChart.Charts {
     public class DonutChart : RadialChart, ISingleValueChart {
-        public DonutChart(string label, float value) : base(label,value) {}
+        public DonutChart(string label, float value) : base(label, value) { }
 
         public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
-            var divisor = 3.5f;
-            var strokeWidth = 60;
+            int strokeWidth;
+            float divisor;
+            switch (Device.RuntimePlatform) {
+                case Device.WPF:
+                case Device.GTK:
+                case Device.macOS:
+                case Device.UWP: {
+                        divisor = 3.0f;
+                        strokeWidth = 100;
+                        break;
+                    }
+                default: {
+                        divisor = 2.0f;
+                        strokeWidth = 200;
+                        break;
+                    }
+            };
+
             var chartArea = canvasWrapper.ChartArea;
             var canvas = canvasWrapper.Canvas;
             _chartPaint.StrokeWidth = strokeWidth;
@@ -22,7 +39,7 @@ namespace SkiaChart.Charts {
 
             var radius = Math.Min(chartArea.MidX, chartArea.MidY) / divisor;
             var rect = new SKRect(chartArea.MidX - radius, chartArea.MidY - radius, chartArea.MidX + radius, chartArea.MidY + radius);
-            var startAngle = canvasWrapper.NumberPlottedChart == 0? 0 : canvasWrapper.NextStartAngle;
+            var startAngle = canvasWrapper.NumberPlottedChart == 0 ? 0 : canvasWrapper.NextStartAngle;
             var sweepAngle = (Angel / canvasWrapper.SumOfAngles) * 360;
             canvas.DrawArc(rect, -startAngle, -sweepAngle, false, _chartPaint);
 
