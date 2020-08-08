@@ -1,4 +1,5 @@
 ﻿using SkiaChart.Helpers;
+using SkiaChart.Interfaces;
 using SkiaSharp;
 
 namespace SkiaChart.Models {
@@ -22,18 +23,21 @@ namespace SkiaChart.Models {
 
         public SKCanvas Canvas { get; }
         public SKRect ChartArea { get; }
+        internal Converter Converter { get; }
         public int DeviceHeight { get; }
         public int DeviceWidth { get; }
         public int GridLines { get; }
         public bool ThisIsiOSOrAndroid { get; }
         public bool CanShowLegend { get; }
         public float LegendItemSpacing { get; }
-        internal Converter Converter { get; }
+        public float LabelTextSize { get; }
+
         public int NumberOfCharts { get; set; }
         public int NumberPlottedChart { get; set; }
         public int NumberOfDrawnLegend { get; set; }
         public float LegendDrawingStartX { get; set; }
-        public float LabelTextSize { get; }
-        internal bool drawYTickMarkOnBars = true;
+        public float SumOfAngles { get; set; }
+        public IChart LastPlottedChart { get; set; }
+        public bool DrawYTickMarkOnBars { get; set; } = true;
     }
 }

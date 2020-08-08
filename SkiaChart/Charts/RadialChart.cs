@@ -70,6 +70,11 @@ namespace SkiaChart.Charts {
             RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
         }
 
+        //No initial Calculation for this chart type
+        public virtual float InitialCalculations(IMinMax minMax) {
+            return 0f;
+        }
+
         public string Label { get; }
         public float Value { get; }
     }

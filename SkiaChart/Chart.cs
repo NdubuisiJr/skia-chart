@@ -45,9 +45,14 @@ namespace SkiaChart {
 
         //Renders the x-y labels and the chart legend
         private void RenderXYLabelAndLegend(CanvasWrapper canvasWrapper) {
-            if (typeof(ISingleValueChart).Equals(typeof(T)
-                .GetInterface("ISingleValueChart"))) {
+            if (TypeChecker.IsSingleValueChart<T>()) {
                 XYLableAndLegendForSingleValueChart(canvasWrapper);
+
+                //perform initial Calculations
+                _charts.ForEach(x => {
+                    canvasWrapper.SumOfAngles += ((ISingleValueChart)x)
+                                 .InitialCalculations(this);
+                });
             }
             else {
                 XYLableAndLegendForMultiValueChart(canvasWrapper);
@@ -83,8 +88,7 @@ namespace SkiaChart {
 
         //Sets the grid and Initiates the drawing of the grid lines
         internal void SetGrid(SKCanvas canvas, int gridLines) {
-            if (gridLines < 1 || typeof(ISingleValueChart).
-                Equals(typeof(T).GetInterface("ISingleValueChart"))) return;
+            if (gridLines < 1 || TypeChecker.IsSingleValueChart<T>()) return;
 
             var widthSpacing = (ChartArea.Right - ChartArea.Left) / gridLines;
             var heightSpacing = (ChartArea.Bottom - ChartArea.Top) / gridLines;
