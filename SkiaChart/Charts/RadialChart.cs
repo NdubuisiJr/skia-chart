@@ -62,7 +62,7 @@ namespace SkiaChart.Charts {
             var path = new SKPath();
             path.AddArc(rect, 90, -teta);
             canvas.DrawPath(path, _chartPaint);
-            
+
             _chartPaint.Color = ChartColor.WithAlpha(70);
             canvas.DrawCircle(chartArea.MidX, chartArea.MidY, radius, _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;

@@ -41,7 +41,9 @@ namespace SkiaChart.Charts {
             var rect = new SKRect(chartArea.MidX - radius, chartArea.MidY - radius, chartArea.MidX + radius, chartArea.MidY + radius);
             var startAngle = canvasWrapper.NumberPlottedChart == 0 ? 0 : canvasWrapper.NextStartAngle;
             var sweepAngle = (Angel / canvasWrapper.SumOfAngles) * 360;
-            canvas.DrawArc(rect, -startAngle, -sweepAngle, false, _chartPaint);
+            var path = new SKPath();
+            path.AddArc(rect, -startAngle, -sweepAngle);
+            canvas.DrawPath(path, _chartPaint);
 
             canvasWrapper.NextStartAngle = startAngle + sweepAngle;
             canvasWrapper.NumberPlottedChart += 1;
