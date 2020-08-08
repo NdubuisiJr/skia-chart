@@ -24,6 +24,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Scatter Chart.
 * Area Chart.
 * Radial Chart.
+* Donut Chart.
 
 ## Features
 * Horizontal axis title.
