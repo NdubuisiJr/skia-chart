@@ -8,13 +8,13 @@ namespace SkiaChart.Axes {
     /// The abstract class that cordinates the Axis of the chart
     /// </summary>
     public abstract class Axis {
-        internal Axis(IEnumerable<ChartBase> lineSeries) {
-            LineSeries = lineSeries;
+        internal Axis(IEnumerable<ChartBase> charts) {
+            Charts = charts;
         }
 
         internal float FindXMax() {
             var xMax = float.MinValue;
-            foreach (var serie in LineSeries) {
+            foreach (var serie in Charts) {
                 var xData = serie.OriginalData.Select(x => x.X);
                 var maxXData = xData.Max();
                 if (maxXData > xMax) {
@@ -26,7 +26,7 @@ namespace SkiaChart.Axes {
 
         internal float FindXMin() {
             var xMin = float.MaxValue;
-            foreach (var serie in LineSeries) {
+            foreach (var serie in Charts) {
                 var xData = serie.OriginalData.Select(x => x.X);
                 var xMinData = xData.Min();
                 if (xMinData < xMin) {
@@ -38,7 +38,7 @@ namespace SkiaChart.Axes {
 
         internal float FindYMax() {
             var yMax = float.MinValue;
-            foreach (var serie in LineSeries) {
+            foreach (var serie in Charts) {
                 var yData = serie.OriginalData.Select(y => y.Y);
                 var yMaxData = yData.Max();
                 if (yMaxData > yMax) {
@@ -50,7 +50,7 @@ namespace SkiaChart.Axes {
 
         internal float FindYMin() {
             var yMin = float.MaxValue;
-            foreach (var serie in LineSeries) {
+            foreach (var serie in Charts) {
                 var yData = serie.OriginalData.Select(y => y.Y);
                 var yMinData = yData.Min();
                 if (yMinData < yMin) {
@@ -79,6 +79,6 @@ namespace SkiaChart.Axes {
         internal abstract void DrawAndPositionYLabel(string label, float rightOrLeft, SKPaint paint,
             bool ThisIsiOSOrAndroid);
 
-        internal IEnumerable<ChartBase> LineSeries;
+        internal IEnumerable<ChartBase> Charts;
     }
 }

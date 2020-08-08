@@ -52,11 +52,11 @@ namespace SkiaChart.Charts {
                     RenderXTickMark(canvasWrapper, axis, x1, x2, xLabel);
                     var yLabel = GetYLabel(OriginalData.ElementAt(counter).Y);
                     if (yLabel.Trim().Length > 5) {
-                        canvasWrapper.drawYTickMarkOnBars = false;
+                        canvasWrapper.DrawYTickMarkOnBars = false;
                         DrawVerticalLabels(canvasWrapper, axis, minMax);
                     }
                 }
-                if (canvasWrapper.drawYTickMarkOnBars)
+                if (canvasWrapper.DrawYTickMarkOnBars)
                     RenderYTickMark(canvasWrapper, axis, counter, point, rect);
                 counter++;
             }

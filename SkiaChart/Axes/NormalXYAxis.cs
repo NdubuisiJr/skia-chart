@@ -9,7 +9,7 @@ namespace SkiaChart.Axes {
     /// </summary>
     /// <typeparam name="T">type of chart</typeparam>
     public class NormalXYAxis : Axis {
-        public NormalXYAxis(IEnumerable<ChartBase> lineSeries) : base(lineSeries) {
+        public NormalXYAxis(IEnumerable<ChartBase> charts) : base(charts) {
         }
 
         internal override void OrientAxis(SKCanvas canvas, float width,

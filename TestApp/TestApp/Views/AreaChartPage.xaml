@@ -20,8 +20,10 @@
         GridLines="10"
         GridColor="{Binding GridColor}"
         CanShowLegend="True"
+        BackgroundColor="Pink"
+        ChartColor="{Binding ChartColor}"
         LegendItemSpacing="{Binding LegendItemSpacing}"
         LabelTextSize="{Binding LabelTextSize}" 
     />
-    
+
 </ContentPage>

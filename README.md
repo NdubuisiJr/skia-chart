@@ -1,6 +1,19 @@
- [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg)](https://github.com/NdubuisiJr/skia-chart/actions)
- [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg)](https://www.nuget.org/packages/SkiaChart.Forms/)
- ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms)
+ <div align="center" >
+ 
+ [![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+ [![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
+ 
+ 
+ [![GitHub license](https://img.shields.io/github/license/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/blob/master/LICENSE)
+ [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/actions)
+ [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Deployment/badge.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/actions)
+ [![GitHub last commit](https://img.shields.io/github/last-commit/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart)
+ [![GitHub issues](https://img.shields.io/github/issues/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/issues)
+ [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg?style=flat-square)](https://www.nuget.org/packages/SkiaChart.Forms/)
+ ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms?style=flat-square)
+
+<sub>Built with ❤︎ by Ndubuisi Jr Chukuigwe</sub>
+</div><br>
 
 # skia-chart
 A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.
@@ -37,6 +50,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/line.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/scatter.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/radial.JPG" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/Android/donut.JPG" width="175">
  
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/iOS/bar.png" width="175">
@@ -46,6 +60,7 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/bar.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/scatter.png" width="175">
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/radial.JPG" width="175">
+  <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/UWP/donut.JPG" width="175">
   
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/area.png" width="175"> 
   <img src="https://github.com/NdubuisiJr/skia-chart/blob/master/ProjectFiles/macOS/bar.png" width="175">
@@ -169,10 +184,6 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Push your changes to your fork.
 * Create a pull request back to the main repository.
 * Add a new remote called upstream to point to the main repository.
-
-## Author
-
-* **Ndubuisi Jr Chukuigwe** - *Initial work* - [NdubuisiJr](https://github.com/NdubuisiJr)
 
 ## License
 
