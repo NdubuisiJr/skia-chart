@@ -1,6 +1,9 @@
- [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg)](https://github.com/NdubuisiJr/skia-chart/actions)
- [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg)](https://www.nuget.org/packages/SkiaChart.Forms/)
- ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms)
+ [![GitHub license](https://img.shields.io/github/license/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart/blob/master/LICENSE.md)
+ [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/actions)
+ [![GitHub last commit](https://img.shields.io/github/last-commit/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart)
+ [![GitHub issues](https://img.shields.io/github/issues/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart/issues)
+ [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg?style=flat-square)](https://www.nuget.org/packages/SkiaChart.Forms/)
+ ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms.svg?style=flat-square)
 
 # skia-chart
 A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms library. This library is developed with engineering and statistics in mind. It might not be the prettiest but it will visualize your data appropriately.
