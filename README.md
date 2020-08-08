@@ -1,8 +1,8 @@
- [![GitHub license](https://img.shields.io/github/license/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart/blob/master/LICENSE.md)
+ [![GitHub license](https://img.shields.io/github/license/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/blob/master/LICENSE)
  [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Build/badge.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/actions)
  [![Actions Status](https://github.com/NdubuisiJr/skia-chart/workflows/Deployment/badge.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/actions)
- [![GitHub last commit](https://img.shields.io/github/last-commit/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart)
- [![GitHub issues](https://img.shields.io/github/issues/NdubuisiJr/skia-chart.svg?longCache=true&style=flat-square)](https://github.com/NdubuisiJr/skia-chart/issues)
+ [![GitHub last commit](https://img.shields.io/github/last-commit/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart)
+ [![GitHub issues](https://img.shields.io/github/issues/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/issues)
  [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg?style=flat-square)](https://www.nuget.org/packages/SkiaChart.Forms/)
  ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms?style=flat-square)
 
