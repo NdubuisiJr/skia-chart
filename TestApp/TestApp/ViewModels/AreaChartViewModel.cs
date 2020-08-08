@@ -15,6 +15,7 @@ namespace TestApp.ViewModels {
             };
             
             GridColor = SKColors.Gray;
+            ChartColor = SKColors.Tomato;
 
             switch (Device.RuntimePlatform)
             {
@@ -91,6 +92,7 @@ namespace TestApp.ViewModels {
 
         public Chart<AreaChart> Chart { get; set; }
         public SKColor GridColor { get; set; }
+        public SKColor ChartColor { get; set; }
 		public float LabelTextSize { get; set; }
         public float LegendItemSpacing { get; set; }
     }
