@@ -15,18 +15,19 @@ namespace SkiaChart.Charts {
             var strokeWidth = 60;
             var chartArea = canvasWrapper.ChartArea;
             var canvas = canvasWrapper.Canvas;
-            var lastPlottedChart = canvasWrapper.LastPlottedChart;
             _chartPaint.StrokeWidth = strokeWidth;
             _chartPaint.Style = SKPaintStyle.Stroke;
+            _chartPaint.StrokeCap = SKStrokeCap.Butt;
 
 
             var radius = Math.Min(chartArea.MidX, chartArea.MidY) / divisor;
             var rect = new SKRect(chartArea.MidX - radius, chartArea.MidY - radius, chartArea.MidX + radius, chartArea.MidY + radius);
-            var startAngle = lastPlottedChart is null? 90 : ((DonutChart)lastPlottedChart).SweepAngle;
+            var startAngle = canvasWrapper.NumberPlottedChart == 0? 0 : canvasWrapper.NextStartAngle;
             var sweepAngle = (Angel / canvasWrapper.SumOfAngles) * 360;
-            canvas.DrawArc(rect, startAngle, -sweepAngle, false, _chartPaint);
+            canvas.DrawArc(rect, -startAngle, -sweepAngle, false, _chartPaint);
 
-            canvasWrapper.LastPlottedChart = this;
+            canvasWrapper.NextStartAngle = startAngle + sweepAngle;
+            canvasWrapper.NumberPlottedChart += 1;
             ChartName = $"{Label} : {Value}";
             RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.ScatterChart);
         }
@@ -37,6 +38,5 @@ namespace SkiaChart.Charts {
         }
 
         public float Angel { get; private set; }
-        public float SweepAngle { get; private set; }
     }
 }

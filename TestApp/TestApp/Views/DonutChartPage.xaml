@@ -7,13 +7,14 @@
              xmlns:chartview="clr-namespace:SkiaChart.Views;assembly=SkiaChart"
              xmlns:chart="clr-namespace:SkiaChart.Charts;assembly=SkiaChart"
              xmlns:viewModels="clr-namespace:TestApp.ViewModels"
-             x:Class="TestApp.Views.RadialChartPage">
-    <ContentPage.BindingContext>
-        <viewModels:RadialChartViewModel />
-    </ContentPage.BindingContext>
+             x:Class="TestApp.Views.DonutChartPage">
 
+    <ContentPage.BindingContext>
+        <viewModels:DonutChartViewModel/>
+    </ContentPage.BindingContext>
+    
     <chartview:ChartCanvas
-        x:TypeArguments="chart:RadialChart"
+        x:TypeArguments="chart:DonutChart"
         Chart="{Binding Chart}"
         GridLines="10"
         GridColor="{Binding GridColor}"

@@ -37,7 +37,7 @@ namespace SkiaChart.Models {
         public int NumberOfDrawnLegend { get; set; }
         public float LegendDrawingStartX { get; set; }
         public float SumOfAngles { get; set; }
-        public IChart LastPlottedChart { get; set; }
+        public float NextStartAngle { get; set; }
         public bool DrawYTickMarkOnBars { get; set; } = true;
     }
 }
