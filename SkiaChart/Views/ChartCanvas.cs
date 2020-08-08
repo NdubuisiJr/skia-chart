@@ -3,7 +3,6 @@ using SkiaChart.Helpers;
 using SkiaChart.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
 using Xamarin.Forms;
 
 namespace SkiaChart.Views {
@@ -35,7 +34,7 @@ namespace SkiaChart.Views {
         }
 
         public static readonly BindableProperty GridLineProperty = BindableProperty.Create(
-            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0, 
+            nameof(GridLines), typeof(int), typeof(ChartCanvas<T>), 0,
             defaultBindingMode: BindingMode.TwoWay, propertyChanged: GridLinesChanged);
 
         private static void GridLinesChanged(BindableObject bindable,
@@ -72,7 +71,28 @@ namespace SkiaChart.Views {
         public SKColor GridColor {
             get => (SKColor)GetValue(GridColorProperty);
             set {
-                SetValue(GridLineProperty, value);
+                SetValue(GridColorProperty, value);
+            }
+        }
+
+        public static readonly BindableProperty ChartColorProperty = BindableProperty.Create(
+            nameof(ChartColor), typeof(SKColor), typeof(ChartCanvas<T>), SKColors.Transparent,
+            defaultBindingMode: BindingMode.TwoWay, propertyChanged: ChartColorChanged);
+
+        private static void ChartColorChanged(BindableObject bindable,
+            object oldValue, object newValue) {
+            var canvas = (ChartCanvas<T>)bindable;
+            canvas.ChartColor = (SKColor)newValue;
+            canvas.InvalidateSurface();
+        }
+
+        /// <summary>
+        /// The Background color of the grid lines drawn on the chart canvas. It is a bindable property
+        /// </summary>
+        public SKColor ChartColor {
+            get => (SKColor)GetValue(ChartColorProperty);
+            set {
+                SetValue(ChartColorProperty, value);
             }
         }
 
@@ -147,7 +167,7 @@ namespace SkiaChart.Views {
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs e) {
             base.OnPaintSurface(e);
             if (Chart == null) return;
-
+           
             bool isAndroidOrIOS;
             int heightScaler;
             float bottomMargin;
@@ -170,7 +190,7 @@ namespace SkiaChart.Views {
             };
 
             var canvas = e.Surface.Canvas;
-            canvas.Clear(SKColors.White);
+            canvas.Clear(ChartColor);
 
             var xOffset = (float)e.Info.Width / 15;
             var yOffset = CanShowLegend ? heightScaler * ((float)e.Info.Height / 15) : (float)e.Info.Height / 15;

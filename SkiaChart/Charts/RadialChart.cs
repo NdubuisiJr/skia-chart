@@ -25,15 +25,9 @@ namespace SkiaChart.Charts {
         }
 
         public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
-            //small case 
-            //divisor=2.5f, strokewidth=30
             var divisor = 2.5f;
             var strokeWidth = 30;
-            //High case ios/android
-            //divisor=1.5f, strokewidth=30
-
-            //high case others
-            //divisor=2.0f, strokewidth=15
+    
             if (canvasWrapper.NumberOfCharts>6) {
                 switch (Device.RuntimePlatform) {
                     case Device.WPF:
