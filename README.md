@@ -10,7 +10,7 @@
  [![GitHub last commit](https://img.shields.io/github/last-commit/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart)
  [![GitHub issues](https://img.shields.io/github/issues/NdubuisiJr/skia-chart.svg?style=flat-square)](https://github.com/NdubuisiJr/skia-chart/issues)
  [![nuget](https://img.shields.io/nuget/v/SkiaChart.Forms.svg?style=flat-square)](https://www.nuget.org/packages/SkiaChart.Forms/)
- ![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms?style=flat-square)
+ [![Nuget](https://img.shields.io/nuget/dt/SkiaChart.Forms?style=flat-square)](https://www.nuget.org/packages/SkiaChart.Forms/)
 
 <sub>Built with ❤︎ by Ndubuisi Jr Chukuigwe</sub>
 </div><br>
