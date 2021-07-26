@@ -185,6 +185,8 @@ A simple xamarin.Forms chart library, built on top of the skiasharp.views.forms 
 * Push your changes to your fork.
 * Create a pull request back to the main repository.
 * Add a new remote called upstream to point to the main repository.
+ 
+ 
 
 ## License
 
