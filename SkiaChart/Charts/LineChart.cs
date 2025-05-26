@@ -1,24 +1,28 @@
 ﻿using SkiaChart.Axes;
 using SkiaChart.Enums;
+using SkiaChart.Helpers;
 using SkiaChart.Interfaces;
 using SkiaChart.Models;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SkiaChart.Charts {
+namespace SkiaChart.Charts
+{
 
     /// <summary>
     /// A class that handles the plotting of a single line chart on the ChartCanvas
     /// </summary>
-    public class LineChart : ChartBase {
+    public class LineChart : ChartBase
+    {
 
         /// <summary>
         /// Instantiates an instance of LineChart with floating point values
         /// </summary>
         /// <param name="xValues">X-Cordinates of the X-Y plot</param>
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
-        public LineChart(IEnumerable<float> xValues, IEnumerable<float> yValues) {
+        public LineChart(IEnumerable<float> xValues, IEnumerable<float> yValues)
+        {
             ValidateInputs(xValues, yValues);
             UpdateDataType<float, float>();
             OriginalData = GenerateXYPoints(xValues, yValues);
@@ -29,7 +33,8 @@ namespace SkiaChart.Charts {
         /// </summary>
         /// <param name="xValues">X-Cordinates of the X-Y plot as string labels</param>
         /// <param name="yValues">Y-Cordinates of the X-Y plot</param>
-        public LineChart(IEnumerable<string> xValues, IEnumerable<float> yValues) {
+        public LineChart(IEnumerable<string> xValues, IEnumerable<float> yValues)
+        {
             ValidateInputs(xValues, yValues);
             UpdateDataType<string, float>();
             OriginalData = DistributeXGenerateYPoints(xValues, yValues);
@@ -40,7 +45,8 @@ namespace SkiaChart.Charts {
         /// </summary>
         /// <param name="xValues">X-Cordinates of the X-Y plot</param>
         /// <param name="yValues">Y-Cordinates of the X-Y plot as string labels</param>
-        public LineChart(IEnumerable<float> xValues, IEnumerable<string> yValues) {
+        public LineChart(IEnumerable<float> xValues, IEnumerable<string> yValues)
+        {
             ValidateInputs(xValues, yValues);
             UpdateDataType<float, string>();
             OriginalData = DistributeYGenerateXPoints(xValues, yValues);
@@ -53,28 +59,32 @@ namespace SkiaChart.Charts {
         /// <param name="axis">Axis orientation object</param>
         /// <param name="minMax">Data for the extreme values</param>
         /// <param name="gridPaint">Paint object for the grid lines</param>
-        public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax) {
+        public override void RenderChart(CanvasWrapper canvasWrapper, Axis axis, IMinMax minMax)
+        {
             CheckConstructionPolicy(nameof(LineChart));
             var canvas = canvasWrapper.Canvas;
 
-            if (canvasWrapper.NumberPlottedChart < 1) {
+            if (canvasWrapper.NumberPlottedChart < 1)
+            {
                 DrawHorizontalLabels(canvasWrapper, axis, minMax);
                 DrawVerticalLabels(canvasWrapper, axis, minMax);
             }
 
             _chartPaint.IsStroke = true;
-            var path = new SKPath();
-            path.MoveTo(ConstructionData.First());
-            foreach (var point in ConstructionData.Skip(1)) {
-                path.LineTo(point);
-                if(ShowPoints)
+            var path = SplineHelper.CreateCatmullRomSpline(ConstructionData);
+
+            if (ShowPoints)
+            {
+                foreach (var point in ConstructionData.Skip(1))
                     canvas.DrawCircle(point, PointRadius, _chartPaint);
             }
+
             canvas.DrawPath(path, _chartPaint);
             canvasWrapper.NumberPlottedChart += 1;
 
-            if (canvasWrapper.CanShowLegend) {
-                RenderLegend(canvasWrapper, axis, canvas,PointPlotVariant.LineChart);
+            if (canvasWrapper.CanShowLegend)
+            {
+                RenderLegend(canvasWrapper, axis, canvas, PointPlotVariant.LineChart);
             }
         }
 
@@ -97,10 +107,13 @@ namespace SkiaChart.Charts {
         /// <summary>
         /// The stroke with of the line chart
         /// </summary>
-        public float Width {
+        public float Width
+        {
             get => _strokeWidth;
-            set {
-                if (value != _strokeWidth) {
+            set
+            {
+                if (value != _strokeWidth)
+                {
                     _strokeWidth = value;
                     _chartPaint.StrokeWidth = value;
                 }
