@@ -23,7 +23,7 @@ jobs:
         run: dotnet build ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
 
       - name: Pack NuGet package
-        run: dotnet pack --configuration Release --no-build --output ./nupkg
+        run: dotnet pack ./SkiaChart/SkiaChart.csproj --configuration Release --no-build --output ./nupkg
 
       - name: Push to NuGet
         run: |
