@@ -6,10 +6,10 @@ on:
 
 jobs:
   build:
-     runs-on: ubuntu-20.04
+     runs-on: ubuntu-latest
 
      steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -17,13 +17,18 @@ jobs:
           dotnet-version: '8.0.x'
       
       - name: Install dependencies
-        run: dotnet restore ./SkiaChart/SkiaChart.csproj
+        run: dotnet restore
     
       - name: Build
-        run: dotnet build ./SkiaChart/SkiaChart.csproj --configuration Release --no-restore
-        
-      - name: Publish SkiaChart to nuget
-        uses: brandedoutcast/publish-nuget@v2.5.5
-        with:
-            PROJECT_FILE_PATH: SkiaChart/SkiaChart.csproj
-            NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack NuGet package
+        run: dotnet pack --configuration Release --no-build --output ./nupkg
+
+      - name: Push to NuGet
+        run: |
+          dotnet nuget push ./nupkg/*.nupkg \
+            --api-key ${{ secrets.NUGET_API_KEY }} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
